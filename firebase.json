@@ -1,0 +1,30 @@
+{
+  "hosting": {
+    "public": "_site",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "my-blog-source/**"
+    ],
+    "redirects": [
+      {
+        "source": "/verify",
+        "destination": "/",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/blog",
+        "destination": "/blog/index.html"
+      },
+      {
+        "source": "/blog/**",
+        "destination": "/blog/index.html"
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": true
+  }
+}

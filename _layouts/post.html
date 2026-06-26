@@ -1,0 +1,201 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1LBSFT6R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H1LBSFT6R');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Jekyll-specific SEO and Title -->
+    <title>{{ page.title }} | Techtube Blog</title>
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    {% endif %}
+    
+    <!-- Open Graph/SEO Tags -->
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description | default: site.description }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    
+    <!-- Import TailwindCSS CDN (Matching index.html setup) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles (Matching index.html setup - only necessary styles are included) -->
+    <style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e8e9e2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #18795B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8fcdb5;
+        }
+        /* Basic smooth scroll (may not be needed on a static blog post) */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Style for the blog post content (can be customized further) */
+        .post-content h2 {
+            font-size: 2rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #18795B; /* brand-primary */
+            border-bottom: 2px solid #e8e9e2; /* brand-light */
+            padding-bottom: 0.5rem;
+        }
+        .post-content h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #031F14; /* brand-dark */
+        }
+        .post-content p {
+            margin-bottom: 1rem;
+            line-height: 1.75;
+            color: #031F14; /* brand-dark */
+        }
+        .post-content ul, .post-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            color: #031F14;
+        }
+        .post-content ul li {
+            list-style-type: disc;
+        }
+        .post-content a {
+             color: #18795B; /* brand-primary */
+             text-decoration: underline;
+        }
+        .post-content blockquote {
+             border-left: 4px solid #8fcdb5; /* brand-accent */
+             padding-left: 1rem;
+             margin-left: 0;
+             margin-bottom: 1rem;
+             color: #031F14;
+             font-style: italic;
+        }
+
+    </style>
+    
+    <!-- Tailwind Config (CRITICAL: Must match index.html for colors to work) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#031F14',
+                        'brand-primary': '#18795B',
+                        'brand-accent': '#8fcdb5',
+                        'brand-light': '#e8e9e2',
+                    }
+                }
+            }
+        }
+    </script>
+<script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=Jt88rITprSvr"></script>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
+
+    <!-- Header / Navigation (Simple version - linking back to the main site) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-brand-primary/50 h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <!-- Link back to the main site root -->
+                <a href="https://techtubestudio.com" class="flex items-center">
+                    <img class="h-14" src="/assets/img/techtube-logo.jpg" alt="Techtube Video Studio Logo | Hybrid Video Marketing Agency" onerror="this.onerror=null;this.src='https://placehold.co/200x60/031F14/8fcdb5?text=Techtube';">
+                </a>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <!-- Link back to the home page (which is your main site) -->
+                <a href="https://techtubestudio.com" class="text-brand-light/70 hover:text-brand-light transition-colors">Home</a>
+                <!-- Link to the main blog index -->
+                <a href="/blog/" class="text-brand-accent hover:text-brand-light transition-colors font-bold">Blog Index</a>
+            </nav>
+            <!-- Mobile Menu is omitted for simplicity in blog posts -->
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <!-- Back Link/Metadata Area -->
+            <div class="mb-8 p-4 bg-white rounded-lg shadow-md border-l-4 border-brand-primary/70">
+                <p class="text-sm text-gray-500 mb-2">
+                    <a href="/blog/" class="text-brand-primary hover:underline">&larr; Back to Blog Index</a>
+                </p>
+                <p class="text-sm text-gray-500">
+                    Published on: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+                    {% if page.author %} | By: {{ page.author }} {% endif %}
+                </p>
+            </div>
+
+            <!-- Blog Post Title and Content -->
+            <article class="bg-white p-8 md:p-10 rounded-xl shadow-xl">
+                
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-brand-dark">
+                    {{ page.title }}
+                </h1>
+                
+                {% if page.image %}
+                <!-- Optional: Featured Image -->
+                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="w-full h-auto object-cover rounded-lg mb-8 shadow-lg">
+                {% endif %}
+
+                <!-- Post Content - This is where your Markdown content is rendered -->
+                <div class="post-content text-lg text-brand-dark">
+                    {{ content }}
+                </div>
+            </article>
+
+            <!-- Optional: CTA after Post -->
+           <div class="mt-16 text-center p-4"> 
+                 <p class="text-xl text-brand-dark mb-4 font-semibold">Ready to turn this strategy into reality?</p>
+                 
+                 <!-- UPDATED CTA BUTTON WITH MOBILE WRAPPING FIX -->
+                 <a href="https://techtubestudio.com" 
+                    class="w-full md:w-auto px-12 py-4 text-xl font-bold text-white bg-brand-primary hover:bg-brand-dark rounded-full transition-all transform hover:scale-105 shadow-xl 
+                           flex flex-col items-center text-center">  
+                    Build Your Custom Video Strategy Now!
+                 </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer (Matching index.html setup) -->
+    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <!-- Social Media Icons (You may want to copy the full set from index.html if needed) -->
+            <div class="flex justify-center space-x-6 mb-6">
+                 <!-- Link back to the main site's contact page -->
+                <a href="https://techtubestudio.com#contact" class="text-brand-light/70 hover:text-brand-accent transition-colors">Contact</a>
+            </div>
+            <p>&copy; 2025 Techtube Video Studio Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

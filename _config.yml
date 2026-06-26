@@ -1,0 +1,36 @@
+# -----------------------------------------------------------------
+# Site Settings (General Configuration)
+# -----------------------------------------------------------------
+title: Techtube Video Strategy Blog
+email: sales@techtubestudio.com
+description: The official blog for Techtube Video Studio, sharing insights on hybrid video production, AI strategy, and scalable content marketing.
+
+url: "https://techtubestudio.com" 
+baseurl: ""  # CRITICAL for Firebase: This must be empty
+
+# Clean URL structure for SEO: /post-name/
+permalink: /:title/ 
+
+# -----------------------------------------------------------------
+# Build Settings
+# -----------------------------------------------------------------
+markdown: kramdown
+
+# CRITICAL FIX: Forces the output to be .html instead of .htm
+html_ext: .html 
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Specify the directory for Jekyll to process and where to output:
+source: .
+destination: _site
+
+# Exclude unnecessary files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - README.md
+  - robots.txt

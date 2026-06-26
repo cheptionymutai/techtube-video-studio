@@ -1,0 +1,140 @@
+---
+title: Blog - Latest Insights
+description: Our latest articles on hybrid video strategy and production.
+permalink: /blog/ # <-- FORCES THE OUTPUT TO _site/blog/index.html
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1LBSFT6R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H1LBSFT6R');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Techtube Blog</title>
+    <meta name="description" content="{{ page.description }}">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CRITICAL: Copy-paste all the <style> and Tailwind <script> blocks from your index.html here */
+        /* ... (Your custom scrollbar, colors, and Tailwind config go here) ... */
+        :root {
+            --brand-dark: #031F14;
+            --brand-primary: #18795B;
+            --brand-accent: #8fcdb5;
+            --brand-light: #e8e9e2;
+        }
+        /* Your custom styles for the blog index if any */
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#031F14',
+                        'brand-primary': '#18795B',
+                        'brand-accent': '#8fcdb5',
+                        'brand-light': '#e8e9e2',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
+    
+    <!-- Blog-specific Header/Navigation (You can copy the blog's header here) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-brand-primary/50 h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="https://techtubestudio.com" class="flex items-center">
+                <img class="h-14" src="/assets/img/techtube-logo.jpg" alt="Techtube Logo" onerror="this.onerror=null;this.src='https://placehold.co/200x60/031F14/8fcdb5?text=Techtube';">
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="https://techtubestudio.com" class="text-brand-light/70 hover:text-brand-light transition-colors">Home</a>
+                <a href="/blog/" class="text-brand-accent hover:text-brand-light transition-colors font-bold">Blog Index</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl font-extrabold mb-8 text-brand-dark">The Latest on Hybrid Video Strategy</h1>
+            
+            <!-- Jekyll Loop to list all blog posts -->
+            <div class="space-y-12">
+                <!-- Search Bar Section -->
+<div class="mb-12">
+    <div class="relative max-w-lg">
+        <input type="text" id="blog-search" placeholder="Search strategy keywords..." 
+               class="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border-2 border-brand-primary/20 focus:border-brand-primary outline-none transition-all shadow-sm text-brand-dark"
+               onkeyup="filterPosts()">
+        <div class="absolute left-4 top-4 text-brand-primary opacity-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterPosts() {
+    let input = document.getElementById('blog-search').value.toLowerCase();
+    let posts = document.querySelectorAll('.post-card'); // Ensure your post <div> has class="post-card"
+
+    posts.forEach(post => {
+        let title = post.querySelector('h2').innerText.toLowerCase();
+        let excerpt = post.innerText.toLowerCase();
+        
+        if (title.includes(input) || excerpt.includes(input)) {
+            post.style.display = "";
+        } else {
+            post.style.display = "none";
+        }
+    });
+}
+</script>
+                {% for post in site.posts %}
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-brand-accent hover:shadow-2xl transition-shadow">
+                    <h2 class="text-3xl font-bold mb-2 text-brand-primary">
+                        <a href="{{ post.url | relative_url }}" class="hover:underline">
+                            {{ post.title }}
+                        </a>
+                    </h2>
+                    <p class="text-sm text-gray-500 mb-4">
+                        Published on {{ post.date | date: "%B %d, %Y" }}
+                    </p>
+                    <p class="text-lg text-brand-dark mb-4">
+                        {% if post.excerpt %}
+                            {{ post.excerpt | strip_html | truncatewords: 30 }}
+                        {% else %}
+                            {{ post.content | strip_html | truncatewords: 30 }}
+                        {% endif %}
+                    </p>
+                    <a href="{{ post.url | relative_url }}" class="text-brand-primary font-semibold hover:text-brand-dark transition-colors flex items-center">
+                        Read More &rarr;
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Handle pagination if you have many posts -->
+            
+        </div>
+    </main>
+    
+    <!-- Footer (Matching index.html setup) -->
+    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p>&copy; 2025 Techtube Video Studio Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
