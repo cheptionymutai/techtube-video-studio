@@ -13,7 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm run build
+
+      # 1. Setup Ruby on the cloud server
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundle-cache: true
+
+      # 2. Install Jekyll gems and compile the blog
+      - name: Install dependencies and Build Jekyll
+        run: |
+          gem install bundler
+          bundle install
+          bundle exec jekyll build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
