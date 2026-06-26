@@ -21,7 +21,7 @@ jobs:
 
       - name: Install Jekyll and Build
         run: |
-          gem install jekyll jekyll-feed
+          gem install jekyll jekyll-feed jekyll-sitemap
           jekyll build
 
       - name: Deploy to Firebase Hosting

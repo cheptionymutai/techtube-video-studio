@@ -24,7 +24,7 @@ jobs:
       # 2. Install Jekyll gems and compile the blog
       - name: Install Jekyll and Build
         run: |
-          gem install jekyll jekyll-feed
+          gem install jekyll jekyll-feed jekyll-sitemap
           jekyll build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
