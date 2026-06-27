@@ -11,18 +11,19 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
+          bundle-cache: true
 
       - name: Install Jekyll and Build
         run: |
           gem install jekyll jekyll-feed jekyll-sitemap
-          jekyll build --future
+          jekyll build
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -30,6 +31,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TECHTUBE_VIDEO_STUDIO }}'
           channelId: live
-          env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
+          singleCommit: true # <-- THIS IS THE SECRET KEY: Forces Firebase to treat it as a fresh individual release instead of matching history hashes
           projectId: techtube-video-studio
