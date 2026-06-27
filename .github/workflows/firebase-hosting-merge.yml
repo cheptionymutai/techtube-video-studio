@@ -22,7 +22,7 @@ jobs:
       - name: Install Jekyll and Build
         run: |
           gem install jekyll jekyll-feed jekyll-sitemap
-          jekyll build
+          jekyll build --future
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
