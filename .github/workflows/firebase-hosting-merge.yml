@@ -25,11 +25,7 @@ jobs:
           gem install jekyll jekyll-feed jekyll-sitemap
           jekyll build
 
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TECHTUBE_VIDEO_STUDIO }}'
-          channelId: live
-          singleCommit: true # <-- THIS IS THE SECRET KEY: Forces Firebase to treat it as a fresh individual release instead of matching history hashes
-          projectId: techtube-video-studio
+      - name: Install Firebase CLI and Force Deploy
+        run: |
+          npm install -g firebase-tools
+          firebase deploy --only hosting --non-interactive --token "${{ secrets.FIREBASE_TOKEN }}"
