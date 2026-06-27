@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Confirmed | Techtube Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#031F14',
+                        'brand-primary': '#18795B',
+                        'brand-accent': '#8fcdb5',
+                        'brand-light': '#e8e9e2',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans flex items-center justify-center min-h-screen p-6">
+
+    <div class="max-w-lg w-full bg-white rounded-[2.5rem] p-10 md:p-16 shadow-2xl border border-gray-100 text-center relative overflow-hidden">
+        
+        <!-- Success Icon -->
+        <div class="w-20 h-20 bg-brand-primary rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-brand-primary/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+
+        <!-- Text Content -->
+        <h1 class="text-3xl font-black uppercase tracking-tight mb-2">Action Confirmed!</h1>
+        
+        <!-- Transaction Ref Display (Trust Signal) -->
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-6">
+            Transaction Ref: <span id="ref-display" class="font-bold text-brand-primary">Processing...</span>
+        </p>
+
+        <p class="text-lg text-gray-600 leading-relaxed mb-8">
+            Thank you for choosing <span class="text-brand-primary font-bold">Techtube Video Studio</span>. Your request has been processed successfully.
+        </p>
+        
+        <div class="bg-brand-light/30 rounded-2xl p-6 mb-10 border border-brand-primary/10">
+            <p class="text-sm font-medium">
+                Our production team has been notified. We will reach out to your provided email address within <span class="text-brand-primary font-black">2 hours</span> to begin implementation.
+            </p>
+        </div>
+
+        <!-- Back Home Button -->
+        <a href="/" class="inline-block w-full py-4 bg-brand-primary text-white font-black rounded-2xl shadow-xl hover:bg-brand-dark transition-all transform hover:scale-[1.02] active:scale-95 uppercase tracking-widest text-sm">
+            Back to Homepage
+        </a>
+
+        <!-- Automatic Redirect Notice -->
+        <p class="mt-8 text-xs text-gray-400 italic">
+            Redirecting to homepage in <span id="countdown" class="font-bold text-brand-dark">10</span> seconds...
+        </p>
+
+        <!-- Logo at bottom -->
+        <div class="mt-12 opacity-30 grayscale">
+            <img src="/techtube-logo.jpg" class="h-8 mx-auto" onerror="this.style.display='none'">
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Handle Transaction Reference from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const reference = urlParams.get('ref');
+        if (reference) {
+            document.getElementById('ref-display').innerText = reference;
+        } else {
+            document.getElementById('ref-display').innerText = "TT-" + Math.floor(Date.now() / 1000);
+        }
+
+        // 2. Automatic Redirect Logic
+        let seconds = 10;
+        const countdownEl = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.innerText = seconds;
+            if (seconds <= 0) {
+                clearInterval(timer);
+                window.location.href = "/";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# ----------------------------------------------------------------------
+# Robots.txt for Techtube Video Studio - For SEO and Crawl Control
+# ----------------------------------------------------------------------
+
+# Allow all robots to crawl the entire site
+User-agent: *
+Allow: /
+
+Sitemap: https://techtubestudio.com/sitemap.xml
+
+# Exclude unnecessary Jekyll-related folders/files
+Disallow: /_site/
+Disallow: /_layouts/
+Disallow: /_posts/
+Disallow: /_drafts/
+
+# Specify the location of your sitemap
+# We assume the sitemap is being placed at the root by the jekyll-sitemap plugin.
+# If you are using the 'baseurl: ""' setting, the plugin outputs to the root.

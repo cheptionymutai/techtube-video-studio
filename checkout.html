@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Techtube Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'brand-dark': '#031F14', 'brand-primary': '#18795B', 'brand-accent': '#8fcdb5', 'brand-light': '#e8e9e2' } } } }
+    </script>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans flex items-center justify-center min-h-screen p-4">
+    <div class="max-w-md w-full bg-white rounded-[2rem] p-10 shadow-2xl border border-gray-100 text-center">
+        <img src="/techtube-logo.jpg" class="h-10 mx-auto mb-6" onerror="this.style.display='none'">
+        <h1 class="text-2xl font-black uppercase tracking-tight mb-2">Secure Checkout</h1>
+        <p class="text-gray-500 text-xs mb-8" id="order-desc">Loading details...</p>
+
+        <div class="bg-brand-light/30 rounded-2xl p-6 mb-8 border border-brand-primary/10">
+            <span class="block text-gray-400 uppercase text-[10px] font-black mb-1">Amount Due</span>
+            <span class="text-4xl font-black text-brand-primary" id="display-amount">...</span>
+        </div>
+
+        <div class="mb-8">
+            <p class="text-[10px] font-bold uppercase text-gray-400 mb-4">Accepted Methods</p>
+            <div class="flex justify-center gap-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" class="h-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4 mt-1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-6">
+            </div>
+        </div>
+
+        <button type="button" onclick="payWithPaystack()" class="w-full py-5 bg-brand-primary text-white font-black rounded-2xl shadow-xl hover:bg-brand-dark transition-all transform hover:scale-[1.02] active:scale-95 uppercase tracking-widest">
+            Confirm & Pay
+        </button>
+
+        <p class="text-[10px] text-gray-400 mt-8 font-bold">🔒 SECURED BY PAYSTACK</p>
+    </div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = urlParams.get('amount'), 
+          currency = urlParams.get('currency') || 'KES', 
+          email = urlParams.get('email'), 
+          name = urlParams.get('name'), 
+          desc = urlParams.get('desc');
+
+    if(amount) {
+        document.getElementById('display-amount').innerText = `${currency === 'KES' ? 'KES ' : '$'}${Number(amount).toLocaleString()}`;
+        document.getElementById('order-desc').innerText = desc || "Video Production Deposit";
+    }
+
+    function payWithPaystack() {
+        // Check if Paystack is actually loaded
+        if (typeof PaystackPop === 'undefined') {
+            alert("Payment system is loading. Please wait a moment and try again.");
+            return;
+        }
+
+        let handler = PaystackPop.setup({
+            key: 'pk_live_2032ccaf5ec7576938f03712155f5f3a46d771d3', // <-- YOUR PUBLIC KEY (starts with pk_)
+            email: email,
+            amount: Math.round(amount * 100), // Ensure it's a whole number
+            currency: currency,
+            ref: 'TT-' + Date.now(),
+            callback: function(response) {
+                // UPDATE THIS TO YOUR NEW BACKEND URL
+                fetch("https://cheptiony-backend-838892077100.us-central1.run.app/leads/payment-confirmed", {
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        source: "techtube_checkout", 
+                        name: name, 
+                        email: email, 
+                        topic: "Deposit Payment Successful", 
+                        message: currency + " " + amount 
+                    })
+                });
+                window.location.href = "https://techtubestudio.com/success.html?ref=" + response.reference;
+            },
+            onClose: function() {
+                alert('Window closed before payment was completed.');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
+</body>
+</html>

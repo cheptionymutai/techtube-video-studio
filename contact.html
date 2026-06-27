@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Techtube Video Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'brand-dark': '#031F14', 'brand-primary': '#18795B', 'brand-accent': '#8fcdb5', 'brand-light': '#e8e9e2' } } } }
+    </script>
+</head>
+<body class="bg-brand-dark text-brand-light font-sans antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark h-20 border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="index.html">
+                <img class="h-12" src="/techtube-logo.jpg" alt="Logo">
+            </a>
+            <nav class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-brand-light/70">
+                <a href="/index.html" class="hover:text-brand-accent">Home</a>
+                <a href="/portfolio.html" class="hover:text-brand-accent">Case Studies</a>
+                <a href="/about.html" class="hover:text-brand-accent">About</a>
+                <a href="/blog/" class="text-brand-light/70 hover:text-brand-accent transition-colors">Blog</a>
+                 <a href="/livestream.html" class="hover:text-brand-accent">Livestream</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-20 min-h-screen flex items-center">
+        <div class="max-w-xl mx-auto px-6 text-center w-full">
+            <h1 class="text-4xl font-black mb-6 uppercase tracking-tight">Let's Connect</h1>
+            <p class="text-brand-accent mb-12">Reach out to our human team for custom production inquiries.</p>
+
+            <form id="contact-form" class="flex flex-col gap-4 text-left">
+                <!-- Honeypot -->
+                <div class="hidden"><input type="text" id="contact_url_trap"></div>
+                
+                <input type="text" id="contact-name" placeholder="Your Name" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent" required>
+                <input type="email" id="contact-email" placeholder="Your Email" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent" required>
+                <textarea id="contact-message" placeholder="Your Message" rows="5" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent" required></textarea>
+                
+                <button type="submit" id="contact-submit-btn" class="bg-brand-accent text-brand-dark font-black py-4 rounded-full uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105">Send Message</button>
+            </form>
+            <div id="contact-success" class="hidden py-10"><h3 class="text-2xl font-bold text-white mb-2">Message Sent!</h3><p class="text-brand-accent">We will get back to you soon.</p></div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('contact-form').onsubmit = async (e) => {
+            e.preventDefault(); if (document.getElementById('contact_url_trap').value) return;
+            const btn = document.getElementById('contact-submit-btn'); btn.innerText = "Sending..."; btn.disabled = true;
+            try {
+                const res = await fetch("https://cheptiony-backend-838892077100.us-central1.run.app/leads/capture", {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ source: "techtube_contact_page", name: document.getElementById('contact-name').value, email: document.getElementById('contact-email').value, topic: "Website Contact Inquiry", message: document.getElementById('contact-message').value })
+                });
+                if (res.ok) { document.getElementById('contact-form').classList.add('hidden'); document.getElementById('contact-success').classList.remove('hidden'); }
+            } catch (err) { alert("Error sending message."); btn.disabled = false; btn.innerText = "Send Message"; }
+        };
+    </script>
+
+     <!-- Shared Footer -->
+    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4.072-3.262-4.072 0v5.604h-3v-11h3v1.765c1.398-2.522 6.007-2.75 6.007 2.476v6.759z"/></svg></a>
+                <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.5 12.553c0 .548-.445 1-1 1h-11c-.553 0-1-.452-1-1v-1c0-.548.447-1 1-1h11c.555 0 1 .452 1 1v1zm-3.5-3.553c0 .548-.445 1-1 1h-11c-.553 0-1-.452-1-1v-1c0-.548.447-1 1-1h11c.555 0 1 .452 1 1v1zm-3.5 7.006c0 .548-.445 1-1 1h-11c-.553 0-1-.452-1-1v-1c0-.548.447-1 1-1h11c.555 0 1 .452 1 1v1z"/></svg></a>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase font-bold tracking-widest">
+                <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
+                    <a href="https://techtubestudio.com/livestream/" class="hover:text-brand-accent">Livestream</a>
+                </div>
+                <p>Nairobi, Kenya</p>
+            </div>
+        </div>
+    </footer>
+ 
+</body>
+</html>

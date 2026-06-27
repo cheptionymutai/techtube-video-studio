@@ -30,4 +30,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TECHTUBE_VIDEO_STUDIO }}'
           channelId: live
+          env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
           projectId: techtube-video-studio

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Techtube Video Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar matching main site */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e8e9e2; }
+        ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
+        
+        html { scroll-behavior: smooth; }
+        .policy-content h2 { 
+            color: #18795B; 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-top: 2rem; 
+            margin-bottom: 1rem; 
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .policy-content p { margin-bottom: 1.25rem; line-height: 1.75; }
+        .policy-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+        .policy-content li { margin-bottom: 0.5rem; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#031F14',
+                        'brand-primary': '#18795B',
+                        'brand-accent': '#8fcdb5',
+                        'brand-light': '#e8e9e2',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
+
+    <!-- Simple Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-brand-primary/50 h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <div class="flex-shrink-0">
+                <a href="/" class="flex items-center">
+                    <img class="h-12" src="/techtube-logo.jpg" alt="Techtube Logo" onerror="this.src='https://placehold.co/200x60/031F14/8fcdb5?text=Techtube';">
+                </a>
+            </div>
+            <nav class="flex items-center space-x-6">
+                <a href="/" class="text-brand-light/70 hover:text-brand-light transition-colors text-sm font-bold uppercase">Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-24">
+        <div class="max-w-3xl mx-auto px-6 bg-white p-10 md:p-16 rounded-3xl shadow-xl">
+            <h1 class="text-4xl md:text-5xl font-black text-brand-dark mb-4 uppercase tracking-tighter">Privacy Policy</h1>
+            <p class="text-brand-primary font-bold mb-10">Last Updated: February 2026</p>
+
+            <div class="policy-content text-gray-700">
+                <p>At <strong>Techtube Video Studio Ltd</strong>, your privacy is a core part of our commitment to transparency. This policy explains how we collect, use, and protect your information when you use our StratBot strategy builder or contact us through our website.</p>
+
+                <h2>1. Information We Collect</h2>
+                <p>We collect information that helps us build a bespoke video marketing strategy for you, including:</p>
+                <ul>
+                    <li><strong>Identity Data:</strong> Your name and email address.</li>
+                    <li><strong>Business Data:</strong> Industry type, website URL, and business/product descriptions.</li>
+                    <li><strong>Strategic Data:</strong> Content preferences, platform targets, and production frequency.</li>
+                    <li><strong>Technical Data:</strong> IP address and location (used solely for currency detection).</li>
+                </ul>
+
+                <h2>2. How We Use Your Information</h2>
+                <p>Your data is used to fuel our Hybrid Production Model. Specifically:</p>
+                <ul>
+                    <li>To generate the custom video strategy via our AI engine.</li>
+                    <li>To deliver official quotations and invoices to your inbox.</li>
+                    <li>To address you by name in our communications.</li>
+                    <li>To trigger automated follow-ups ensuring you received your strategy details.</li>
+                    <li>To analyze industry trends to improve StratBot's accuracy.</li>
+                </ul>
+
+                <h2>3. AI Processing</h2>
+                <p>When you provide a URL or business description, this data is processed by Google Gemini AI to create your roadmap. This data is used only for the generation of your specific strategy and is not used by Techtube to "train" public models.</p>
+
+                <h2>4. Data Storage and Security</h2>
+                <p>We host our infrastructure on <strong>Google Cloud (Firebase & Cloud Run)</strong>, which employs enterprise-grade security. We do not sell, rent, or trade your personal information with third-party marketers.</p>
+
+                <h2>5. Third-Party Services</h2>
+                <p>To deliver our service, we use trusted sub-processors:</p>
+                <ul>
+                    <li><strong>Google Cloud:</strong> For hosting and AI processing.</li>
+                    <li><strong>FastMail:</strong> For secure email delivery of your strategies and invoices.</li>
+                    <li><strong>Chatway:</strong> For live support communications.</li>
+                </ul>
+
+                <h2>6. Your Rights</h2>
+                <p>Under Kenyan Data Protection laws, you have the right to access, correct, or request the deletion of your data at any time. To do so, please contact us at the email address below.</p>
+
+                <h2>7. Contact Us</h2>
+                <p>If you have any questions regarding this policy or your data, please reach out to us:</p>
+                <p class="font-bold text-brand-primary">
+                    Email: hello@techtubestudio.com<br>
+                    Location: Kasarani Mwiki Road, Nairobi, Kenya.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-brand-light/70 py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

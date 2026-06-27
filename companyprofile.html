@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile | Techtube Video Studio Ltd</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#031F14',
+                        'brand-primary': '#18795B',
+                        'brand-accent': '#8fcdb5',
+                        'brand-light': '#e8e9e2',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* WEB DISPLAY STYLES */
+        body { background-color: #f0f1f3; min-height: 100vh; display: flex; flex-direction: column; }
+        .content-container { background-color: white; flex-grow: 1; display: flex; flex-direction: column; }
+
+        /* PRINT OPTIMIZATION */
+        @media print {
+            @page {
+                margin: 1.5cm;
+                size: A4;
+            }
+            body { background-color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .print-hidden { display: none !important; }
+            .content-container { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; max-width: none !important; }
+            
+            /* Prevent sections and table rows from breaking across pages */
+            section, tr, .no-break { 
+                break-inside: avoid; 
+                page-break-inside: avoid; 
+            }
+            
+            /* Ensure the footer stays at the very bottom of the last page */
+            footer {
+                margin-top: auto !important;
+                padding-top: 3rem !important;
+            }
+
+            /* Make links look like plain text but keep them recognizable */
+            a { text-decoration: none !important; color: #031F14 !important; }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e8e9e2; }
+        ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-brand-dark antialiased font-sans">
+
+    <!-- Floating Action Header (Hidden on Print) -->
+    <div class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md p-4 flex justify-center items-center gap-6 print-hidden border-b border-brand-primary">
+        <p class="text-brand-light text-xs hidden sm:block italic">Open this page in Chrome or Edge to save as a high-quality PDF.</p>
+        <button onclick="window.print()" class="px-10 py-3 bg-brand-accent text-brand-dark font-black rounded-full shadow-2xl hover:bg-white transition-all transform hover:scale-105 active:scale-95">
+            DOWNLOAD / PRINT PDF
+        </button>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="content-container max-w-5xl mx-auto my-0 md:my-10 pt-28 md:pt-16 pb-12 px-8 md:px-20 shadow-2xl relative">
+        
+        <!-- LOGO (Top Right) -->
+        <div class="absolute top-10 right-10 md:top-16 md:right-20 text-right">
+            <img src="/techtube-logo.jpg" alt="Techtube Logo" class="h-20 md:h-28 inline-block" onerror="this.src='https://placehold.co/250x100/031F14/8fcdb5?text=Techtube';">
+        </div>
+
+        <!-- MAIN HEADER -->
+        <header class="pt-8 pb-12 border-b-4 border-brand-primary/10">
+            <h1 class="text-5xl md:text-6xl font-black text-brand-dark leading-none uppercase tracking-tighter">Techtube Video<br>Studio Ltd</h1>
+            <div class="mt-6 flex items-center gap-4">
+                <span class="h-1.5 w-24 bg-brand-primary rounded-full"></span>
+                <h2 class="text-xl font-bold tracking-[0.3em] text-brand-primary uppercase">Company Profile</h2>
+            </div>
+        </header>
+
+        <!-- SECTION: COMPANY PARTICULARS -->
+        <section class="mt-16 mb-20 grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <h3 class="text-sm font-black text-brand-primary uppercase tracking-widest border-b border-brand-light pb-2">Business Particulars</h3>
+                <div class="grid grid-cols-2 gap-y-4 text-xs">
+                    <p class="font-bold text-gray-400 uppercase">Legal Status</p><p class="font-semibold text-brand-dark">Private Limited Company</p>
+                    <p class="font-bold text-gray-400 uppercase">Reg. Number</p><p class="font-semibold text-brand-dark">PVT-PJUYP2VV</p>
+                    <p class="font-bold text-gray-400 uppercase">Tax PIN</p><p class="font-semibold text-brand-dark">P052252154V</p>
+                    <p class="font-bold text-gray-400 uppercase">Director</p><p class="font-semibold text-brand-dark">Gilbert Mutai</p>
+                </div>
+            </div>
+            <div class="space-y-6 bg-brand-light/20 p-8 rounded-2xl border-l-8 border-brand-primary">
+                <h3 class="text-sm font-black text-brand-primary uppercase tracking-widest">Contact Information</h3>
+                <div class="space-y-3 text-xs">
+                    <p class="flex items-center gap-3"><strong class="w-12 text-gray-400 uppercase">Web</strong> www.techtubestudio.com</p>
+                    <p class="flex items-center gap-3"><strong class="w-12 text-gray-400 uppercase">Email</strong> sales@techtubestudio.com</p>
+                    <p class="flex items-center gap-3"><strong class="w-12 text-gray-400 uppercase">Phone</strong> +254 701 938 336 | +254 712 828 453</p>
+                    <p class="flex items-center gap-3 italic"><strong class="w-12 text-gray-400 uppercase not-italic">Office</strong> Denlink House, Nairobi Kenya.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: ABOUT / MISSION / VISION / VALUES -->
+        <section class="mb-20">
+            <h3 class="text-2xl font-black mb-8 text-brand-dark flex items-center gap-4">
+                <span class="w-3 h-10 bg-brand-primary rounded-sm"></span> THE AGENCY
+            </h3>
+            <p class="text-xl text-gray-700 leading-relaxed mb-12">
+                Established in 2013, Techtube Video Studio Ltd is a specialized media powerhouse merging **AI Video Strategy** with **Expert Human Execution**. We streamline high-quality video production to help organizations scale their communication impact with precision and speed.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-8 bg-brand-light/30 rounded-xl border-t-4 border-brand-primary">
+                    <h4 class="font-black text-brand-primary mb-3 uppercase text-[10px] tracking-widest">Our Mission</h4>
+                    <p class="text-xs leading-relaxed text-brand-dark">To simplify and automate the delivery of high-end media services through relentless innovation.</p>
+                </div>
+                <div class="p-8 bg-brand-light/30 rounded-xl border-t-4 border-brand-primary">
+                    <h4 class="font-black text-brand-primary mb-3 uppercase text-[10px] tracking-widest">Our Vision</h4>
+                    <p class="text-xs leading-relaxed text-brand-dark">To be the global benchmark for scalable, AI-driven digital media services, defined by quality and storytelling.</p>
+                </div>
+                <div class="p-8 bg-brand-light/30 rounded-xl border-t-4 border-brand-accent">
+                    <h4 class="font-black text-brand-primary mb-3 uppercase text-[10px] tracking-widest">Our Values</h4>
+                    <p class="text-xs font-bold leading-loose text-brand-dark">CREATIVITY.<br>INNOVATION.<br>RESULTS-DRIVEN.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Break for Clean PDF -->
+        <div class="page-break"></div>
+
+        <!-- SECTION: PROJECT PORTFOLIO (High Detail) -->
+        <section class="mt-16 mb-20">
+            <h3 class="text-2xl font-black mb-10 text-brand-dark uppercase tracking-tight">Project Portfolio</h3>
+            <div class="overflow-hidden rounded-2xl border border-brand-light shadow-sm">
+                <table class="min-w-full text-xs text-left">
+                    <thead class="bg-brand-dark text-brand-accent uppercase tracking-widest">
+                        <tr>
+                            <th class="px-5 py-5 font-bold">Client & Period</th>
+                            <th class="px-5 py-5 font-bold">Scope of Work</th>
+                            <th class="px-5 py-5 font-bold">Contract Value</th>
+                            <th class="px-5 py-5 font-bold">Digital Proof</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-light">
+                        <!-- FYI Docs -->
+                        <tr class="hover:bg-brand-light/20 transition-colors">
+                            <td class="px-5 py-6">
+                                <p class="font-black text-brand-primary text-sm">FYI Docs</p>
+                                <p class="text-[10px] text-gray-400">2019 - 2023</p>
+                            </td>
+                            <td class="px-5 py-6 text-gray-600 font-medium">Video Production Consultancy & SaaS Technical Tutorials</td>
+                            <td class="px-5 py-6 font-black text-brand-dark">Ksh 1.8 Million</td>
+                            <td class="px-5 py-6">
+                                <a href="https://vimeo.com/780985811" target="_blank" class="text-brand-primary font-bold underline">vimeo.com/780985811</a>
+                            </td>
+                        </tr>
+                        <!-- OXFAM -->
+                        <tr class="bg-brand-light/10 hover:bg-brand-light/20 transition-colors">
+                            <td class="px-5 py-6">
+                                <p class="font-black text-brand-primary text-sm">OXFAM Kenya</p>
+                                <p class="text-[10px] text-gray-400">2023</p>
+                            </td>
+                            <td class="px-5 py-6 text-gray-600 font-medium">Impact Documentary Production & We-Care Project Case Studies</td>
+                            <td class="px-5 py-6 font-black text-brand-dark">Ksh 880,000</td>
+                            <td class="px-5 py-6">
+                                <a href="https://youtu.be/OxSVrQlermk" target="_blank" class="text-brand-primary font-bold underline">youtu.be/OxSVrQlermk</a>
+                            </td>
+                        </tr>
+                        <!-- Howtech -->
+                        <tr class="hover:bg-brand-light/20 transition-colors">
+                            <td class="px-5 py-6">
+                                <p class="font-black text-brand-primary text-sm">Howtech.tv (Greece)</p>
+                                <p class="text-[10px] text-gray-400">2015</p>
+                            </td>
+                            <td class="px-5 py-6 text-gray-600 font-medium">Scale Production of 1,000 Professional Video Tutorials</td>
+                            <td class="px-5 py-6 font-black text-brand-dark">Ksh 1.1 Million</td>
+                            <td class="px-5 py-6 text-gray-300 italic">Restricted Link</td>
+                        </tr>
+                        <!-- Lego -->
+                        <tr class="bg-brand-light/10 hover:bg-brand-light/20 transition-colors">
+                            <td class="px-5 py-6">
+                                <p class="font-black text-brand-primary text-sm">Lego Foundation</p>
+                                <p class="text-[10px] text-gray-400">2018 - 2019</p>
+                            </td>
+                            <td class="px-5 py-6 text-gray-600 font-medium">Documenting 'Learning through Play' Project Implementation</td>
+                            <td class="px-5 py-6 font-black text-brand-dark">Ksh 509,000</td>
+                            <td class="px-5 py-6">
+                                <a href="https://youtu.be/BU0BP-WLHcs" target="_blank" class="text-brand-primary font-bold underline">youtu.be/BU0BP-WLHcs</a>
+                            </td>
+                        </tr>
+                        <!-- AATF -->
+                        <tr class="hover:bg-brand-light/20 transition-colors">
+                            <td class="px-5 py-6">
+                                <p class="font-black text-brand-primary text-sm">AATF Africa</p>
+                                <p class="text-[10px] text-gray-400">2024 - Date</p>
+                            </td>
+                            <td class="px-5 py-6 text-gray-600 font-medium">Provision of Specialized Video Post-Production Services</td>
+                            <td class="px-5 py-6 font-black text-brand-dark italic text-brand-primary">Ksh 700,000</td>
+                            <td class="px-5 py-6 text-gray-300 italic">Confidential</td>
+                        </tr>
+                        <!-- Hotel Buneei -->
+                        <tr class="bg-brand-light/10 hover:bg-brand-light/20 transition-colors">
+                            <td class="px-5 py-6">
+                                <p class="font-black text-brand-primary text-sm">Hotel Buneei</p>
+                                <p class="text-[10px] text-gray-400">2025</p>
+                            </td>
+                            <td class="px-5 py-6 text-gray-600 font-medium">Full Service Hybrid Content & Social Media Management</td>
+                            <td class="px-5 py-6 font-black text-brand-dark italic text-brand-primary uppercase">Ongoing</td>
+                            <td class="px-5 py-6">
+                                <a href="https://youtu.be/JxpkjsNcFIs" target="_blank" class="text-brand-primary font-bold underline">youtu.be/JxpkjsNcFIs</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION: DISTRIBUTION NETWORKS -->
+        <section class="mb-20 no-break">
+            <h3 class="text-sm font-black text-brand-dark uppercase tracking-[0.2em] mb-8 border-l-4 border-brand-primary pl-4">Distribution Capability</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-5 bg-brand-dark text-white rounded-xl text-center shadow-lg">
+                    <p class="text-[10px] font-black uppercase mb-1 text-brand-accent">Social Media</p>
+                    <p class="text-[9px] opacity-80 font-medium">YouTube, FB, X, Instagram</p>
+                </div>
+                <div class="p-5 bg-brand-dark text-white rounded-xl text-center shadow-lg">
+                    <p class="text-[10px] font-black uppercase mb-1 text-brand-accent">Web & Blogs</p>
+                    <p class="text-[9px] opacity-80 font-medium">SEO Optimized Placements</p>
+                </div>
+                <div class="p-5 bg-brand-dark text-white rounded-xl text-center shadow-lg">
+                    <p class="text-[10px] font-black uppercase mb-1 text-brand-accent">Digital Ads</p>
+                    <p class="text-[9px] opacity-80 font-medium">Google & Bing Networks</p>
+                </div>
+                <div class="p-5 bg-brand-dark text-white rounded-xl text-center shadow-lg">
+                    <p class="text-[10px] font-black uppercase mb-1 text-brand-accent">Physical</p>
+                    <p class="text-[9px] opacity-80 font-medium">Events & Activations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Break before Referees -->
+        <div class="page-break"></div>
+
+        <!-- SECTION: REFEREES -->
+        <section class="mt-16 no-break">
+            <h3 class="text-2xl font-black mb-12 text-brand-dark uppercase tracking-tight">Professional Referees</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Ref 1 -->
+                <div class="border-l-4 border-brand-accent pl-6 py-2">
+                    <p class="text-xl font-black text-brand-primary">Joseph Odongo</p>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Media Advisor, Oxfam Kenya</p>
+                    <p class="text-xs font-semibold">JOdongo@oxfam.org.uk | +254 725 632 410</p>
+                </div>
+                <!-- Ref 2 -->
+                <div class="border-l-4 border-brand-accent pl-6 py-2">
+                    <p class="text-xl font-black text-brand-primary">Cassie Kaddatz</p>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Head of Success, FYIDocs.com</p>
+                    <p class="text-xs font-semibold">cassie.kaddatz@fyidocs.com | +61 409 633 182</p>
+                </div>
+                <!-- Ref 3 -->
+                <div class="border-l-4 border-brand-accent pl-6 py-2">
+                    <p class="text-xl font-black text-brand-primary">Charlotte Wieder</p>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">PlayFutures, Lego Foundation</p>
+                    <p class="text-xs font-semibold">wieder_charlotte@hotmail.com</p>
+                </div>
+                <!-- Ref 4 -->
+                <div class="border-l-4 border-brand-accent pl-6 py-2">
+                    <p class="text-xl font-black text-brand-primary">Verenardo Meeme</p>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Coordinator, AATF Africa</p>
+                    <p class="text-xs font-semibold">Meeme@aatf-africa.org | +254 110 597 670</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER BAR -->
+        <footer class="mt-auto pt-16 border-t-2 border-brand-dark flex flex-col md:flex-row justify-between items-end gap-8">
+            <div class="text-[10px] text-gray-400">
+                <p class="font-black text-brand-dark uppercase tracking-widest mb-1">Techtube Video Studio Ltd</p>
+                <p>© 2026 Nairobi, Kenya • All Rights Reserved.</p>
+            </div>
+            <div class="text-[10px] text-right text-brand-primary font-black">
+                <p class="uppercase tracking-[0.3em] mb-1 text-gray-300">Digital Verification</p>
+                <p class="text-brand-dark">www.techtubestudio.com/verify</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

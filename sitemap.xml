@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Main Landing Page -->
+  <url>
+    <loc>https://techtubestudio.com/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- High Conversion Pages -->
+  <url>
+    <loc>https://techtubestudio.com/portfolio.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://techtubestudio.com/livestream.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://techtubestudio.com/blog/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Information Pages -->
+  <url>
+    <loc>https://techtubestudio.com/about.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://techtubestudio.com/contact.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://techtubestudio.com/companyprofile.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://techtubestudio.com/privacypolicy.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
