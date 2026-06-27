@@ -33,7 +33,6 @@ exclude:
   - Gemfile.lock
   - node_modules
   - README.md
-  - robots.txt
   - firebase.json
   - .github/
   - .git/
