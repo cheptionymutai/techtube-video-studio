@@ -22,7 +22,8 @@ jobs:
 
       - name: Install Jekyll and Build
         run: |
-          gem install jekyll jekyll-feed jekyll-sitemap
+          gem install jekyll jekyll-feed jekyll-sitemap 
+          echo "" >> index.html
           jekyll build
 
       - name: Install Firebase CLI and Force Deploy
