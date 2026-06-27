@@ -27,10 +27,15 @@ plugins:
 source: .
 destination: _site
 
-# Exclude unnecessary files
+# Exclude unnecessary and configuration files from the build compilation
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - README.md
   - robots.txt
+  - firebase.json
+  - .github/
+  - .git/
+  - .firebase/
+  - .firebaserc
