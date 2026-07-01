@@ -4,10 +4,10 @@
 title: Techtube Video Strategy Blog
 email: sales@techtubestudio.com
 description: The official blog for Techtube Video Studio, sharing insights on hybrid video production, AI strategy, and scalable content marketing.
-
+timezone: Africa/Nairobi
 url: "https://techtubestudio.com" 
 baseurl: ""  # CRITICAL for Firebase: This must be empty
-
+future: true
 # Clean URL structure for SEO: /post-name/
 permalink: /:title/ 
 
