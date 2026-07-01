@@ -10,6 +10,8 @@ When investing in high-quality video production, it’s easy to think of "video 
 
 But behind every viral brand and highly successful digital campaign, there is a distinct division of labor. 
 
+![Techtube is your Video Engine]({{"/assets/images/posts/techtube-video-production-engine.png" | relative_url}})
+
 To get the absolute highest return on investment (ROI) from your videos, you need to understand where **video production** ends, and where **social media management** begins. Today, we are demystifying these roles so you can set your next campaign up for massive success.
 
 ---
