@@ -267,18 +267,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               buttonOptions = document.getElementById('button-options'), 
               inputArea = document.getElementById('chat-input-area'), 
               loadingSpinner = document.getElementById('loading-spinner'), 
-              loadingSpinnerText = document.getElementById('loading-text'), // Fixed selector
-              websiteLoadingSpinner = document.getElementById('website-loading-spinner');
+              loadingSpinnerText = document.getElementById('loading-text'), 
+              websiteLoadingSpinner = document.getElementById('website-loading-spinner'), 
+              mobileMenuButton = document.getElementById('mobile-menu-button'), 
+              mobileMenu = document.getElementById('mobile-menu');
 
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('startChat') === 'true') {
             setTimeout(() => {
                 chatModal.classList.remove('hidden');
-                startChat();
+                if (typeof startChat === 'function') startChat();
             }, 800);
         }
 
-        const BASE_URL = "https://cheptiony-backend-838892077100.us-central1.run.app";
+        const BASE_URL = "https://{Redacted}.us-central1.run.app";
         const ENDPOINTS = { GENERATE: `${BASE_URL}/stratbot/generate`, CAPTURE: `${BASE_URL}/leads/capture`, SCAN: `${BASE_URL}/stratbot/scan`, INVOICE: `${BASE_URL}/send-invoice` };
         const PRICE_PER_MINUTE_USD = 100, KES_RATE = 130;
         let userCurrency = 'USD', currencySymbol = '$', currentQuestionIndex = 0, userInputs = {}, selectedPlatforms = [], skipNextMessage = false;
@@ -297,7 +299,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             { key: 'linkUrl', text: "Please share the URL (e.g., https://yourcompany.com). Our AI will analyze it to personalize your roadmap.", type: 'text' }, 
             { key: 'description', text: "No problem. Please briefly describe what you want to promote.", type: 'text' }, 
             { key: 'duration', text: "What duration are you planning this strategy for? (This helps us calculate your monthly volume.)", type: 'buttons', options: ['1 Month (Trial)', '3 Months (Quarterly)', '6 Months (Biannually)'] }, 
-            { key: 'videosPerWeek', text: "How many unique video concepts would you like to post each week?", type: 'buttons', options: ['1-2 videos', '3-4 videos', '5+ videos'] }, 
+            // --- UPDATED OPTIONS FOR VIDEOS PER WEEK ---
+            { key: 'videosPerWeek', text: "How many unique video concepts would you like to post each week?", type: 'buttons', options: ['Starter (1-2 videos)', 'Growth (3-4 Videos)', 'Full Pipeline (5+ videos)', 'Custom (I have a specific number in mind)'] }, 
             { key: 'platforms', text: "Where are you planning to post your videos? (select multiple)", type: 'multiselect', options: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram', 'Facebook'] }, 
             { key: 'leadCapture', text: "Calculations complete! Where should I deliver your bespoke strategy and official invoice?", type: 'custom_form' }, 
             { key: 'isHappy', text: "Are you happy with the proposed strategy and estimated monthly retainer?", type: 'buttons', options: ["Yes, I'm ready!", "No, I have questions."] }, 
@@ -328,7 +331,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         async function handleUserInput(input) {
-            addUserMessage(input); userInputs[questions[currentQuestionIndex].key] = input;
+            addUserMessage(input); 
+            
+            // --- NEW CUSTOM LOGIC FOR VIDEOS PER WEEK ---
+            const currentKey = questions[currentQuestionIndex].key;
+
+            if (currentKey === 'videosPerWeek' && input.includes('Custom')) {
+                userInputs[currentKey] = "Custom Selection";
+                userInputs.isWaitingForCustomNumber = true; 
+                addBotMessage("How many videos per week are you targeting?");
+                buttonOptions.innerHTML = '';
+                chatInput.parentElement.classList.remove('hidden');
+                chatInput.focus();
+                return; // Stop here and wait for text input
+            }
+
+            if (userInputs.isWaitingForCustomNumber) {
+                userInputs.videosPerWeek = input; 
+                delete userInputs.isWaitingForCustomNumber; 
+                currentQuestionIndex++; 
+                setTimeout(askQuestion, 400);
+                return;
+            }
+            // --- END CUSTOM LOGIC ---
+
+            userInputs[questions[currentQuestionIndex].key] = input;
             if (currentQuestionIndex === 2) currentQuestionIndex = (input === 'Yes') ? 3 : 4;
             else if (currentQuestionIndex === 3) { await analyzeUrl(input); return; }
             else if (currentQuestionIndex === 7) { 
@@ -360,13 +387,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         async function generateStrategy() {
-            // 1. Hide input and show spinner
-            inputArea.classList.add('hidden'); 
-            loadingSpinner.classList.remove('hidden');
-            
-            // 2. Clear out the Lead Capture Form immediately so it's gone
+            inputArea.classList.add('hidden'); loadingSpinner.classList.remove('hidden');
             buttonOptions.innerHTML = ''; 
-
             const firstName = userInputs.userName ? userInputs.userName.split(' ')[0] : "there";
             if(loadingSpinnerText) loadingSpinnerText.innerText = `Finalizing bespoke strategy for ${firstName}...`;
             
@@ -376,11 +398,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) 
                 });
                 const s = await res.json();
-                
-                // Safety check for calculation
                 const ideas = s.videoIdeas || [];
                 const actualMin = ideas.reduce((sum, idea) => sum + (Number(idea.lengthMinutes) || 0), 0);
-                
                 s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
                 const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
                 const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
@@ -388,26 +407,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 s.calculatedRawAmount = finalCost;
                 userInputs.generatedStrategy = s;
                 
-                // 3. UI Transition: Hide spinner, show the input area
                 loadingSpinner.classList.add('hidden'); 
                 inputArea.classList.remove('hidden'); 
-
                 displayStrategy(s);
-
-                // 4. Set the question index to 9 (Is Happy?) and trigger the buttons
                 currentQuestionIndex = 9; 
-                
-                // We use a short delay so the user sees the strategy before the question pops up
-                setTimeout(() => {
-                    buttonOptions.innerHTML = ''; // Double clear to be safe
-                    askQuestion(); 
-                }, 1000);
+                setTimeout(() => { buttonOptions.innerHTML = ''; askQuestion(); }, 1000);
 
-                // Background tasks (Invoice)
-                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) }).catch(e => console.log("Invoice delivery failed"));
-                
+                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) }).catch(e => console.log("Invoice failed"));
                 sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
-
             } catch (e) { 
                 console.error(e);
                 loadingSpinner.classList.add('hidden');
@@ -415,6 +422,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 addBotMessage("Sorry, I hit a snag while generating your strategy. A strategist will email you shortly!"); 
             }
         }
+
         function displayStrategy(s) {
             let ideas = s.videoIdeas.map(i => `<div class="mb-2 pb-2 border-b border-gray-100 last:border-0 text-left"><span class="font-bold text-brand-primary text-xs">${i.type}</span><span class="ml-2 text-[10px] bg-brand-light px-2 rounded-full font-bold">${i.lengthMinutes}m</span><p class="text-[10px] text-gray-500">${i.description}</p></div>`).join('');
             addBotMessage(`<div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg my-4 w-full"><div class="bg-brand-dark text-white p-3 text-center"><h3 class="font-black uppercase tracking-tighter text-sm text-brand-accent uppercase">Strategy Proposal</h3></div><div class="p-4 bg-gray-50 italic text-[11px] text-gray-600 mb-2">"${s.summary}"</div><div class="p-4">${ideas}<div class="mt-4 p-3 bg-brand-light rounded-lg border-t-2 border-brand-primary flex justify-between items-center"><span class="text-[10px] font-bold uppercase text-brand-dark">Monthly Retainer:</span><span class="text-lg font-black text-brand-primary">${s.displayPrice}</span></div></div></div>`);
@@ -485,35 +493,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         chatSendButton.onclick = () => { const m = chatInput.value.trim(); if(m){ handleUserInput(m); chatInput.value=''; }};
         chatInput.onkeydown = (e) => { if(e.key==='Enter'){ const m=chatInput.value.trim(); if(m){ handleUserInput(m); chatInput.value=''; }}};
         document.getElementById('close-video-modal').onclick = closeVideoModal;
-    });
-</script>
-<!-- Video Pop-up Modal -->
-<div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
-        <!-- Close Button -->
-        <button id="close-video-modal" class="absolute top-4 right-4 z-[210] text-white/50 hover:text-white text-4xl font-light transition-colors">&times;</button>
-        
-        <!-- Responsive Iframe Container -->
-        <div class="aspect-video">
-            <iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
-<script>
-        // MOBILE MENU TOGGLE LOGIC
+
         const mobileBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close menu if a link is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-        });
-
-        // ... [Paste the rest of your StratBot JavaScript logic here] ...
-    </script>
+        if(mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+            mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
+        }
+    });
+</script>
 </body>
 </html>
