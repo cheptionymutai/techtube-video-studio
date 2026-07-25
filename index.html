@@ -325,23 +325,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             finally { websiteLoadingSpinner.classList.add('hidden'); setTimeout(ask, 500); }
         }
 
-        async function generate() {
-            loadingSpinner.classList.remove('hidden'); buttonOptions.innerHTML = '';
+       async function generate() {
+            loadingSpinner.classList.remove('hidden'); 
+            buttonOptions.innerHTML = '';
             loadingSpinnerText.innerText = `Finalizing strategy for ${userInputs.userName.split(' ')[0]}...`;
+            
             try {
-                const res = await fetch(ENDPOINTS.GENERATE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) });
+                const res = await fetch(ENDPOINTS.GENERATE, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) 
+                });
                 const s = await res.json();
+                
                 const actualMin = (s.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
                 s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
                 const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
                 const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
                 s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
-                s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
-                loadingSpinner.classList.add('hidden'); displayStrategy(s);
-                currentIdx = 9; setTimeout(ask, 1000);
-                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
+                s.calculatedRawAmount = finalCost; 
+                userInputs.generatedStrategy = s;
+
+                loadingSpinner.classList.add('hidden'); 
+                display(s); // Shows on screen
+                currentIdx = 9; 
+                setTimeout(ask, 1000);
+           fetch(ENDPOINTS.INVOICE, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ 
+                        client_name: userInputs.userName, 
+                        client_email: userInputs.userEmail, 
+                        strategy_title: s.strategyTitle, 
+                        video_ideas: s.videoIdeas, // Pass full array for PDF table
+                        total_minutes: s.totalUniqueMinutes, 
+                        total_amount: s.calculatedRawAmount, 
+                        currency: userCurrency 
+                    }) 
+                });
                 sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
-            } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("Snag! A strategist will email you."); }
+
+            } catch (e) { 
+                loadingSpinner.classList.add('hidden'); 
+                addBotMsg("I hit a snag. A strategist will email you manually!"); 
+            }
         }
 
         function displayStrategy(s) {
@@ -393,7 +420,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         (async () => { try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } } catch (e) { } })();
         
         async function sendToBackend(url, topic) { 
-            try { const s = userInputs.generatedStrategy; let msg = s ? `RETAINER: ${s.displayPrice}` : `Desc: ${userInputs.description}`; await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, topic: topic, message: msg, currency: userCurrency, duration: userInputs.duration, frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') }) }); } catch(e){} 
+            try { 
+                const s = userInputs.generatedStrategy;
+                let roadmapText = "";
+                
+                if (s && s.videoIdeas) {
+                    roadmapText = `TOTAL RETAINER: ${s.displayPrice}\n\nPROPOSED VIDEOS:\n`;
+                    s.videoIdeas.forEach((i, index) => {
+                        roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`;
+                    });
+                } else {
+                    roadmapText = "User exited before strategy generation.";
+                }
+
+                await fetch(url, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ 
+                        source: "techtube_stratbot", 
+                        name: userInputs.userName, 
+                        email: userInputs.userEmail, 
+                        topic: topic, 
+                        message: roadmapText, // The full video list
+                        business_context: userInputs.description, // Sending the website scan/desc
+                        currency: userCurrency, 
+                        duration: userInputs.duration, 
+                        frequency: userInputs.videosPerWeek, 
+                        platforms: selectedPlatforms.join(', ') 
+                    }) 
+                }); 
+            } catch(e){ console.error("Capture Error:", e); } 
         }
     });
 </script>
