@@ -231,25 +231,83 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         function openVideoModal(url){const m=document.getElementById('video-modal'), i=document.getElementById('modal-iframe');if(m&&i){i.src=url+"?autoplay=1&rel=0";m.classList.remove('hidden');document.body.style.overflow='hidden';}}
         function closeVideoModal(){const m=document.getElementById('video-modal'), i=document.getElementById('modal-iframe');if(m&&i){i.src="";m.classList.add('hidden');document.body.style.overflow='auto';}}
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatModal = document.getElementById('chat-modal'), chatMessages = document.getElementById('chat-messages'), chatInput = document.getElementById('chat-input'), chatSendButton = document.getElementById('chat-send-button'), buttonOptions = document.getElementById('button-options'), inputArea = document.getElementById('chat-input-area'), loadingSpinner = document.getElementById('loading-spinner'), loadingSpinnerText = document.getElementById('loading-text'), websiteLoadingSpinner = document.getElementById('website-loading-spinner');
+       document.addEventListener('DOMContentLoaded', () => {
+            const chatModal = document.getElementById('chat-modal'), 
+                  chatMessages = document.getElementById('chat-messages'), 
+                  chatInput = document.getElementById('chat-input'), 
+                  chatSendButton = document.getElementById('chat-send-button'), 
+                  buttonOptions = document.getElementById('button-options'), 
+                  inputArea = document.getElementById('chat-input-area'), 
+                  loadingSpinner = document.getElementById('loading-spinner'), 
+                  loadingSpinnerText = document.getElementById('loading-text'), 
+                  websiteLoadingSpinner = document.getElementById('website-loading-spinner');
 
             // --- CONFIGURATION ---
-            const BASE_URL = "https://cheptiony-backend-838892077100.us-central1.run.app"; // <--- UPDATE THIS
-            const ENDPOINTS = { GENERATE: `${BASE_URL}/stratbot/generate`, CAPTURE: `${BASE_URL}/leads/capture`, SCAN: `${BASE_URL}/stratbot/scan`, INVOICE: `${BASE_URL}/send-invoice` };
+            // UPDATE THIS URL WITH YOUR ACTUAL CLOUD RUN URL
+            const BASE_URL = "https://cheptiony-backend-838892077100.us-central1.run.app"; 
+            const ENDPOINTS = { 
+                GENERATE: `${BASE_URL}/stratbot/generate`, 
+                CAPTURE: `${BASE_URL}/leads/capture`, 
+                SCAN: `${BASE_URL}/stratbot/scan`, 
+                INVOICE: `${BASE_URL}/send-invoice` 
+            };
             const PRICE_PER_MINUTE_USD = 100, KES_RATE = 130;
             let userCurrency = 'USD', currencySymbol = '$', currentQuestionIndex = 0, userInputs = {}, selectedPlatforms = [], skipNextMessage = false;
 
-            // Auto-start logic
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('startChat') === 'true') { setTimeout(() => { chatModal.classList.remove('hidden'); startChat(); }, 800); }
+            // --- 1. SHARED SUBMIT LOGIC (FIXES ENTER KEY & EMPTY BOX) ---
+            const processSubmit = () => {
+                const m = chatInput.value.trim();
+                if (m) {
+                    chatInput.value = '';
+                    // Hide input area immediately so it doesn't hang empty during scan/generation
+                    inputArea.classList.add('hidden'); 
+                    handleUserInput(m);
+                }
+            };
 
+            chatSendButton.onclick = processSubmit;
+
+            chatInput.onkeydown = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Prevents line breaks in the input
+                    processSubmit();
+                }
+            };
+
+            // --- 2. AUTO-START LOGIC ---
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('startChat') === 'true') { 
+                setTimeout(() => { 
+                    chatModal.classList.remove('hidden'); 
+                    if (typeof startChat === 'function') startChat(); 
+                }, 800); 
+            }
+
+            // --- 3. CURRENCY LOGIC ---
             const initCurrency = async () => {
                 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
                 if (tz === 'Africa/Nairobi') { userCurrency = 'KES'; currencySymbol = 'KES '; }
-                try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } } catch (e) {}
+                try { 
+                    const r = await fetch('https://ipapi.co/json/'); 
+                    const d = await r.json(); 
+                    if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } 
+                } catch (e) {}
             };
             initCurrency();
+
+            // --- 4. MOBILE MENU & UI LOGIC ---
+            const mobileBtn = document.getElementById('mobile-menu-button'), 
+                  mobileMenu = document.getElementById('mobile-menu');
+            if(mobileBtn && mobileMenu) {
+                mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+                mobileMenu.querySelectorAll('a').forEach(link => { 
+                    link.onclick = () => mobileMenu.classList.add('hidden'); 
+                });
+            }
+
+            document.getElementById('close-chat-button').onclick = () => chatModal.classList.add('hidden');
+            document.getElementById('close-video-modal').onclick = closeVideoModal;
+        });
 
             const questions = [
                 { key: 'industry', text: "Let's start by understanding your business. What industry are you in?", type: 'buttons', options: ['Tech/SaaS', 'E-commerce', 'Real Estate', 'Healthcare', 'Finance', 'Education', 'Marketing', 'Other'] }, 
@@ -354,37 +412,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 } catch (e) { loadingSpinner.classList.add('hidden'); inputArea.classList.remove('hidden'); addBotMessage("Sorry, I hit a snag. A strategist will email you shortly!"); }
             }
 
-            function displayStrategy(s) {
-    const ideaCount = s.videoIdeas.length;
-    let ideasHtml = s.videoIdeas.slice(0, 4).map(i => `
-        <div class="mb-2 pb-1 border-b border-gray-100 text-[11px]">
-            <span class="font-bold text-brand-primary">${i.type}</span>: ${i.description}
-        </div>`).join('');
-    
-    // If there are many ideas, we show a "plus more" message to keep chat clean
-    if (ideaCount > 4) {
-        ideasHtml += `<div class="text-[10px] text-gray-400 italic">+ ${ideaCount - 4} more custom concepts included in your roadmap...</div>`;
-    }
+  function displayStrategy(s) {
+            const ideaCount = s.videoIdeas.length;
+            
+            // Show first 5 ideas with the specific duration format
+            let ideasHtml = s.videoIdeas.slice(0, 5).map(i => `
+                <div class="mb-3 pb-2 border-b border-gray-100 text-[11px] leading-relaxed">
+                    <span class="font-bold text-brand-primary">${i.type} - ${i.lengthMinutes} Minutes</span>: 
+                    <span class="text-gray-700">${i.description}</span>
+                </div>`).join('');
+            
+            // Notification if more concepts exist
+            if (ideaCount > 5) {
+                ideasHtml += `
+                <div class="p-2 bg-brand-light/50 rounded-lg text-[10px] text-brand-primary font-bold text-center mt-2 border border-brand-primary/20">
+                    + ${ideaCount - 5} more custom concepts included in your full roadmap sent to your email...
+                </div>`;
+            }
 
-    addBotMessage(`
-        <div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg w-full">
-            <div class="bg-brand-dark text-white p-3 text-center">
-                <h3 class="font-bold text-sm uppercase">${s.strategyTitle}</h3>
-            </div>
-            <div class="p-4">
-                <div class="flex justify-between mb-4 text-[10px] font-bold uppercase text-gray-500">
-                    <span>${ideaCount} Video Concepts</span>
-                    <span>${s.totalUniqueMinutes} Production Mins</span>
+            addBotMessage(`
+                <div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg w-full">
+                    <div class="bg-brand-dark text-white p-3 text-center">
+                        <h3 class="font-bold text-sm uppercase tracking-tighter">${s.strategyTitle}</h3>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between mb-4 text-[9px] font-black uppercase text-gray-500 bg-gray-50 p-2 rounded">
+                            <span>📦 ${ideaCount} Video Concepts</span>
+                            <span>⏱ ${s.totalUniqueMinutes} Total Mins</span>
+                        </div>
+                        ${ideasHtml}
+                        <div class="mt-4 p-3 bg-brand-light rounded-lg flex justify-between items-center border-t-2 border-brand-primary">
+                            <div>
+                                <span class="block text-[9px] font-bold text-gray-500 uppercase">Monthly Retainer</span>
+                                <span class="text-xl font-black text-brand-primary">${s.displayPrice}</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-[8px] italic text-gray-400">50% Deposit Required</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                ${ideasHtml}
-                <div class="mt-4 p-3 bg-brand-light rounded-lg flex justify-between items-center border-t-2 border-brand-primary">
-                    <span class="text-[10px] font-bold text-brand-dark uppercase">Monthly Retainer:</span>
-                    <span class="text-lg font-black text-brand-primary">${s.displayPrice}</span>
-                </div>
-            </div>
-        </div>
-    `);
-}
+            `);
+        }
 
             async function sendToBackend(url, topic) {
                 try { 
