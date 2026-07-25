@@ -174,7 +174,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </section>
     </main>
 
-    <!-- StratBot Modal -->
+    <!-- 1. StratBot Modal (Updated with required IDs) -->
     <div id="chat-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden">
         <div class="bg-white w-full max-w-2xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
             <div class="bg-brand-dark text-brand-light p-5 flex justify-between items-center">
@@ -182,25 +182,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4"/></svg></div>
                     <h2 class="font-bold">StratBot</h2>
                 </div>
-                <button id="close-chat-button" class="text-2xl">&times;</button>
+                <button id="close-chat-button" class="text-2xl" onclick="document.getElementById('chat-modal').classList.add('hidden')">&times;</button>
             </div>
             <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto bg-brand-light"></div>
             <div id="chat-input-area" class="p-4 bg-white border-t">
                 <div id="button-options" class="flex flex-wrap gap-2 mb-3"></div>
                 <div id="typing-row" class="flex items-center space-x-3">
                     <input type="text" id="chat-input" class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary" placeholder="Type here...">
-                    <button id="chat-send-button" class="bg-brand-primary text-white rounded-full w-10 h-10 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></button>
+                    <button id="chat-send-button" class="bg-brand-primary text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                    </button>
                 </div>
             </div>
-            <div id="loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-primary"></div><span id="loading-text" class="text-sm font-bold">Calculating Strategy...</span></div>
-            <div id="website-loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-accent"></div><span class="text-sm font-bold text-brand-dark">Scanning Website...</span></div>
+            <div id="loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-primary"></div><span id="loading-text" class="text-sm font-bold">Calculating...</span></div>
+            <div id="website-loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-accent"></div><span class="text-sm font-bold text-brand-dark">Scanning...</span></div>
         </div>
     </div>
 
-    <!-- Video Modal -->
-    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
+    <!-- 2. Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4">
         <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
-            <button id="close-video-modal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-accent" onclick="closeVideoModal()">&times;</button>
+            <button id="close-video-modal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-accent transition-colors" onclick="closeVideoModal()">&times;</button>
             <div class="aspect-video"><iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
         </div>
     </div>
@@ -222,7 +224,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </footer>
 
 <script>
-    // --- 1. GLOBAL UI HELPERS ---
+    // --- UI HELPERS (Global) ---
     function openVideoModal(url){
         const m=document.getElementById('video-modal'), i=document.getElementById('modal-iframe');
         if(m&&i){ i.src=url+"?autoplay=1&rel=0"; m.classList.remove('hidden'); document.body.style.overflow='hidden'; }
@@ -232,18 +234,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         if(m&&i){ i.src=""; m.classList.add('hidden'); document.body.style.overflow='auto'; }
     }
 
-    // --- 2. MAIN BOT & PAGE LOGIC ---
+    // --- MAIN LOGIC ---
     document.addEventListener('DOMContentLoaded', () => {
-        // Element Selectors
-        const chatModal = document.getElementById('chat-modal'), chatMessages = document.getElementById('chat-messages'), 
-              chatInput = document.getElementById('chat-input'), chatSendButton = document.getElementById('chat-send-button'), 
-              buttonOptions = document.getElementById('button-options'), typingRow = document.getElementById('typing-row'), 
-              loadingSpinner = document.getElementById('loading-spinner'), loadingSpinnerText = document.getElementById('loading-text'), 
-              websiteLoadingSpinner = document.getElementById('website-loading-spinner'), mobileMenu = document.getElementById('mobile-menu');
+        const chatModal = document.getElementById('chat-modal'), 
+              chatMessages = document.getElementById('chat-messages'), 
+              chatInput = document.getElementById('chat-input'), 
+              chatSendButton = document.getElementById('chat-send-button'), 
+              buttonOptions = document.getElementById('button-options'), 
+              inputArea = document.getElementById('chat-input-area'), 
+              typingRow = document.getElementById('typing-row'),
+              loadingSpinner = document.getElementById('loading-spinner'), 
+              loadingSpinnerText = document.getElementById('loading-text'), 
+              websiteLoadingSpinner = document.getElementById('website-loading-spinner');
 
-        // CONFIGURATION - !!! UPDATE THIS URL !!!
+        // !!! PASTE YOUR URL HERE !!!
         const BASE_URL = "https://cheptiony-backend-838892077100.us-central1.run.app"; 
         const ENDPOINTS = { GENERATE: `${BASE_URL}/stratbot/generate`, CAPTURE: `${BASE_URL}/leads/capture`, SCAN: `${BASE_URL}/stratbot/scan`, INVOICE: `${BASE_URL}/send-invoice` };
+        
         const PRICE_PER_MINUTE_USD = 100, KES_RATE = 130;
         let userCurrency = 'USD', currencySymbol = '$', currentIdx = 0, userInputs = {}, selectedPlatforms = [], skipNext = false;
 
@@ -261,7 +268,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             { key: 'nextStep', text: "Excellent! Click below to secure your production slot.", type: 'buttons', options: ["Pay Now to Get Started (50% deposit / balance on delivery)"] }
         ];
 
-        // --- BOT FLOW FUNCTIONS ---
         window.startChat = () => {
             currentIdx = 0; userInputs = {}; selectedPlatforms = []; chatMessages.innerHTML = '';
             addBotMsg("Hello! I'm StratBot, your AI assistant.");
@@ -321,7 +327,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             setTimeout(ask, 400);
         }
 
-        // --- SCANNING & AI LOGIC ---
         async function scan(url) {
             websiteLoadingSpinner.classList.remove('hidden');
             try {
@@ -335,58 +340,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         async function generate() {
             loadingSpinner.classList.remove('hidden'); buttonOptions.innerHTML = '';
             loadingSpinnerText.innerText = `Finalizing strategy for ${userInputs.userName.split(' ')[0]}...`;
-            
-            let strategyData = null;
             try {
                 const res = await fetch(ENDPOINTS.GENERATE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) });
-                strategyData = await res.json();
-                
-                const actualMin = (strategyData.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
-                strategyData.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
-                const costUSD = strategyData.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
+                const s = await res.json();
+                const actualMin = (s.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
+                s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
+                const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
                 const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
-                
-                strategyData.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
-                strategyData.calculatedRawAmount = finalCost; userInputs.generatedStrategy = strategyData;
-
-                loadingSpinner.classList.add('hidden'); displayStrategy(strategyData);
+                s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
+                s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
+                loadingSpinner.classList.add('hidden'); displayStrategy(s);
                 currentIdx = 9; setTimeout(ask, 1000);
-
-            } catch (e) { 
-                loadingSpinner.classList.add('hidden'); 
-                addBotMsg("I hit a snag. A strategist will email you manually!"); 
-                return;
-            }
-
-            // BACKGROUND TASKS (Email/Invoice)
-            try {
-                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: strategyData.strategyTitle, video_ideas: strategyData.videoIdeas, total_minutes: strategyData.totalUniqueMinutes, total_amount: strategyData.calculatedRawAmount, currency: userCurrency }) });
+                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
                 sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
-            } catch (err) { console.log("Email sync skipped."); }
+            } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("Snag! A strategist will email you."); }
         }
 
-        // --- DISPLAY & CAPTURE LOGIC ---
         function displayStrategy(s) {
             const ideaCount = s.videoIdeas.length;
             let ideasHtml = s.videoIdeas.slice(0, 5).map(i => `<div class="mb-3 pb-2 border-b text-[11px] leading-relaxed"><span class="font-bold text-brand-primary">${i.type} - ${i.lengthMinutes}m</span>: ${i.description}</div>`).join('');
-            if (ideaCount > 5) ideasHtml += `<div class="p-2 bg-brand-light/50 rounded-lg text-[10px] text-brand-primary font-bold text-center mt-2 border border-brand-primary/20">+ ${ideaCount - 5} more custom concepts included in full roadmap sent to email...</div>`;
+            if (ideaCount > 5) ideasHtml += `<div class="p-2 bg-brand-light/50 rounded-lg text-[10px] text-brand-primary font-bold text-center mt-2 border border-brand-primary/20">+ ${ideaCount - 5} more custom concepts included in roadmap sent to email...</div>`;
             addBotMsg(`<div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg w-full"><div class="bg-brand-dark text-white p-3 text-center text-sm font-bold uppercase">${s.strategyTitle}</div><div class="p-4"><div class="flex justify-between mb-4 text-[9px] font-black uppercase text-gray-500 bg-gray-50 p-2 rounded"><span>📦 ${ideaCount} Videos</span><span>⏱ ${s.totalUniqueMinutes} Mins</span></div>${ideasHtml}<div class="mt-4 p-3 bg-brand-light rounded-lg flex justify-between items-center border-t-2 border-brand-primary"><div><span class="block text-[9px] font-bold text-gray-500 uppercase">Monthly Retainer</span><span class="text-xl font-black text-brand-primary">${s.displayPrice}</span></div><div class="text-right text-[8px] italic text-gray-400">50% Deposit Required</div></div></div></div>`);
-        }
-
-        async function sendToBackend(url, topic) { 
-            try { 
-                const s = userInputs.generatedStrategy;
-                let roadmapText = "";
-                if (s && s.videoIdeas) {
-                    roadmapText = `TOTAL RETAINER: ${s.displayPrice}\n\nPROPOSED VIDEOS:\n`;
-                    s.videoIdeas.forEach((i, index) => { roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`; });
-                } else { roadmapText = "Lead exited early."; }
-
-                await fetch(url, { 
-                    method: 'POST', headers: { 'Content-Type': 'application/json' }, 
-                    body: JSON.stringify({ source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, topic: topic, message: roadmapText, business_context: userInputs.description || "N/A", currency: userCurrency, duration: userInputs.duration, frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') }) 
-                }); 
-            } catch(e){} 
         }
 
         async function finalize() {
@@ -397,27 +371,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         function showLeadForm(txt) {
             addBotMsg(txt);
-            buttonOptions.innerHTML = '<div class="flex flex-col gap-2 w-full bg-white p-3 rounded-xl shadow-inner"><input type="text" id="un" placeholder="Full Name" class="p-3 border rounded-lg text-sm"><input type="email" id="ue" placeholder="Work Email" class="p-3 border rounded-lg text-sm"><button id="sl" class="bg-brand-primary text-white font-bold py-3 rounded-lg uppercase text-[10px] tracking-widest">Get Strategy Now</button></div>';
+            buttonOptions.innerHTML = '<div class="flex flex-col gap-2 w-full"><input type="text" id="un" placeholder="Full Name" class="p-3 border rounded-lg text-sm"><input type="email" id="ue" placeholder="Work Email" class="p-3 border rounded-lg text-sm"><button id="sl" class="bg-brand-primary text-white font-bold py-3 rounded-lg uppercase text-[10px] tracking-widest">Get Strategy Now</button></div>';
             document.getElementById('sl').onclick = () => {
                 const n = document.getElementById('un').value, e = document.getElementById('ue').value;
                 if(n && e.includes('@')){ userInputs.userName=n; userInputs.userEmail=e; addUserMsg(n); buttonOptions.innerHTML=''; generate(); }
-                else { alert("Valid name and email required."); }
             };
         }
 
-        // --- LISTENERS & INIT ---
-        const submit = () => { const m = chatInput.value.trim(); if(m){ chatInput.value=''; typingRow.classList.add('hidden'); handle(m); } };
+        function addBotMsg(c) { addMsg(c, 'bot'); }
+        function addUserMsg(c) { addMsg(c, 'user'); }
+        function addMsg(c, s) {
+            const d = document.createElement('div'); d.className = "flex " + (s==='user'?'justify-end':'justify-start');
+            const b = document.createElement('div'); b.className="p-3 rounded-2xl max-w-[80%] shadow-md " + (s==='user'?'bg-brand-primary text-white':'bg-white text-brand-dark font-medium');
+            b.innerHTML=c; d.appendChild(b); chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function toggleMulti(btn, val) {
+            if (selectedPlatforms.includes(val)) { selectedPlatforms = selectedPlatforms.filter(i => i !== val); btn.classList.replace('bg-brand-primary', 'bg-gray-200'); btn.classList.remove('text-white'); }
+            else { selectedPlatforms.push(val); btn.classList.replace('bg-gray-200', 'bg-brand-primary'); btn.classList.add('text-white'); }
+        }
+
+        const submit = () => { const m = chatInput.value.trim(); if(m){ chatInput.value=''; handle(m); } };
         chatSendButton.onclick = submit;
         chatInput.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } };
 
         document.getElementById('start-chat-button').onclick = () => { chatModal.classList.remove('hidden'); startChat(); };
-        document.getElementById('close-chat-button').onclick = () => chatModal.classList.add('hidden');
         document.getElementById('mobile-menu-button').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
 
+        // Auto-open logic
         const params = new URLSearchParams(window.location.search);
         if (params.get('startChat') === 'true') { setTimeout(() => { chatModal.classList.remove('hidden'); startChat(); }, 800); }
 
+        // Currency fetch
         (async () => { try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } } catch (e) { } })();
+        
+        async function sendToBackend(url, topic) { 
+            try { 
+                const s = userInputs.generatedStrategy;
+                let roadmapText = "";
+                if (s && s.videoIdeas) {
+                    roadmapText = `TOTAL RETAINER: ${s.displayPrice}\n\nPROPOSED VIDEOS:\n`;
+                    s.videoIdeas.forEach((i, index) => { roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`; });
+                } else { roadmapText = "Lead exited early."; }
+                await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, topic: topic, message: roadmapText, business_context: userInputs.description || "N/A", currency: userCurrency, duration: userInputs.duration, frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') }) }); 
+            } catch(e){} 
+        }
     });
 </script>
 </body>
