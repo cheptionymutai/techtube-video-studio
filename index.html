@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -57,10 +57,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.5s ease;
             box-shadow: 0 0 40px rgba(24, 121, 91, 0.2);
         }
-        .video-thumbnail-glow:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 60px rgba(143, 205, 181, 0.4);
-        }
     </style>
     <script>
         tailwind.config = {
@@ -92,11 +88,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-primary/50 absolute top-20 left-0 w-full flex flex-col p-6 space-y-4 text-center font-bold text-sm uppercase tracking-widest text-brand-light">
-            <a href="/portfolio.html" class="hover:text-brand-accent">Case Studies</a>
-            <a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent">Blog</a>
-            <a href="/about.html" class="hover:text-brand-accent">About</a>
+            <a href="/portfolio.html">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/">Blog</a>
+            <a href="/about.html">About</a>
             <a href="/contact.html" class="text-brand-accent">Contact</a>
         </div>
     </header>
@@ -110,8 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="hero-overlay"></div>
             
             <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
-                <div class="grid md:grid-cols-2 gap-10 lg:gap-20 items-center text-center md:text-left">
-                    
+                <div class="grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
                     <!-- LEFT: THE VIDEO -->
                     <div onclick="openVideoModal('https://www.youtube.com/embed/2jD0C7lPE9w')" 
                          class="video-thumbnail-glow relative aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer border-2 md:border-4 border-brand-primary/30 group shadow-2xl">
@@ -127,21 +121,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <!-- RIGHT: THE HOOK -->
                     <div class="text-left">
                         <h1 class="text-3xl lg:text-5xl font-black text-white mb-4 leading-[1.1] tracking-tighter">
-                            Imagine a whole month of <span class="text-brand-accent">premium video content</span> planned & scripted in 5 minutes.
+                            Imagine a whole month of <span class="text-brand-accent">premium video content</span> planned & scripts Outlined in 5 minutes.
                         </h1>
                         <p class="text-base md:text-lg text-brand-light/70 mb-6 leading-relaxed">
                             We blend elite human creativity with advanced AI efficiency to deliver your custom video roadmap. <strong class="text-brand-accent">For free.</strong>
                         </p>
                         <ul class="grid grid-cols-1 gap-3 mb-8">
-                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider">
-                                <span class="text-brand-accent font-black">✔</span> Instant Content Calendar
-                            </li>
-                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider">
-                                <span class="text-brand-accent font-black">✔</span> Full Script Outlines
-                            </li>
-                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider">
-                                <span class="text-brand-accent font-black">✔</span> Plans From $400/Mo. Custom Quote Free in 5 Mins.
-                            </li>
+                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider"><span class="text-brand-accent font-black">✔</span> Instant Content Calendar</li>
+                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider"><span class="text-brand-accent font-black">✔</span> Full Script Outlines</li>
+                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider"><span class="text-brand-accent font-black">✔</span> Plans From $400/Mo. Custom Quote Free in 5 Mins.</li>
                         </ul>
                     </div>
                 </div>
@@ -159,15 +147,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </section>
 
         <!-- How it Works -->
-        <section class="py-16 md:py-24 bg-white">
+        <section id="how-it-works" class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-6 text-center">
                 <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-10 md:mb-16 uppercase tracking-tighter text-center">How it Works</h2>
                 <div class="grid md:grid-cols-3 gap-6 md:gap-12">
-                    <div class="p-8 bg-brand-light rounded-3xl">🤖<h3 class="font-bold my-2 text-brand-primary">1. AI Strategy</h3><p class="text-sm text-gray-600">Stratbot analyzes your brand and builds a 1-month roadmap instantly.</p></div>
-                    <div class="p-8 bg-brand-light rounded-3xl">✍<h3 class="font-bold my-2 text-brand-primary">2. Human Creativity</h3><p class="text-sm text-gray-600">Our experts refine scripts and add the vital "human touch" your audience craves.</p></div>
-                    <div class="p-8 bg-brand-light rounded-3xl">🎬<h3 class="font-bold my-2 text-brand-primary">3. Hybrid Production</h3><p class="text-sm text-gray-600">We produce and deliver your high-converting content batch, month after month.</p></div>
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="text-3xl mb-4">🤖</div>
+                        <h3 class="font-bold my-2 text-brand-primary uppercase text-sm tracking-widest">1. AI Strategy</h3>
+                        <p class="text-sm text-gray-600">Stratbot analyzes your brand and builds a 1-month roadmap instantly.</p>
+                    </div>
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="text-3xl mb-4">✍</div>
+                        <h3 class="font-bold my-2 text-brand-primary uppercase text-sm tracking-widest">2. Human Creativity</h3>
+                        <p class="text-sm text-gray-600">Our experts refine scripts and add the vital "human touch" your audience craves.</p>
+                    </div>
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="text-3xl mb-4">🎬</div>
+                        <h3 class="font-bold my-2 text-brand-primary uppercase text-sm tracking-widest">3. Hybrid Production</h3>
+                        <p class="text-sm text-gray-600">We produce and deliver your high-converting content batch, month after month.</p>
+                    </div>
                 </div>
-                <div class="mt-20 max-w-3xl mx-auto p-10 border-2 border-dashed border-brand-primary/30 rounded-3xl bg-brand-light/20 italic text-gray-700">
+                <div class="mt-20 max-w-3xl mx-auto p-10 border-2 border-dashed border-brand-primary/30 rounded-3xl bg-brand-light/20 italic text-gray-700 text-center leading-relaxed">
                     "If you love the strategy? Lock it in with a 50% deposit and let's roll. If not? <span class="font-bold text-brand-primary">The strategy is yours to keep."</span>
                 </div>
             </div>
@@ -176,111 +176,93 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <!-- StratBot Modal -->
     <div id="chat-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden">
-        <div class="bg-white w-full max-w-2xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden" style="max-height: 700px;">
+        <div class="bg-white w-full max-w-2xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
             <div class="bg-brand-dark text-brand-light p-5 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4"/></svg></div>
-                    <div><h2 class="font-bold text-lg">StratBot</h2><p class="text-sm text-brand-accent">AI Strategy Assistant</p></div>
+                    <h2 class="font-bold">StratBot</h2>
                 </div>
-                <button id="close-chat-button" class="text-3xl">&times;</button>
+                <button id="close-chat-button" class="text-2xl">&times;</button>
             </div>
             <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto bg-brand-light"></div>
-            <div id="chat-input-area" class="p-4 bg-white border-t border-gray-200">
+            <div id="chat-input-area" class="p-4 bg-white border-t">
                 <div id="button-options" class="flex flex-wrap gap-2 mb-3"></div>
-                <div class="flex items-center space-x-3">
-                    <input type="text" id="chat-input" class="flex-1 border rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary" placeholder="Type here...">
-                    <button id="chat-send-button" class="bg-brand-primary text-white rounded-full w-12 h-12 flex items-center justify-center transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                    </button>
+                <div id="typing-row" class="flex items-center space-x-3">
+                    <input type="text" id="chat-input" class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary" placeholder="Type here...">
+                    <button id="chat-send-button" class="bg-brand-primary text-white rounded-full w-10 h-10 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></button>
                 </div>
             </div>
-            <!-- Buffering / Loading UI -->
-            <div id="loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-primary"></div><span id="loading-text" class="text-sm font-bold text-brand-dark">Calculating strategy...</span></div>
-            <div id="website-loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-accent"></div><span class="text-sm font-bold text-brand-dark">Analyzing website...</span></div>
+            <div id="loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-primary"></div><span id="loading-text" class="text-sm font-bold">Calculating Strategy...</span></div>
+            <div id="website-loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-accent"></div><span class="text-sm font-bold text-brand-dark">Scanning Website...</span></div>
         </div>
     </div>
 
     <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
-            <button id="close-video-modal" class="absolute top-4 right-4 z-[210] text-white/50 hover:text-white text-4xl font-light">&times;</button>
+            <button id="close-video-modal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-accent" onclick="closeVideoModal()">&times;</button>
             <div class="aspect-video"><iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
         </div>
     </div>
 
-    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center">
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center text-[10px] uppercase font-bold tracking-widest">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-center space-x-6 mb-8">
                 <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
                 <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
                 <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase font-bold tracking-widest">
-                <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a>
-                    <a href="https://techtubestudio.com/livestream/" class="hover:text-brand-accent transition-colors">Livestream</a>
-                </div>
-                <p>Nairobi, Kenya</p>
+            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
+                <a href="https://techtubestudio.com/livestream/">Livestream</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Integration -->
-    <script>
-    // --- 1. GLOBAL UI HELPERS ---
-    function openVideoModal(url) {
-        const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
-        if (m && i) {
-            i.src = url + "?autoplay=1&rel=0";
-            m.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+<script>
+    // --- UI HELPERS ---
+    function openVideoModal(url){
+        const m=document.getElementById('video-modal'), i=document.getElementById('modal-iframe');
+        if(m&&i){ i.src=url+"?autoplay=1&rel=0"; m.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+    }
+    function closeVideoModal(){
+        const m=document.getElementById('video-modal'), i=document.getElementById('modal-iframe');
+        if(m&&i){ i.src=""; m.classList.add('hidden'); document.body.style.overflow='auto'; }
     }
 
-    function closeVideoModal() {
-        const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
-        if (m && i) {
-            i.src = "";
-            m.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    // --- 2. MAIN STRATBOT LOGIC ---
     document.addEventListener('DOMContentLoaded', () => {
-        // Elements
-        const chatModal = document.getElementById('chat-modal'), chatMessages = document.getElementById('chat-messages'),
-            chatInput = document.getElementById('chat-input'), chatSendButton = document.getElementById('chat-send-button'),
-            buttonOptions = document.getElementById('button-options'), inputArea = document.getElementById('chat-input-area'),
-            loadingSpinner = document.getElementById('loading-spinner'), loadingSpinnerText = document.getElementById('loading-text'),
-            websiteLoadingSpinner = document.getElementById('website-loading-spinner'), mobileMenu = document.getElementById('mobile-menu');
+        const chatModal = document.getElementById('chat-modal'), chatMessages = document.getElementById('chat-messages'), 
+              chatInput = document.getElementById('chat-input'), chatSendButton = document.getElementById('chat-send-button'), 
+              buttonOptions = document.getElementById('button-options'), typingRow = document.getElementById('typing-row'), 
+              loadingSpinner = document.getElementById('loading-spinner'), loadingSpinnerText = document.getElementById('loading-text'), 
+              websiteLoadingSpinner = document.getElementById('website-loading-spinner'), mobileMenu = document.getElementById('mobile-menu');
 
-        // Config - !!! UPDATE THIS URL !!!
+        // !!! UPDATE YOUR CLOUD RUN URL HERE !!!
         const BASE_URL = "https://cheptiony-backend-838892077100.us-central1.run.app"; 
         const ENDPOINTS = { GENERATE: `${BASE_URL}/stratbot/generate`, CAPTURE: `${BASE_URL}/leads/capture`, SCAN: `${BASE_URL}/stratbot/scan`, INVOICE: `${BASE_URL}/send-invoice` };
         const PRICE_PER_MINUTE_USD = 100, KES_RATE = 130;
         let userCurrency = 'USD', currencySymbol = '$', currentIdx = 0, userInputs = {}, selectedPlatforms = [], skipNext = false;
 
         const questions = [
-            { key: 'industry', text: "Let's start by understanding your business. What industry are you in?", type: 'buttons', options: ['Tech/SaaS', 'E-commerce', 'Real Estate', 'Healthcare', 'Education', 'Marketing', 'Other'] },
+            { key: 'industry', text: "Let's start by understanding your business. What industry are you in?", type: 'buttons', options: ['Tech/SaaS', 'E-commerce', 'Real Estate', 'Healthcare', 'Finance', 'Education', 'Marketing', 'Other'] },
             { key: 'targetType', text: "What exactly would you like to build a video marketing strategy for?", type: 'buttons', options: ['Whole Business', 'Product', 'Service'] },
-            { key: 'hasLink', text: "Do you have a website or direct link we can look at?", type: 'buttons', options: ['Yes', 'No'] },
+            { key: 'hasLink', text: "Do you have a website link we can look at?", type: 'buttons', options: ['Yes', 'No'] },
             { key: 'linkUrl', text: "Please share the URL (e.g., https://company.com):", type: 'text' },
             { key: 'description', text: "Please briefly describe what you want to promote:", type: 'text' },
             { key: 'duration', text: "What duration are you planning this strategy for?", type: 'buttons', options: ['1 Month', '3 Months', '6 Months'] },
             { key: 'videosPerWeek', text: "How many unique video concepts would you like to post each week?", type: 'buttons', options: ['Starter (1-2 videos)', 'Growth (3-4 Videos)', 'Full Pipeline (5+ videos)', 'Custom (Specific number)'] },
             { key: 'platforms', text: "Where are you planning to post? (select multiple)", type: 'multiselect', options: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram', 'Facebook'] },
             { key: 'leadCapture', text: "Calculations complete! Where should I deliver your bespoke strategy?", type: 'custom_form' },
-            { key: 'isHappy', text: "Are you happy with the proposed strategy and monthly retainer?", type: 'buttons', options: ["Yes, I'm ready!", "No, I have questions."] },
+            { key: 'isHappy', text: "Are you happy with the proposed strategy and retainer?", type: 'buttons', options: ["Yes, I'm ready!", "No, I have questions."] },
             { key: 'nextStep', text: "Excellent! Click below to secure your production slot.", type: 'buttons', options: ["Pay Now to Get Started (50% deposit / balance on delivery)"] }
         ];
 
-        // Functions
         window.startChat = () => {
             currentIdx = 0; userInputs = {}; selectedPlatforms = []; chatMessages.innerHTML = '';
             addBotMsg("Hello! I'm StratBot, your AI assistant.");
-            setTimeout(ask, 800);
+            setTimeout(ask, 600);
         };
 
         function ask() {
@@ -288,10 +270,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             const q = questions[currentIdx];
             if (q.type === 'custom_form') { showLeadForm(q.text); return; }
             if (!skipNext) addBotMsg(q.text);
-            skipNext = false; buttonOptions.innerHTML = '';
+            skipNext = false; buttonOptions.innerHTML = ''; 
             
             if (q.type === 'buttons' || q.type === 'multiselect') {
-                inputArea.classList.add('hidden'); // Hide typing bar for buttons
+                typingRow.classList.add('hidden');
                 q.options.forEach(opt => {
                     const btn = document.createElement('button'); btn.textContent = opt;
                     btn.className = "px-4 py-2 bg-gray-200 text-brand-dark hover:bg-brand-primary hover:text-white rounded-full transition-all text-sm";
@@ -305,39 +287,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     buttonOptions.appendChild(nxt);
                 }
             } else {
-                inputArea.classList.remove('hidden');
+                typingRow.classList.remove('hidden');
                 chatInput.focus();
             }
         }
 
         async function handle(val) {
-            addUserMsg(val);
-            inputArea.classList.add('hidden'); // Hide immediately to prevent empty box look
+            addUserMsg(val); buttonOptions.innerHTML = ''; typingRow.classList.add('hidden');
             const currentKey = questions[currentIdx].key;
 
-            // Custom Number Logic
             if (currentKey === 'videosPerWeek' && val.includes('Custom')) {
-                userInputs.isWaiting = true;
-                addBotMsg("How many videos per week are you targeting?");
-                buttonOptions.innerHTML = ''; inputArea.classList.remove('hidden'); chatInput.focus();
-                return;
+                userInputs.isWaiting = true; addBotMsg("How many videos per week are you targeting?");
+                typingRow.classList.remove('hidden'); chatInput.focus(); return;
             }
-            if (userInputs.isWaiting) {
-                userInputs.videosPerWeek = val; delete userInputs.isWaiting;
-                currentIdx++; setTimeout(ask, 400); return;
-            }
+            if (userInputs.isWaiting) { userInputs.videosPerWeek = val; delete userInputs.isWaiting; currentIdx++; setTimeout(ask, 400); return; }
 
             userInputs[currentKey] = val;
             if (currentIdx === 2) currentIdx = (val === 'Yes') ? 3 : 4;
             else if (currentIdx === 3) { await scan(val); return; }
             else if (currentIdx === 7) {
-                loadingSpinner.classList.remove('hidden');
-                loadingSpinnerText.innerText = "Analyzing requirements...";
-                setTimeout(() => { loadingSpinner.classList.add('hidden'); currentIdx = 8; ask(); }, 2500);
-                return;
+                loadingSpinner.classList.remove('hidden'); loadingSpinnerText.innerText = "Analyzing requirements...";
+                setTimeout(() => { loadingSpinner.classList.add('hidden'); currentIdx = 8; ask(); }, 2500); return;
             }
-            else if (currentIdx === 9) { if (val.includes('Yes')) currentIdx = 10; else { finalize(); return; } }
-            else if (currentIdx === 10) { finalize(); return; }
+            else if (currentIdx === 9) { if (val.includes('Yes')) currentIdx = 10; else { await finalize(); return; } }
+            else if (currentIdx === 10) { await finalize(); return; }
             else currentIdx++;
             setTimeout(ask, 400);
         }
@@ -364,21 +337,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
                 s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
                 s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
-                
-                loadingSpinner.classList.add('hidden');
-                display(s);
+                loadingSpinner.classList.add('hidden'); displayStrategy(s);
                 currentIdx = 9; setTimeout(ask, 1000);
-                
                 fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
                 sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
-            } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("I hit a snag. A strategist will email you!"); }
+            } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("Snag! A strategist will email you."); }
         }
 
-        function display(s) {
+        function displayStrategy(s) {
             const ideaCount = s.videoIdeas.length;
             let ideasHtml = s.videoIdeas.slice(0, 5).map(i => `<div class="mb-3 pb-2 border-b text-[11px] leading-relaxed"><span class="font-bold text-brand-primary">${i.type} - ${i.lengthMinutes}m</span>: ${i.description}</div>`).join('');
-            if (ideaCount > 5) ideasHtml += `<div class="p-2 bg-brand-light/50 rounded-lg text-[10px] text-brand-primary font-bold text-center mt-2 border border-brand-primary/20">+ ${ideaCount - 5} more custom concepts sent to your email...</div>`;
-            addBotMsg(`<div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg w-full"><div class="bg-brand-dark text-white p-3 text-center text-sm font-bold uppercase">${s.strategyTitle}</div><div class="p-4"><div class="flex justify-between mb-4 text-[9px] font-black uppercase text-gray-500 bg-gray-50 p-2 rounded"><span>📦 ${ideaCount} Videos</span><span>⏱ ${s.totalUniqueMinutes} Mins</span></div>${ideasHtml}<div class="mt-4 p-3 bg-brand-light rounded-lg flex justify-between items-center border-t-2 border-brand-primary"><div><span class="block text-[9px] font-bold text-gray-500 uppercase">Monthly Retainer</span><span class="text-xl font-black text-brand-primary">${s.displayPrice}</span></div><div class="text-right text-[8px] italic text-gray-400">50% Deposit</div></div></div></div>`);
+            if (ideaCount > 5) ideasHtml += `<div class="p-2 bg-brand-light/50 rounded-lg text-[10px] text-brand-primary font-bold text-center mt-2 border border-brand-primary/20">+ ${ideaCount - 5} more custom concepts included in roadmap sent to email...</div>`;
+            addBotMsg(`<div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg w-full"><div class="bg-brand-dark text-white p-3 text-center text-sm font-bold uppercase">${s.strategyTitle}</div><div class="p-4"><div class="flex justify-between mb-4 text-[9px] font-black uppercase text-gray-500 bg-gray-50 p-2 rounded"><span>📦 ${ideaCount} Videos</span><span>⏱ ${s.totalUniqueMinutes} Mins</span></div>${ideasHtml}<div class="mt-4 p-3 bg-brand-light rounded-lg flex justify-between items-center border-t-2 border-brand-primary"><div><span class="block text-[9px] font-bold text-gray-500 uppercase">Monthly Retainer</span><span class="text-xl font-black text-brand-primary">${s.displayPrice}</span></div><div class="text-right text-[8px] italic text-gray-400">50% Deposit Required</div></div></div></div>`);
         }
 
         async function finalize() {
@@ -387,30 +357,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             if (isPay) setTimeout(() => { window.location.href = `/checkout.html?amount=${userInputs.generatedStrategy.calculatedRawAmount * 0.5}&email=${userInputs.userEmail}&name=${userInputs.userName}&currency=${userCurrency}`; }, 3000);
         }
 
-        function showLeadForm(txt) {
-            addBotMsg(txt);
-            buttonOptions.innerHTML = '<div class="flex flex-col gap-2 w-full"><input type="text" id="un" placeholder="Full Name" class="p-2 border rounded text-sm"><input type="email" id="ue" placeholder="Work Email" class="p-2 border rounded text-sm"><button id="sl" class="bg-brand-primary text-white p-2 rounded font-bold uppercase text-[10px]">Get Strategy Now</button></div>';
+        function showLeadForm() {
+            addBotMsg("Where should I deliver your bespoke strategy?");
+            buttonOptions.innerHTML = '<div class="flex flex-col gap-2 w-full"><input type="text" id="un" placeholder="Name" class="p-2 border rounded text-sm"><input type="email" id="ue" placeholder="Email" class="p-2 border rounded text-sm"><button id="sl" class="bg-brand-primary text-white p-2 rounded font-bold uppercase text-[10px]">Get Strategy Now</button></div>';
             document.getElementById('sl').onclick = () => {
                 const n = document.getElementById('un').value, e = document.getElementById('ue').value;
-                if (n && e.includes('@')) { userInputs.userName = n; userInputs.userEmail = e; addUserMsg(n); buttonOptions.innerHTML = ''; generate(); }
+                if(n && e.includes('@')){ userInputs.userName=n; userInputs.userEmail=e; addUserMsg(n); buttonOptions.innerHTML=''; generate(); }
             };
         }
-
-        // Event Attachment
-        const submit = () => { const m = chatInput.value.trim(); if (m) { chatInput.value = ''; handle(m); } };
-        chatSendButton.onclick = submit;
-        chatInput.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } };
-
-        document.getElementById('start-chat-button').onclick = () => { chatModal.classList.remove('hidden'); startChat(); };
-        document.getElementById('close-chat-button').onclick = () => chatModal.classList.add('hidden');
-        document.getElementById('mobile-menu-button').onclick = () => mobileMenu.classList.toggle('hidden');
 
         function addBotMsg(c) { addMsg(c, 'bot'); }
         function addUserMsg(c) { addMsg(c, 'user'); }
         function addMsg(c, s) {
-            const d = document.createElement('div'); d.className = "flex " + (s === 'user' ? 'justify-end' : 'justify-start');
-            const b = document.createElement('div'); b.className = "p-3 rounded-2xl max-w-[80%] shadow-md " + (s === 'user' ? 'bg-brand-primary text-white' : 'bg-white text-brand-dark font-medium');
-            b.innerHTML = c; d.appendChild(b); chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
+            const d = document.createElement('div'); d.className = "flex " + (s==='user'?'justify-end':'justify-start');
+            const b = document.createElement('div'); b.className="p-3 rounded-2xl max-w-[80%] shadow-md " + (s==='user'?'bg-brand-primary text-white':'bg-white text-brand-dark font-medium');
+            b.innerHTML=c; d.appendChild(b); chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         function toggleMulti(btn, val) {
@@ -418,18 +379,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             else { selectedPlatforms.push(val); btn.classList.replace('bg-gray-200', 'bg-brand-primary'); btn.classList.add('text-white'); }
         }
 
-        async function sendToBackend(url, topic) {
-            try {
-                const s = userInputs.generatedStrategy;
-                const msg = s ? `RETAINER: ${s.displayPrice}` : `Desc: ${userInputs.description}`;
-                await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, topic: topic, message: msg, currency: userCurrency, duration: userInputs.duration, frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') }) });
-            } catch (e) { }
-        }
+        const submit = () => { const m = chatInput.value.trim(); if(m){ chatInput.value=''; handle(m); } };
+        chatSendButton.onclick = submit;
+        chatInput.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } };
 
-        // Auto-Open & Currency
+        document.getElementById('start-chat-button').onclick = () => { chatModal.classList.remove('hidden'); startChat(); };
+        document.getElementById('close-chat-button').onclick = () => chatModal.classList.add('hidden');
+        document.getElementById('mobile-menu-button').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
+
         const params = new URLSearchParams(window.location.search);
         if (params.get('startChat') === 'true') { setTimeout(() => { chatModal.classList.remove('hidden'); startChat(); }, 800); }
+
         (async () => { try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } } catch (e) { } })();
+        
+        async function sendToBackend(url, topic) { 
+            try { const s = userInputs.generatedStrategy; let msg = s ? `RETAINER: ${s.displayPrice}` : `Desc: ${userInputs.description}`; await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, topic: topic, message: msg, currency: userCurrency, duration: userInputs.duration, frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') }) }); } catch(e){} 
+        }
     });
 </script>
 </body>
