@@ -406,16 +406,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         (async () => { try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } } catch (e) { } })();
         
         async function sendToBackend(url, topic) { 
-            try { 
-                const s = userInputs.generatedStrategy;
-                let roadmapText = "";
-                if (s && s.videoIdeas) {
-                    roadmapText = `TOTAL RETAINER: ${s.displayPrice}\n\nPROPOSED VIDEOS:\n`;
-                    s.videoIdeas.forEach((i, index) => { roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`; });
-                } else { roadmapText = "Lead exited early."; }
-                await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, topic: topic, message: roadmapText, business_context: userInputs.description || "N/A", currency: userCurrency, duration: userInputs.duration, frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') }) }); 
-            } catch(e){} 
-        }
+    try { 
+        const s = userInputs.generatedStrategy;
+        let roadmapText = "";
+        if (s && s.videoIdeas) {
+            // EXPLICIT TOTALS AT THE TOP OF EMAIL
+            roadmapText = `PRODUCTION SUMMARY:\n`;
+            roadmapText += `- Total Videos: ${s.videoIdeas.length}\n`;
+            roadmapText += `- Total Production Minutes: ${s.totalUniqueMinutes} Mins\n`;
+            roadmapText += `- Monthly Retainer: ${s.displayPrice}\n\n`;
+            
+            roadmapText += `PROPOSED VIDEO CONCEPTS:\n`;
+            s.videoIdeas.forEach((i, index) => { 
+                roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`; 
+            });
+        } else { roadmapText = "Lead exited early."; }
+        
+        await fetch(url, { 
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify({ 
+                source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, 
+                topic: topic, message: roadmapText, business_context: userInputs.description || "N/A", 
+                currency: userCurrency, duration: userInputs.duration, 
+                frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ') 
+            }) 
+        }); 
+    } catch(e){} 
+}
     });
 </script>
 </body>
