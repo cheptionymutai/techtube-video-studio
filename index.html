@@ -262,7 +262,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 { key: 'platforms', text: "Where are you planning to post your videos? (select multiple)", type: 'multiselect', options: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram', 'Facebook'] }, 
                 { key: 'leadCapture', text: "Calculations complete! Where should I deliver your bespoke strategy and official invoice?", type: 'custom_form' }, 
                 { key: 'isHappy', text: "Are you happy with the proposed strategy and estimated monthly retainer?", type: 'buttons', options: ["Yes, I'm ready!", "No, I have questions."] }, 
-                { key: 'nextStep', text: "Excellent! Click below to secure your production slot.", type: 'buttons', options: ["Pay Now to Get Started"] } 
+                { key: 'nextStep', text: "Excellent! Click below to secure your production slot.", type: 'buttons', options: ["Pay Now to Get Started (Pay 50% deposit and balance on delivery)"] }  
             ];
 
             function startChat() { currentQuestionIndex = 0; userInputs = {}; selectedPlatforms = []; chatMessages.innerHTML = ''; skipNextMessage = false; addBotMessage("Hello! I'm StratBot, your AI assistant."); setTimeout(askQuestion, 800); }
@@ -355,9 +355,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
 
             function displayStrategy(s) {
-                let ideas = s.videoIdeas.map(i => `<div class="mb-2 pb-2 border-b text-left text-xs"><span class="font-bold text-brand-primary">${i.type}</span>: ${i.description}</div>`).join('');
-                addBotMessage(`<div class="bg-white border-2 border-brand-primary rounded-xl p-4 shadow-lg w-full"><b>${s.strategyTitle}</b><br><div class="italic my-2 text-[10px]">${s.summary}</div>${ideas}<div class="mt-2 font-bold text-brand-primary">Retainer: ${s.displayPrice}</div></div>`);
-            }
+    const ideaCount = s.videoIdeas.length;
+    let ideasHtml = s.videoIdeas.slice(0, 4).map(i => `
+        <div class="mb-2 pb-1 border-b border-gray-100 text-[11px]">
+            <span class="font-bold text-brand-primary">${i.type}</span>: ${i.description}
+        </div>`).join('');
+    
+    // If there are many ideas, we show a "plus more" message to keep chat clean
+    if (ideaCount > 4) {
+        ideasHtml += `<div class="text-[10px] text-gray-400 italic">+ ${ideaCount - 4} more custom concepts included in your roadmap...</div>`;
+    }
+
+    addBotMessage(`
+        <div class="bg-white border-2 border-brand-primary rounded-xl overflow-hidden shadow-lg w-full">
+            <div class="bg-brand-dark text-white p-3 text-center">
+                <h3 class="font-bold text-sm uppercase">${s.strategyTitle}</h3>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between mb-4 text-[10px] font-bold uppercase text-gray-500">
+                    <span>${ideaCount} Video Concepts</span>
+                    <span>${s.totalUniqueMinutes} Production Mins</span>
+                </div>
+                ${ideasHtml}
+                <div class="mt-4 p-3 bg-brand-light rounded-lg flex justify-between items-center border-t-2 border-brand-primary">
+                    <span class="text-[10px] font-bold text-brand-dark uppercase">Monthly Retainer:</span>
+                    <span class="text-lg font-black text-brand-primary">${s.displayPrice}</span>
+                </div>
+            </div>
+        </div>
+    `);
+}
 
             async function sendToBackend(url, topic) {
                 try { 
@@ -369,13 +396,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
 
             async function finalizeChat() {
-                const isPay = (userInputs.nextStep === "Pay Now to Get Started");
-                addBotMessage(isPay ? "Redirecting to secure checkout..." : "Check your inbox for booking details!");
-                await sendToBackend(ENDPOINTS.CAPTURE, userInputs.nextStep || "Finalized");
-                if (isPay && userInputs.generatedStrategy) {
-                    setTimeout(() => { window.location.href = `/checkout.html?amount=${userInputs.generatedStrategy.calculatedRawAmount * 0.5}&email=${userInputs.userEmail}&name=${userInputs.userName}&currency=${userCurrency}`; }, 3000);
-                }
-            }
+    // Check if the input contains "Pay Now"
+    const isPay = userInputs.nextStep.includes("Pay Now");
+    
+    addBotMessage(isPay ? 
+        "Excellent choice! Redirecting to secure checkout for your **50% deposit**..." : 
+        "Check your inbox for the link to book your strategy briefing call!");
+    
+    if (isPay && userInputs.generatedStrategy) {
+        setTimeout(() => {
+            const s = userInputs.generatedStrategy;
+            window.location.href = `/checkout.html?amount=${s.calculatedRawAmount * 0.5}&email=${userInputs.userEmail}&name=${userInputs.userName}&currency=${userCurrency}`;
+        }, 3000);
+    }
+}
 
             function showLeadCaptureForm(txt) {
                 addBotMessage(txt);
