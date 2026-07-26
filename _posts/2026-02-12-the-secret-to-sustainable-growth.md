@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "From the Director's Desk: The Insight That Built Techtube."
+title: "From the Director's Desk: My 'Aha' Moment and the Secret to Sustainable Growth"
 date: 2026-02-12
 author: Director, Techtube Studio
 description: "Stop wasting your marketing budget on one-off videos. Discover the turning point that revealed the real secret to growth: a consistent video strategy."
