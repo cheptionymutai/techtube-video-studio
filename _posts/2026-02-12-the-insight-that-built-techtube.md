@@ -7,8 +7,6 @@ description: "Stop wasting your marketing budget on one-off videos. Discover the
 tags: [Video Marketing, Business Growth, Nairobi, Kenya, Content Strategy, Hybrid Production]
 ---
 
-> **From the desk of the Director, Techtube Studio.**
-
 I need to be honest with you.
 
 For years, I thought my job was simply to create the best possible video for my clients. A stunning corporate profile. A slick product demo. A heart-warming brand story. We’d pour our hearts, our creativity, and our technical expertise into a single project. We’d hand over the final file, shake hands, and I’d feel a sense of accomplishment.
