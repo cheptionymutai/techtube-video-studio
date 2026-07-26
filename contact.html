@@ -56,17 +56,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </main>
 
     <script>
-        document.getElementById('contact-form').onsubmit = async (e) => {
-            e.preventDefault(); if (document.getElementById('contact_url_trap').value) return;
-            const btn = document.getElementById('contact-submit-btn'); btn.innerText = "Sending..."; btn.disabled = true;
-            try {
-                const res = await fetch("https://cheptiony-backend-838892077100.us-central1.run.app/leads/capture", {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ source: "techtube_contact_page", name: document.getElementById('contact-name').value, email: document.getElementById('contact-email').value, topic: "Website Contact Inquiry", message: document.getElementById('contact-message').value })
-                });
-                if (res.ok) { document.getElementById('contact-form').classList.add('hidden'); document.getElementById('contact-success').classList.remove('hidden'); }
-            } catch (err) { alert("Error sending message."); btn.disabled = false; btn.innerText = "Send Message"; }
-        };
+       document.getElementById('contact-form').onsubmit = async (e) => {
+    e.preventDefault(); 
+    if (document.getElementById('contact_url_trap').value) return;
+    
+    const btn = document.getElementById('contact-submit-btn'); 
+    btn.innerText = "Sending..."; 
+    btn.disabled = true;
+    
+    try {
+        const res = await fetch("https://YOUR-BACKEND-URL.run.app/leads/capture", {
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                source: "techtube_contact_page", // Explicit source
+                name: document.getElementById('contact-name').value, 
+                email: document.getElementById('contact-email').value, 
+                topic: "General Contact Inquiry", // Explicit topic
+                message: document.getElementById('contact-message').value,
+                business_context: "Sent via manual contact form"
+            })
+        });
+        
+        if (res.ok) { 
+            document.getElementById('contact-form').classList.add('hidden'); 
+            document.getElementById('contact-success').classList.remove('hidden'); 
+        }
+    } catch (err) { 
+        alert("Error sending message."); 
+        btn.disabled = false; 
+        btn.innerText = "Send Message"; 
+    }
+};
     </script>
 
      <!-- Shared Footer -->
