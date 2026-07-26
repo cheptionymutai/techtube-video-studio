@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The One-Video Myth: The Costly Mistake Holding Kenyan Businesses Back"
+title: "From the Director's Desk: The Insight That Built Techtube."
 date: 2026-02-19
 author: Techtube Studio
 description: "Stop wasting your marketing budget on one-off videos. Learn why a consistent video strategy is crucial for business growth in Kenya and why the 'one-video myth' is holding you back."
