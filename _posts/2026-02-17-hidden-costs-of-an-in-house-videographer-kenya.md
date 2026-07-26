@@ -70,4 +70,4 @@ The right partnership makes video simple, affordable, and incredibly effective. 
 > ### Ready to see the difference?
 > [**Book a Free 15-Minute Consultation.**](https://techtubestudio.com/#contact) Let us show you how our team can outperform an in-house hire for a fraction of the headache.
 
-*Not sure if you're ready for a full strategy? Check out our post on [The One-Video Myth]({% post_url 2026-02-12-the-secret-to-sustainable-growth-with-video %}) to see why consistency is the real secret to growth.*
+*Not sure if you're ready for a full strategy? Check out our post on [The One-Video Myth]({% post_url 2026-02-12-the-secret-to-sustainable-growth %}) to see why consistency is the real secret to growth.*
