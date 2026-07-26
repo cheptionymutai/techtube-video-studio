@@ -2,95 +2,115 @@
 <html lang="en">
 <head>
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Techtube Video Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { colors: { 'brand-dark': '#031F14', 'brand-primary': '#18795B', 'brand-accent': '#8fcdb5', 'brand-light': '#e8e9e2' } } } }
     </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #031F14; }
+        ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
+    </style>
 </head>
 <body class="bg-brand-dark text-brand-light font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark h-20 border-b border-brand-primary/20">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md h-20 border-b border-brand-primary/20">
         <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="index.html">
+            <a href="/">
                 <img class="h-12" src="/techtube-logo.jpg" alt="Logo">
             </a>
             <nav class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-brand-light/70">
-                <a href="/index.html" class="hover:text-brand-accent">Home</a>
-                <a href="/portfolio.html" class="hover:text-brand-accent">Case Studies</a>
-                <a href="/about.html" class="hover:text-brand-accent">About</a>
-                <a href="/blog/" class="text-brand-light/70 hover:text-brand-accent transition-colors">Blog</a>
-                 <a href="/livestream.html" class="hover:text-brand-accent">Livestream</a>
+                <a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a>
+                <a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a>
+                <a href="/about.html" class="hover:text-brand-accent transition-colors">About</a>
+                <a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a>
             </nav>
         </div>
     </header>
 
     <main class="pt-32 pb-20 min-h-screen flex items-center">
-        <div class="max-w-xl mx-auto px-6 text-center w-full">
-            <h1 class="text-4xl font-black mb-6 uppercase tracking-tight">Let's Connect</h1>
-            <p class="text-brand-accent mb-12">Reach out to our human team for custom production inquiries.</p>
+        <div class="max-w-6xl mx-auto px-6 w-full">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                
+                <!-- LEFT COLUMN: ANCHOR INFO -->
+                <div class="text-left">
+                    <h1 class="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter text-white">
+                        Let's <span class="text-brand-accent">Connect.</span>
+                    </h1>
+                    <p class="text-lg text-brand-light/70 mb-10 leading-relaxed max-w-md">
+                        Not ready for StratBot? Tell us about your brand and video goals here. We typically respond to custom inquiries within <span class="text-brand-accent font-bold">24 hours.</span>
+                    </p>
 
-            <form id="contact-form" class="flex flex-col gap-4 text-left">
-                <!-- Honeypot -->
-                <div class="hidden"><input type="text" id="contact_url_trap"></div>
-                
-                <input type="text" id="contact-name" placeholder="Your Name" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent" required>
-                <input type="email" id="contact-email" placeholder="Your Email" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent" required>
-                <textarea id="contact-message" placeholder="Your Message" rows="5" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent" required></textarea>
-                
-                <button type="submit" id="contact-submit-btn" class="bg-brand-accent text-brand-dark font-black py-4 rounded-full uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105">Send Message</button>
-            </form>
-            <div id="contact-success" class="hidden py-10"><h3 class="text-2xl font-bold text-white mb-2">Message Sent!</h3><p class="text-brand-accent">We will get back to you soon.</p></div>
+                    <div class="space-y-8">
+                        <!-- Email -->
+                        <div class="flex items-center gap-5 group">
+                            <div class="w-12 h-12 rounded-full bg-brand-primary/20 flex items-center justify-center border border-brand-primary/50 group-hover:bg-brand-accent transition-all">
+                                <svg class="w-5 h-5 text-brand-accent group-hover:text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-gray-500 tracking-[0.2em]">Direct Email</p>
+                                <a href="mailto:sales@techtubestudio.com" class="text-lg font-bold text-white hover:text-brand-accent">sales@techtubestudio.com</a>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="flex items-center gap-5 group">
+                            <div class="w-12 h-12 rounded-full bg-brand-primary/20 flex items-center justify-center border border-brand-primary/50 group-hover:bg-brand-accent transition-all">
+                                <svg class="w-5 h-5 text-brand-accent group-hover:text-brand-dark" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.328-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.87 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.87 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.86 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.86 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.82 0 00-3.48-8.413z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-gray-500 tracking-[0.2em]">WhatsApp / Call</p>
+                                <a href="https://wa.me/254701938336" class="text-lg font-bold text-white hover:text-brand-accent">+254 701 938 336</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: THE FORM -->
+                <div class="bg-white/5 p-8 rounded-3xl border border-brand-primary/20 backdrop-blur-sm shadow-2xl">
+                    <form id="contact-form" class="flex flex-col gap-4 text-left">
+                        <!-- Honeypot -->
+                        <div class="hidden" aria-hidden="true"><input type="text" id="contact_url_trap" tabindex="-1" autocomplete="off"></div>
+                        
+                        <input type="text" id="contact-name" placeholder="Full Name" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
+                        
+                        <input type="email" id="contact-email" placeholder="Work Email" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
+                        
+                        <input type="text" id="contact-subject" placeholder="Subject (e.g. Production Inquiry, Pricing, Support)" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
+                        
+                        <textarea id="contact-message" placeholder="How can we help? Tell us about your brand and video goals..." rows="5" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required></textarea>
+                        
+                        <button type="submit" id="contact-submit-btn" class="bg-brand-accent text-brand-dark font-black py-4 rounded-full uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105 shadow-lg">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div id="contact-success" class="hidden py-10 text-center">
+                        <div class="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                        <p class="text-brand-accent">Check your inbox for our confirmation email.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <script>
-       document.getElementById('contact-form').onsubmit = async (e) => {
-    e.preventDefault(); 
-    if (document.getElementById('contact_url_trap').value) return;
-    
-    const btn = document.getElementById('contact-submit-btn'); 
-    btn.innerText = "Sending..."; 
-    btn.disabled = true;
-    
-    try {
-        const res = await fetch("https://YOUR-BACKEND-URL.run.app/leads/capture", {
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                source: "techtube_contact_page", // Explicit source
-                name: document.getElementById('contact-name').value, 
-                email: document.getElementById('contact-email').value, 
-                topic: "General Contact Inquiry", // Explicit topic
-                message: document.getElementById('contact-message').value,
-                business_context: "Sent via manual contact form"
-            })
-        });
-        
-        if (res.ok) { 
-            document.getElementById('contact-form').classList.add('hidden'); 
-            document.getElementById('contact-success').classList.remove('hidden'); 
-        }
-    } catch (err) { 
-        alert("Error sending message."); 
-        btn.disabled = false; 
-        btn.innerText = "Send Message"; 
-    }
-};
-    </script>
-
-     <!-- Shared Footer -->
+    <!-- Footer -->
     <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-center space-x-6 mb-8">
@@ -101,12 +121,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
                 <div class="flex space-x-6">
                     <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
-                    <a href="https://techtubestudio.com/livestream/" class="hover:text-brand-accent">Livestream</a>
                 </div>
                 <p>Nairobi, Kenya</p>
             </div>
         </div>
     </footer>
- 
+
+    <script>
+        document.getElementById('contact-form').onsubmit = async (e) => {
+            e.preventDefault(); 
+            if (document.getElementById('contact_url_trap').value) return;
+            
+            const btn = document.getElementById('contact-submit-btn'); 
+            const origText = btn.innerText;
+            btn.innerText = "Sending..."; 
+            btn.disabled = true;
+            
+            try {
+                // UPDATE THIS URL WITH YOUR CLOUD RUN BACKEND URL
+                const res = await fetch("https://cheptiony-backend-838892077100.us-central1.run.app/leads/capture", {
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        source: "techtube_contact_page",
+                        name: document.getElementById('contact-name').value, 
+                        email: document.getElementById('contact-email').value, 
+                        topic: document.getElementById('contact-subject').value,
+                        message: document.getElementById('contact-message').value,
+                        business_context: "Manual Web Form Submission"
+                    })
+                });
+                
+                if (res.ok) { 
+                    document.getElementById('contact-form').classList.add('hidden'); 
+                    document.getElementById('contact-success').classList.remove('hidden'); 
+                }
+            } catch (err) { 
+                alert("Error sending message."); 
+                btn.disabled = false; 
+                btn.innerText = origText; 
+            }
+        };
+    </script>
 </body>
 </html>
