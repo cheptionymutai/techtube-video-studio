@@ -72,6 +72,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                  <a href="/about.html" class="text-brand-light/70 hover:text-brand-accent transition-colors">About</a>
                 <a href="/contact.html" class="hover:text-brand-accent">Contact</a>
             </nav>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-primary/50 absolute top-20 left-0 w-full flex flex-col p-6 space-y-4 text-center font-bold text-sm uppercase tracking-widest text-brand-light">
+            <a href="/index.html">Home</a>
+            <a href="/portfolio.html">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/">Blog</a>
+            <a href="/about.html">About</a>
+            <a href="/contact.html" class="text-brand-accent">Contact</a>
+        </div>
+
         </div>
     </header>
 
@@ -155,6 +167,25 @@ function filterPosts() {
             </div>
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
+        if (mobileBtn && mobileMenu) {
+            // This tells the browser: "When the button is clicked, remove or add the 'hidden' class"
+            mobileBtn.onclick = () => {
+                mobileMenu.classList.toggle('hidden');
+            };
+
+            // This ensures the menu closes if a user clicks a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.onclick = () => {
+                    mobileMenu.classList.add('hidden');
+                };
+            });
+        }
+    });
+</script>
 </body>
 </html>
