@@ -171,5 +171,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
         }
     </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileBtn && mobileMenu) {
+            // This tells the browser: "When the button is clicked, remove or add the 'hidden' class"
+            mobileBtn.onclick = () => {
+                mobileMenu.classList.toggle('hidden');
+            };
+
+            // This ensures the menu closes if a user clicks a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.onclick = () => {
+                    mobileMenu.classList.add('hidden');
+                };
+            });
+        }
+    });
+</script>
 </body>
 </html>
