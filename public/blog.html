@@ -107,7 +107,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p id="search-label" class="hidden text-brand-dark/50 text-sm mb-6"></p>
 
         <!-- Posts -->
-        <div id="posts-container" class="space-y-8 mt-8"></div>
+        <div id="posts-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"></div>
 
         <div id="empty-state" class="hidden text-center py-20">
             <p class="text-brand-dark/50">No articles found. Try a different search or category.</p>
@@ -171,16 +171,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function cardHTML(p) {
         return `
-        <div class="post-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-brand-accent hover:shadow-2xl transition-shadow">
-            <h2 class="text-2xl md:text-3xl font-bold mb-2 text-brand-primary">
-                <a href="/${p.slug}" class="hover:underline">${p.title}</a>
-            </h2>
-            <p class="text-sm text-gray-500 mb-4">Published on ${p.date}</p>
-            <p class="text-lg text-brand-dark/80 mb-4">${excerpt(p.content)}</p>
-            <a href="/${p.slug}" class="text-brand-primary font-semibold hover:text-brand-dark transition-colors inline-flex items-center gap-1">
-                Read More →
-            </a>
-        </div>`;
+        <a href="/${p.slug}" class="post-card group block bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-brand-accent hover:shadow-2xl hover:border-brand-primary transition-all duration-300">
+            <div class="aspect-video overflow-hidden bg-brand-light">
+                <img src="${p.featured_image}" alt="${p.title}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                     onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center bg-brand-dark\\'><span class=\\'text-brand-accent text-4xl\\'>▶</span></div>'">
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2">${p.date}</p>
+                <h2 class="text-xl font-bold mb-3 text-brand-primary leading-snug line-clamp-2 group-hover:text-brand-dark transition">
+                    ${p.title}
+                </h2>
+                <p class="text-brand-dark/70 text-sm leading-relaxed line-clamp-3 mb-4">${excerpt(p.content, 130)}</p>
+                <span class="text-brand-primary font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Read More →
+                </span>
+            </div>
+        </a>`;
     }
 
     let allPosts = [];
