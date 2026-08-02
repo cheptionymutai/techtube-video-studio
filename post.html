@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1LBSFT6R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6H1LBSFT6R');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Insight | Techtube Blog</title>
+    <meta id="meta-description" name="description" content="">
+    <meta id="og-title" property="og:title" content="">
+    <meta id="og-description" property="og:description" content="">
+    <meta property="og:type" content="article">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#031F14',
+                        'brand-primary': '#18795B',
+                        'brand-accent': '#8fcdb5',
+                        'brand-light': '#e8e9e2',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e8e9e2; }
+        ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8fcdb5; }
+        html { scroll-behavior: smooth; }
+
+        .post-content h2 {
+            font-size: 2rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;
+            color: #18795B; border-bottom: 2px solid #e8e9e2; padding-bottom: 0.5rem;
+        }
+        .post-content h3 {
+            font-size: 1.5rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; color: #031F14;
+        }
+        .post-content p { margin-bottom: 1rem; line-height: 1.75; color: #031F14; }
+        .post-content ul, .post-content ol { margin-bottom: 1rem; padding-left: 1.5rem; color: #031F14; }
+        .post-content ul li { list-style-type: disc; }
+        .post-content ol li { list-style-type: decimal; }
+        .post-content a { color: #18795B; text-decoration: underline; }
+        .post-content strong { color: #031F14; }
+        .post-content blockquote {
+            border-left: 4px solid #8fcdb5; padding-left: 1rem; margin: 1.5rem 0;
+            color: #031F14; font-style: italic; font-size: 1.1rem;
+        }
+
+        .video-container-wrapper { margin: 2rem 0; }
+        .video-link-card { border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .video-thumbnail { position: relative; aspect-ratio: 16/9; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .play-overlay { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: rgba(3,31,20,0.5); width: 100%; height: 100%; justify-content: center; transition: background 0.2s; }
+        .play-overlay:hover { background: rgba(3,31,20,0.3); }
+        .play-button-icon { width: 56px; height: 56px; background: #8fcdb5; color: #031F14; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .play-overlay span { color: #fff; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; }
+        #video-lightbox { position: fixed; inset: 0; background: rgba(3,31,20,0.92); z-index: 999; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        .lightbox-content { position: relative; width: 100%; max-width: 900px; aspect-ratio: 16/9; }
+        .close-video { position: absolute; top: -2.5rem; right: 0; color: #e8e9e2; font-size: 2rem; cursor: pointer; line-height: 1; }
+
+        .toc-box { background: #fff; border: 2px solid #e8e9e2; border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc-box ul { list-style: none; margin-top: 0.75rem; }
+        .toc-box li { margin-bottom: 0.5rem; }
+        .toc-box a { color: #18795B; font-size: 0.9rem; text-decoration: none; }
+        .toc-box a:hover { text-decoration: underline; }
+        .line-clamp-2 { display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-primary/50 h-20">
+    <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <a href="https://techtubestudio.com" class="flex items-center">
+            <img class="h-14" src="/assets/img/techtube-logo.jpg" alt="Techtube Video Studio Logo" onerror="this.onerror=null;this.src='https://placehold.co/200x60/031F14/8fcdb5?text=Techtube';">
+        </a>
+        <nav class="hidden md:flex items-center space-x-8">
+            <a href="https://techtubestudio.com" class="text-brand-light/70 hover:text-brand-light transition-colors">Home</a>
+            <a href="/portfolio.html" class="text-brand-light/70 hover:text-brand-light transition-colors">Case Studies</a>
+            <a href="/blog/" class="text-brand-accent hover:text-brand-light transition-colors font-bold">Blog</a>
+            <a href="/about.html" class="text-brand-light/70 hover:text-brand-light transition-colors">About</a>
+            <a href="/contact.html" class="text-brand-light/70 hover:text-brand-light transition-colors">Contact</a>
+        </nav>
+        <button id="mobile-menu-button" class="md:hidden text-brand-light text-2xl">☰</button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/40 px-6 py-4 space-y-3">
+        <a href="https://techtubestudio.com" class="block text-brand-light/80 hover:text-brand-light">Home</a>
+        <a href="/portfolio.html" class="block text-brand-light/80 hover:text-brand-light">Case Studies</a>
+        <a href="/blog/" class="block text-brand-accent font-bold">Blog</a>
+        <a href="/about.html" class="block text-brand-light/80 hover:text-brand-light">About</a>
+        <a href="/contact.html" class="block text-brand-light/80 hover:text-brand-light">Contact</a>
+    </div>
+</header>
+
+<main class="pt-24 pb-16">
+    <div class="max-w-4xl mx-auto px-6">
+
+        <div class="mb-8 p-4 bg-white rounded-lg shadow-md border-l-4 border-brand-primary/70">
+            <p class="text-sm text-gray-500 mb-2">
+                <a href="/blog/" class="text-brand-primary hover:underline">&larr; Back to Blog Index</a>
+            </p>
+            <p id="post-meta" class="text-sm text-gray-500">Published on: <span id="post-date"></span></p>
+        </div>
+
+        <div id="toc-container"></div>
+
+        <article id="post-display" class="bg-white p-8 md:p-10 rounded-xl shadow-xl">
+            <div class="space-y-4 animate-pulse">
+                <div class="h-10 w-full bg-brand-light rounded"></div>
+                <div class="h-64 w-full bg-brand-light rounded-lg"></div>
+            </div>
+        </article>
+
+        <!-- Share -->
+        <div class="mt-10 p-6 bg-white rounded-xl shadow-md">
+            <p class="font-bold text-brand-dark mb-3">Share this insight:</p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#" id="share-x" target="_blank" class="px-4 py-2 rounded-lg text-sm font-semibold bg-brand-light text-brand-dark hover:bg-brand-accent transition">𝕏 Post</a>
+                <a href="#" id="share-linkedin" target="_blank" class="px-4 py-2 rounded-lg text-sm font-semibold bg-brand-light text-brand-dark hover:bg-brand-accent transition">LinkedIn</a>
+                <a href="#" id="share-whatsapp" target="_blank" class="px-4 py-2 rounded-lg text-sm font-semibold bg-brand-light text-brand-dark hover:bg-brand-accent transition">WhatsApp</a>
+                <button onclick="copyLink()" class="px-4 py-2 rounded-lg text-sm font-semibold bg-brand-light text-brand-dark hover:bg-brand-accent transition">Copy Link</button>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-16 text-center p-4">
+            <p class="text-xl text-brand-dark mb-4 font-semibold">Ready to turn this strategy into reality?</p>
+            <a href="https://techtubestudio.com"
+               class="w-full md:w-auto px-12 py-4 text-xl font-bold text-white bg-brand-primary hover:bg-brand-dark rounded-full transition-all transform hover:scale-105 shadow-xl
+                      flex flex-col items-center text-center mx-auto" style="max-width: fit-content;">
+                Build Your Custom Video Strategy Now!
+            </a>
+        </div>
+
+        <!-- Related -->
+        <section class="mt-16 border-t border-brand-primary/20 pt-10">
+            <h3 class="text-2xl font-bold mb-6 text-brand-dark">Other Articles You Might Like</h3>
+            <div id="related-posts" class="grid sm:grid-cols-2 gap-5"></div>
+        </section>
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="flex justify-center space-x-6 mb-6">
+            <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
+            <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
+            <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
+        </div>
+        <p>© 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+        <p class="mt-2"><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors underline">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+    }
+
+    function cleanAndFormat(content) {
+        if (!content) return "";
+        let cleaned = content.replace(/watch video|online link/gi, '');
+        const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/g;
+        return cleaned.replace(ytRegex, (match, videoId) => {
+            const thumb = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+            return `
+                <div class="video-container-wrapper">
+                    <div class="video-link-card" onclick="openVideo('${videoId}')" style="cursor:pointer;">
+                        <div class="video-thumbnail" style="background-image: url('${thumb}')">
+                            <div class="play-overlay"><div class="play-button-icon">▶</div><span>WATCH VIDEO</span></div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function openVideo(videoId) {
+        const overlay = document.createElement('div');
+        overlay.id = 'video-lightbox';
+        overlay.innerHTML = `<div class="lightbox-content"><span class="close-video" onclick="closeVideo()">&times;</span><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+        document.body.appendChild(overlay);
+    }
+    function closeVideo() { document.getElementById('video-lightbox')?.remove(); }
+
+    function excerpt(html, max = 90) {
+        return html.replace(/<[^>]+>/g,'').replace(/https?:\/\/[^\s]+/g,'').replace(/\s+/g,' ').trim().slice(0,max) + '...';
+    }
+
+    async function loadPost() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            let slug = params.get('slug')?.trim();
+            if (!slug) {
+                const pathParts = window.location.pathname.split('/').filter(p => p);
+                slug = pathParts[pathParts.length - 1];
+            }
+
+            const response = await fetch('/all_posts.json');
+            const posts = await response.json();
+            const post = posts.find(p => p.slug === slug) || posts.find(p => p.slug?.toLowerCase() === slug?.toLowerCase());
+
+            if (post) {
+                document.title = post.title + " | Techtube Blog";
+                document.getElementById('page-title').textContent = post.title + " | Techtube Blog";
+                document.getElementById('meta-description').setAttribute('content', excerpt(post.content, 160));
+                document.getElementById('og-title').setAttribute('content', post.title);
+                document.getElementById('og-description').setAttribute('content', excerpt(post.content, 160));
+
+                let canonical = document.querySelector('link[rel="canonical"]');
+                if (!canonical) {
+                    canonical = document.createElement('link');
+                    canonical.rel = 'canonical';
+                    document.head.appendChild(canonical);
+                }
+                canonical.href = `https://techtubestudio.com/${post.slug}`;
+
+                const pageUrl = encodeURIComponent(`https://techtubestudio.com/${post.slug}`);
+                const pageTitle = encodeURIComponent(post.title);
+                document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+                document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+                document.getElementById('share-whatsapp').href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+
+                document.getElementById('post-date').textContent = post.date;
+
+                const displayArea = document.getElementById('post-display');
+                displayArea.innerHTML = `
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-brand-dark">${post.title}</h1>
+                    ${post.featured_image ? `<img src="${post.featured_image}" alt="${post.title}" class="w-full h-auto object-cover rounded-lg mb-8 shadow-lg" onerror="this.style.display='none'">` : ''}
+                    <div class="post-content text-lg">${cleanAndFormat(post.content)}</div>
+                `;
+
+                const headings = displayArea.querySelectorAll('h2, h3');
+                if (headings.length > 2) {
+                    let toc = '<div class="toc-box"><strong class="text-brand-dark">In this article:</strong><ul>';
+                    headings.forEach((h, i) => { h.id = 'section-' + i; toc += `<li><a href="#section-${i}">${h.innerText}</a></li>`; });
+                    toc += '</ul></div>';
+                    document.getElementById('toc-container').innerHTML = toc;
+                }
+
+                const related = posts.filter(p => p.slug !== slug).sort(() => 0.5 - Math.random()).slice(0, 2);
+                document.getElementById('related-posts').innerHTML = related.map(p => `
+                    <a href="/${p.slug}" class="block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+                        <div class="aspect-video bg-brand-light overflow-hidden">
+                            <img src="${p.featured_image}" alt="${p.title}" class="w-full h-full object-cover" onerror="this.parentElement.style.display='none'">
+                        </div>
+                        <div class="p-5">
+                            <p class="text-xs text-gray-500 mb-2">${p.date}</p>
+                            <h3 class="font-bold text-brand-dark leading-snug line-clamp-2">${p.title}</h3>
+                            <span class="text-brand-primary text-sm font-semibold mt-2 inline-block">Read More →</span>
+                        </div>
+                    </a>`).join('');
+
+                if (window.adsbygoogle) (window.adsbygoogle = window.adsbygoogle || []).push({});
+
+            } else {
+                window.location.href = '/blog/';
+            }
+        } catch (e) {
+            console.error(e);
+            document.getElementById('post-display').innerHTML =
+                '<p class="text-center text-brand-dark/50 py-12">Could not load this article. <a href="/blog/" class="text-brand-primary underline">Back to Blog →</a></p>';
+        }
+    }
+    loadPost();
+</script>
+</body>
+</html>
