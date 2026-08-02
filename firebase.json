@@ -1,6 +1,8 @@
 {
   "hosting": {
-    "public": "_site",
+    "public": "public",
+    "cleanUrls": true,
+    "trailingSlash": false,
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -13,7 +15,11 @@
         "type": 301
       }
     ],
-    "cleanUrls": true,
-    "trailingSlash": true
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/post.html"
+      }
+    ]
   }
 }
