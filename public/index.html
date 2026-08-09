@@ -426,7 +426,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         const s = userInputs.generatedStrategy;
         let roadmapText = "";
         if (s && s.videoIdeas) {
-            // EXPLICIT TOTALS AT THE TOP OF EMAIL
             roadmapText = `PRODUCTION SUMMARY:\n`;
             roadmapText += `- Total Videos: ${s.videoIdeas.length}\n`;
             roadmapText += `- Total Production Minutes: ${s.totalUniqueMinutes} Mins\n`;
@@ -444,7 +443,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, 
                 topic: topic, message: roadmapText, business_context: userInputs.description || "N/A", 
                 currency: userCurrency, duration: userInputs.duration, 
-                frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', ')
+                frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', '),
                 website: userInputs.linkUrl || "N/A"
             }) 
         }); 
