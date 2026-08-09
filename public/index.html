@@ -354,24 +354,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         async function generate() {
-            loadingSpinner.classList.remove('hidden'); buttonOptions.innerHTML = '';
-            loadingSpinnerText.innerText = `Finalizing strategy for ${userInputs.userName.split(' ')[0]}...`;
-            try {
-                const res = await fetch(ENDPOINTS.GENERATE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) });
-                const s = await res.json();
-                const actualMin = (s.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
-                s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
-                const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
-                const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
-                s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
-                s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
-                loadingSpinner.classList.add('hidden'); displayStrategy(s);
-                currentIdx = 9; setTimeout(ask, 1000);
-                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
-                sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
-            } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("Snag! A strategist will email you."); }
-        }
-
+    await currencyReady;   // ← NEW LINE — added here, first thing inside the function
+    loadingSpinner.classList.remove('hidden'); buttonOptions.innerHTML = '';
+    loadingSpinnerText.innerText = `Finalizing strategy for ${userInputs.userName.split(' ')[0]}...`;
+    try {
+        const res = await fetch(ENDPOINTS.GENERATE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) });
+        const s = await res.json();
+        const actualMin = (s.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
+        s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
+        const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
+        const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
+        s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
+        s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
+        loadingSpinner.classList.add('hidden'); displayStrategy(s);
+        currentIdx = 9; setTimeout(ask, 1000);
+        fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
+        sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
+    } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("Snag! A strategist will email you."); }
+}
         function displayStrategy(s) {
             const ideaCount = s.videoIdeas.length;
             let ideasHtml = s.videoIdeas.slice(0, 5).map(i => `<div class="mb-3 pb-2 border-b text-[11px] leading-relaxed"><span class="font-bold text-brand-primary">${i.type} - ${i.lengthMinutes}m</span>: ${i.description}</div>`).join('');
@@ -418,8 +418,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         const params = new URLSearchParams(window.location.search);
         if (params.get('startChat') === 'true') { setTimeout(() => { chatModal.classList.remove('hidden'); startChat(); }, 800); }
 
-        // Currency fetch
-        (async () => { try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; } } catch (e) { } })();
+        // Currency detection — stored as a promise so we can await it before pricing
+const currencyReady = (async () => {
+    try {
+        const r = await fetch('https://ipapi.co/json/');
+        const d = await r.json();
+        if (d.country_code === 'KE') {
+            userCurrency = 'KES';
+            currencySymbol = 'KES ';
+        }
+    } catch (e) { /* defaults to USD on failure */ }
+})();
         
         async function sendToBackend(url, topic) { 
     try { 
