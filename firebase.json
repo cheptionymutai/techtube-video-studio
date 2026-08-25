@@ -17,6 +17,13 @@
     ],
     "rewrites": [
       {
+        "source": "/sitemap.xml",
+        "run": {
+          "serviceId": "cheptiony-backend",
+          "region": "us-central1"
+        }
+      },
+      {
         "source": "**",
         "destination": "/post.html"
       }
