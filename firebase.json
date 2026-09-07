@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "techtube-site",
     "public": "public",
     "cleanUrls": true,
     "trailingSlash": false,
@@ -19,7 +20,7 @@
       {
         "source": "/sitemap.xml",
         "run": {
-          "serviceId": "cheptiony-backend",
+          "serviceId": "techtube-backend",
           "region": "us-central1"
         }
       },
