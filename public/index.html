@@ -28,18 +28,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ::-webkit-scrollbar-track { background: #e8e9e2; }
         ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
         html { scroll-behavior: smooth; }
-        .hero-video-background {
-            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
-            width: auto; height: auto; z-index: 0; transform: translate(-50%, -50%); object-fit: cover;
-        }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 31, 20, 0.92); z-index: 1;
-        }
-        .video-thumbnail-glow {
-            transition: all 0.5s ease;
-            box-shadow: 0 0 40px rgba(24, 121, 91, 0.2);
-        }
+        .strategy-card { box-shadow: 0 20px 60px -10px rgba(3, 31, 20, 0.35); }
+        .pulse-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+        #chat-messages::-webkit-scrollbar { width: 6px; }
     </style>
     <script>
         tailwind.config = {
@@ -56,167 +48,185 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body class="bg-brand-light text-brand-dark font-sans antialiased">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md h-20 border-b border-brand-primary/20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="/index.html">
+    <!-- ================================================================
+         REUSABLE HEADER — copy this entire block, unchanged, onto every
+         other page (about.html, portfolio.html, contact.html, blog.html,
+         livestream.html, checkout.html). Set the matching nav link's
+         `data-active` attribute to "true" on each page for the current-
+         page highlight to work correctly.
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
                 <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
             </a>
-            <nav class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-brand-light/70">
-                <a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a>
-                <a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a>
-                <a href="/about.html" class="hover:text-brand-accent transition-colors">About</a>
-                <a href="/contact.html" class="hover:text-brand-accent transition-colors border border-brand-accent px-4 py-2 rounded-full text-brand-accent">Contact</a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-brand-light">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-primary/50 absolute top-20 left-0 w-full flex flex-col p-6 space-y-4 text-center font-bold text-sm uppercase tracking-widest text-brand-light">
-            <a href="/portfolio.html">Case Studies</a>
-            <a href="https://techtubestudio.com/blog/">Blog</a>
-            <a href="/about.html">About</a>
-            <a href="/contact.html" class="text-brand-accent">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
         </div>
     </header>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
     <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-48 pb-20">
-            <video autoplay loop muted playsinline class="hero-video-background">
-                <source src="/Video Marketing Agency.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-            
-            <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
-                <div class="grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
-                    <!-- LEFT: THE VIDEO -->
-                    <div onclick="openVideoModal('https://www.youtube.com/embed/2jD0C7lPE9w')" 
-                         class="video-thumbnail-glow relative aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer border-2 md:border-4 border-brand-primary/30 group shadow-2xl">
-                        <img src="https://img.youtube.com/vi/2jD0C7lPE9w/maxresdefault.jpg" 
-                             alt="Commercial" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
+        <!-- ============================================================ HERO -->
+        <section class="relative overflow-hidden pt-32 md:pt-40 pb-16 md:pb-24 bg-brand-dark">
+            <!-- subtle background texture, no video -->
+            <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+                <div class="inline-flex items-center gap-2 bg-brand-primary/15 border border-brand-accent/30 rounded-full px-4 py-1.5 mb-6">
+                    <span class="w-1.5 h-1.5 bg-brand-accent rounded-full pulse-dot"></span>
+                    <span class="text-brand-accent text-[10px] font-bold uppercase tracking-widest">Free in 5 minutes — no account needed</span>
+                </div>
+
+                <h1 class="text-3xl md:text-5xl font-black text-white mb-5 leading-[1.1] tracking-tight">
+                    Imagine a whole month of <span class="text-brand-accent">premium video content</span> planned & outlined in 5 minutes.
+                </h1>
+                <p class="text-base md:text-lg text-brand-light/70 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    We blend elite human creativity with advanced AI efficiency to deliver your custom video roadmap. <strong class="text-brand-accent">For free.</strong>
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10 text-brand-light/80 text-xs md:text-sm font-bold uppercase tracking-wider">
+                    <span class="flex items-center gap-1.5"><span class="text-brand-accent">✔</span> Instant Content Calendar</span>
+                    <span class="flex items-center gap-1.5"><span class="text-brand-accent">✔</span> Full Script Outlines</span>
+                    <span class="flex items-center gap-1.5"><span class="text-brand-accent">✔</span> Plans From $400/Mo</span>
+                </div>
+            </div>
+
+            <!-- ============================================================ INLINE STRATEGY WIDGET -->
+            <div class="relative z-10 max-w-2xl mx-auto px-4">
+                <div class="strategy-card bg-white rounded-3xl overflow-hidden">
+                    <div class="px-6 md:px-8 py-4 bg-brand-dark/5 border-b border-brand-light flex items-center justify-between">
+                        <span class="text-brand-dark text-[10px] font-black uppercase tracking-[0.2em]">Your Free Strategy Session</span>
+                        <span class="flex items-center gap-1.5 text-brand-primary text-[10px] font-bold uppercase tracking-wider">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full pulse-dot"></span> Live
+                        </span>
+                    </div>
+                    <div id="chat-messages" class="p-6 md:p-8 space-y-4 overflow-y-auto max-h-[55vh]"></div>
+                    <div id="chat-input-area" class="p-4 md:p-5 bg-brand-light/40 border-t border-brand-light">
+                        <div id="button-options" class="flex flex-wrap gap-2 mb-3"></div>
+                        <div id="typing-row" class="hidden flex items-center space-x-3">
+                            <input type="text" id="chat-input" class="flex-1 border border-brand-primary/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary" placeholder="Type here...">
+                            <button id="chat-send-button" class="bg-brand-primary text-white rounded-full w-11 h-11 flex-shrink-0 flex items-center justify-center hover:bg-brand-dark transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="loading-spinner" class="p-6 hidden items-center space-x-3 bg-brand-light/40 border-t border-brand-light"><div class="animate-spin rounded-full h-5 w-5 border-b-2 border-brand-primary"></div><span id="loading-text" class="text-sm font-bold text-brand-dark">Calculating...</span></div>
+                    <div id="website-loading-spinner" class="p-6 hidden items-center space-x-3 bg-brand-light/40 border-t border-brand-light"><div class="animate-spin rounded-full h-5 w-5 border-b-2 border-brand-accent"></div><span class="text-sm font-bold text-brand-dark">Scanning...</span></div>
+                </div>
+
+                <!-- Secondary, low-friction link to the commercial -->
+                <div class="flex justify-center mt-6">
+                    <button onclick="openVideoModal('https://www.youtube.com/embed/2jD0C7lPE9w')" class="flex items-center gap-2 text-brand-light/60 hover:text-brand-accent text-xs font-bold uppercase tracking-widest transition-colors">
+                        <span class="w-6 h-6 rounded-full bg-brand-light/10 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                        Watch 60-Second Overview
+                    </button>
+                </div>
+                <p class="mt-4 text-brand-light/40 text-[10px] md:text-[11px] uppercase font-bold tracking-[0.3em] text-center">
+                    Pricing based on $100/min of finished video
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ HOW IT WORKS -->
+        <section id="how-it-works" class="py-16 md:py-28 bg-white relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"></div>
+
+            <div class="relative max-w-6xl mx-auto px-6 text-center">
+                <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">The Process</span>
+                <h2 class="text-2xl md:text-4xl font-black text-brand-dark mb-16 md:mb-20 uppercase tracking-tighter">How it Works</h2>
+
+                <div class="grid md:grid-cols-3 gap-8 md:gap-6 relative">
+                    <!-- Connecting line (desktop only) -->
+                    <div class="hidden md:block absolute top-9 left-[16.6%] right-[16.6%] h-0.5 bg-gradient-to-r from-brand-primary/20 via-brand-primary/40 to-brand-primary/20"></div>
+
+                    <!-- Step 1 -->
+                    <div class="relative group">
+                        <div class="w-[72px] h-[72px] mx-auto mb-6 rounded-2xl bg-brand-dark flex items-center justify-center text-2xl font-black text-brand-accent shadow-xl group-hover:scale-105 transition-transform relative z-10">01</div>
+                        <div class="p-6 md:p-8 bg-brand-light rounded-3xl h-full">
+                            <div class="text-3xl mb-3">🤖</div>
+                            <h3 class="font-black mb-2 text-brand-dark uppercase text-sm tracking-widest">AI Strategy</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">StratBot analyzes your brand and builds a 1-month roadmap instantly.</p>
                         </div>
                     </div>
 
-                    <!-- RIGHT: THE HOOK -->
+                    <!-- Step 2 — featured -->
+                    <div class="relative group md:-mt-4">
+                        <div class="w-[72px] h-[72px] mx-auto mb-6 rounded-2xl bg-brand-primary flex items-center justify-center text-2xl font-black text-white shadow-xl group-hover:scale-105 transition-transform relative z-10">02</div>
+                        <div class="p-6 md:p-10 bg-brand-dark rounded-3xl h-full shadow-2xl">
+                            <div class="text-3xl mb-3">✍</div>
+                            <h3 class="font-black mb-2 text-brand-accent uppercase text-sm tracking-widest">Human Creativity</h3>
+                            <p class="text-sm text-brand-light/70 leading-relaxed">Our experts refine scripts and add the vital "human touch" your audience craves.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative group">
+                        <div class="w-[72px] h-[72px] mx-auto mb-6 rounded-2xl bg-brand-dark flex items-center justify-center text-2xl font-black text-brand-accent shadow-xl group-hover:scale-105 transition-transform relative z-10">03</div>
+                        <div class="p-6 md:p-8 bg-brand-light rounded-3xl h-full">
+                            <div class="text-3xl mb-3">🎬</div>
+                            <h3 class="font-black mb-2 text-brand-dark uppercase text-sm tracking-widest">Hybrid Production</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">We produce and deliver your high-converting content batch, month after month.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 md:mt-20 max-w-3xl mx-auto p-8 md:p-10 rounded-3xl bg-gradient-to-br from-brand-light to-white border border-brand-primary/15 italic text-gray-700 text-center leading-relaxed shadow-sm">
+                    "If you love the strategy? Lock it in with a 50% deposit and let's roll. If not? <span class="font-bold text-brand-primary not-italic">The strategy is yours to keep."</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ TESTIMONIAL -->
+        <section class="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-brand-accent/5"></div>
+            <div class="relative max-w-5xl mx-auto px-6">
+                <div class="bg-brand-accent rounded-[2.5rem] p-8 md:p-14 shadow-2xl grid md:grid-cols-[1fr_auto] gap-10 items-center">
+
                     <div class="text-left">
-                        <h1 class="text-3xl lg:text-5xl font-black text-white mb-4 leading-[1.1] tracking-tighter">
-                            Imagine a whole month of <span class="text-brand-accent">premium video content</span> planned & scripts outlined in 5 minutes.
-                        </h1>
-                        <p class="text-base md:text-lg text-brand-light/70 mb-6 leading-relaxed">
-                            We blend elite human creativity with advanced AI efficiency to deliver your custom video roadmap. <strong class="text-brand-accent">For free.</strong>
-                        </p>
-                        <ul class="grid grid-cols-1 gap-3 mb-8">
-                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider"><span class="text-brand-accent font-black">✔</span> Instant Content Calendar</li>
-                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider"><span class="text-brand-accent font-black">✔</span> Full Script Outlines</li>
-                            <li class="flex items-center gap-3 text-brand-light/90 text-xs md:text-sm font-bold uppercase tracking-wider"><span class="text-brand-accent font-black">✔</span> Plans From $400/Mo. Custom Quote Free in 5 Mins.</li>
-                        </ul>
+                        <span class="text-brand-dark/50 text-[10px] font-black uppercase tracking-[0.4em] mb-5 block">Real Results</span>
+                        <svg class="w-10 h-10 text-brand-dark/15 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21L14.017 18C14.017 16.899 14.899 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017ZM1.017 21L1.017 18C1.017 16.899 1.899 16 3.017 16H6.017C6.569 16 7.017 15.552 7.017 15V9C7.017 8.448 6.569 8 6.017 8H2.017C1.465 8 1.017 8.448 1.017 9V11C1.017 11.552 0.569 12 0.017 12H-0.983V5H9.017V15C9.017 18.314 6.331 21 3.017 21H1.017Z" />
+                        </svg>
+                        <blockquote class="text-xl md:text-3xl font-bold text-brand-dark leading-snug mb-8">
+                            "Collaboration was easy, they took feedback on board and delivered a polished final product. Out of this, <span class="bg-brand-dark text-brand-accent px-1.5 rounded">support requests reduced by half.</span> I recommend Techtube for creative video projects."
+                        </blockquote>
+                        <h4 class="text-base font-black text-brand-dark uppercase tracking-tight">Cassie Kaddatz</h4>
+                        <p class="text-brand-dark/60 text-[10px] font-black uppercase tracking-[0.25em] mt-1">Head of Client Success, FYI Docs</p>
                     </div>
-                </div>
 
-                <!-- CENTERED CTA -->
-                <div class="mt-12 md:mt-16 flex flex-col items-center">
-                    <button id="start-chat-button" class="w-full md:w-auto px-8 md:px-14 py-5 md:py-6 text-base md:text-xl font-black uppercase tracking-tighter text-brand-dark bg-brand-accent hover:bg-white rounded-full transition-all transform hover:scale-105 shadow-2xl">
-                        Get Video Strategy & Quote Now
-                    </button>
-                    <p class="mt-6 text-brand-accent/50 text-[10px] md:text-[11px] uppercase font-bold tracking-[0.3em] text-center">
-                        Pricing based on $100/min of finished video
-                    </p>
-                </div>
-            </div>
-        </section>
+                    <div class="flex md:flex-col items-center justify-center gap-4 md:gap-0">
+                        <div class="w-24 h-24 md:w-28 md:h-28 bg-white rounded-3xl flex items-center justify-center shadow-xl overflow-hidden flex-shrink-0">
+                            <img src="/fyi-logo.png" alt="FYI Docs Logo" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="md:mt-4 text-center">
+                            <p class="text-brand-dark font-black text-2xl md:text-3xl leading-none">50%</p>
+                            <p class="text-brand-dark/60 text-[9px] font-bold uppercase tracking-widest mt-1">Fewer Support<br>Requests</p>
+                        </div>
+                    </div>
 
-        <!-- How it Works -->
-        <section id="how-it-works" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-6 text-center">
-                <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-10 md:mb-16 uppercase tracking-tighter text-center">How it Works</h2>
-                <div class="grid md:grid-cols-3 gap-6 md:gap-12">
-                    <div class="p-8 bg-brand-light rounded-3xl">
-                        <div class="text-3xl mb-4">🤖</div>
-                        <h3 class="font-bold my-2 text-brand-primary uppercase text-sm tracking-widest">1. AI Strategy</h3>
-                        <p class="text-sm text-gray-600">Stratbot analyzes your brand and builds a 1-month roadmap instantly.</p>
-                    </div>
-                    <div class="p-8 bg-brand-light rounded-3xl">
-                        <div class="text-3xl mb-4">✍</div>
-                        <h3 class="font-bold my-2 text-brand-primary uppercase text-sm tracking-widest">2. Human Creativity</h3>
-                        <p class="text-sm text-gray-600">Our experts refine scripts and add the vital "human touch" your audience craves.</p>
-                    </div>
-                    <div class="p-8 bg-brand-light rounded-3xl">
-                        <div class="text-3xl mb-4">🎬</div>
-                        <h3 class="font-bold my-2 text-brand-primary uppercase text-sm tracking-widest">3. Hybrid Production</h3>
-                        <p class="text-sm text-gray-600">We produce and deliver your high-converting content batch, month after month.</p>
-                    </div>
-                </div>
-                <div class="mt-20 max-w-3xl mx-auto p-10 border-2 border-dashed border-brand-primary/30 rounded-3xl bg-brand-light/20 italic text-gray-700 text-center leading-relaxed">
-                    "If you love the strategy? Lock it in with a 50% deposit and let's roll. If not? <span class="font-bold text-brand-primary">The strategy is yours to keep."</span>
                 </div>
             </div>
         </section>
-      <!-- ROI Testimonial Section -->
-<section class="py-24 bg-[#8fcdb5]">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        
-        <!-- Section Title -->
-        <span class="text-[#18795B] text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
-            See what they say...
-        </span>
-        
-        <!-- Large Quote Icon (Subtle Brand Green) -->
-        <div class="text-[#18795B] mb-8 opacity-20">
-            <svg class="w-12 h-12 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21L14.017 18C14.017 16.899 14.899 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017ZM1.017 21L1.017 18C1.017 16.899 1.899 16 3.017 16H6.017C6.569 16 7.017 15.552 7.017 15V9C7.017 8.448 6.569 8 6.017 8H2.017C1.465 8 1.017 8.448 1.017 9V11C1.017 11.552 0.569 12 0.017 12H-0.983V5H9.017V15C9.017 18.314 6.331 21 3.017 21H1.017Z" />
-            </svg>
-        </div>
-
-        <!-- Testimonial Text -->
-        <blockquote class="text-2xl md:text-4xl font-bold text-brand-dark italic leading-tight mb-12">
-            "Collaboration was easy, they took feedback on board and delivered a polished final product. Out of this, <span class="text-[#18795B]">support requests reduced by half.</span> I recommend Techtube for creative video projects."
-        </blockquote>
-
-        <!-- Identity Block -->
-        <div class="flex flex-col items-center">
-            <!-- Circular FYI Logo -->
-            <div class="w-20 h-24 bg-white rounded-full flex items-center justify-center border-4 border-white shadow-xl overflow-hidden mb-6">
-                <!-- Ensure fyi-logo.png is in your public folder -->
-                <img src="/fyi-logo.png" alt="FYI Docs Logo" class="w-14 h-14 object-contain">
-            </div>
-            
-            <h4 class="text-xl font-black text-brand-dark uppercase tracking-tighter">Cassie Kaddatz</h4>
-            <p class="text-[#18795B] text-[10px] font-black uppercase tracking-[0.3em] mt-1">Head of Client Success, FYI Docs</p>
-        </div>
-    </div>
-</section>
     </main>
 
-    <!-- 1. StratBot Modal (Updated with required IDs) -->
-    <div id="chat-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden">
-        <div class="bg-white w-full max-w-2xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-            <div class="bg-brand-dark text-brand-light p-5 flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4"/></svg></div>
-                    <h2 class="font-bold">StratBot</h2>
-                </div>
-                <button id="close-chat-button" class="text-2xl" onclick="document.getElementById('chat-modal').classList.add('hidden')">&times;</button>
-            </div>
-            <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto bg-brand-light"></div>
-            <div id="chat-input-area" class="p-4 bg-white border-t">
-                <div id="button-options" class="flex flex-wrap gap-2 mb-3"></div>
-                <div id="typing-row" class="flex items-center space-x-3">
-                    <input type="text" id="chat-input" class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary" placeholder="Type here...">
-                    <button id="chat-send-button" class="bg-brand-primary text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                    </button>
-                </div>
-            </div>
-            <div id="loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-primary"></div><span id="loading-text" class="text-sm font-bold">Calculating...</span></div>
-            <div id="website-loading-spinner" class="p-6 hidden flex items-center space-x-3"><div class="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-accent"></div><span class="text-sm font-bold text-brand-dark">Scanning...</span></div>
-        </div>
-    </div>
-
-    <!-- 2. Video Modal -->
+    <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4">
         <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
             <button id="close-video-modal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-accent transition-colors" onclick="closeVideoModal()">&times;</button>
@@ -225,19 +235,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <!-- Footer -->
-    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center text-[10px] uppercase font-bold tracking-widest">
+    <!-- ================================================================
+         REUSABLE FOOTER — copy this entire block, unchanged, onto every
+         other page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
-                <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
-                <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">▶</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">◎</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
-            <div class="mt-4 flex justify-center space-x-6">
-                <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
 
 <script>
     // --- UI HELPERS (Global) ---
@@ -252,24 +292,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     // --- MAIN LOGIC ---
     document.addEventListener('DOMContentLoaded', () => {
-        const chatModal = document.getElementById('chat-modal'), 
-              chatMessages = document.getElementById('chat-messages'), 
-              chatInput = document.getElementById('chat-input'), 
-              chatSendButton = document.getElementById('chat-send-button'), 
-              buttonOptions = document.getElementById('button-options'), 
-              inputArea = document.getElementById('chat-input-area'), 
+        const chatMessages = document.getElementById('chat-messages'),
+              chatInput = document.getElementById('chat-input'),
+              chatSendButton = document.getElementById('chat-send-button'),
+              buttonOptions = document.getElementById('button-options'),
               typingRow = document.getElementById('typing-row'),
-              loadingSpinner = document.getElementById('loading-spinner'), 
-              loadingSpinnerText = document.getElementById('loading-text'), 
+              loadingSpinner = document.getElementById('loading-spinner'),
+              loadingSpinnerText = document.getElementById('loading-text'),
               websiteLoadingSpinner = document.getElementById('website-loading-spinner');
 
-        // !!! PASTE YOUR URL HERE !!!
-        const BASE_URL = "https://techtube-backend-895534116569.us-central1.run.app"; 
+        const BASE_URL = "https://techtube-backend-895534116569.us-central1.run.app";
         const ENDPOINTS = { GENERATE: `${BASE_URL}/stratbot/generate`, CAPTURE: `${BASE_URL}/leads/capture`, SCAN: `${BASE_URL}/stratbot/scan`, INVOICE: `${BASE_URL}/send-invoice` };
-        
-        const PRICE_PER_MINUTE_USD = 100, KES_RATE = 130;
-        let userCurrency = 'USD', currencySymbol = '$', currentIdx = 0, userInputs = {}, selectedPlatforms = [], skipNext = false;
 
+        const PRICE_PER_MINUTE_USD = 100, KES_RATE = 130;
+        let userCurrency = 'USD', currencySymbol = '$', currentIdx = 0, userInputs = {}, skipNext = false;
+
+        // NOTE: "platforms" question replaced with a simpler, more relevant
+        // "video format" question. Value is still sent to the backend under
+        // the existing "platforms" field (unused in email templates today),
+        // so no backend changes were needed for this swap.
         const questions = [
             { key: 'industry', text: "Let's start by understanding your business. What industry are you in?", type: 'buttons', options: ['Tech/SaaS', 'E-commerce', 'Real Estate', 'Healthcare', 'Finance', 'Education', 'Marketing', 'Other'] },
             { key: 'targetType', text: "What exactly would you like to build a video marketing strategy for?", type: 'buttons', options: ['Whole Business', 'Product', 'Service'] },
@@ -278,52 +319,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             { key: 'description', text: "Please briefly describe what you want to promote:", type: 'text' },
             { key: 'duration', text: "What duration are you planning this strategy for?", type: 'buttons', options: ['1 Month', '3 Months', '6 Months'] },
             { key: 'videosPerWeek', text: "How many unique video concepts would you like to post each week?", type: 'buttons', options: ['Starter (1-2 videos)', 'Growth (3-4 Videos)', 'Full Pipeline (5+ videos)', 'Custom (Specific number)'] },
-            { key: 'platforms', text: "Where are you planning to post? (select multiple)", type: 'multiselect', options: ['LinkedIn', 'YouTube', 'TikTok', 'Instagram', 'Facebook'] },
-            { key: 'leadCapture', text: "Calculations complete! Where should I deliver your bespoke strategy?", type: 'custom_form' },
+            { key: 'videoFormat', text: "What video format do you need?", type: 'buttons', options: ['Vertical (9:16)', 'Horizontal (16:9)', 'Both'] },
+            { key: 'leadCapture', text: "Video outlines and calculations complete! Where should I deliver your bespoke strategy?", type: 'custom_form' },
             { key: 'isHappy', text: "Are you happy with the proposed strategy and monthly retainer?", type: 'buttons', options: ["Yes, I'm ready!", "No, I have questions."] },
             { key: 'nextStep', text: "Excellent! Click below to secure your production slot.", type: 'buttons', options: ["Pay Now to Get Started (50% deposit / balance on delivery)"] }
         ];
 
         window.startChat = () => {
-            currentIdx = 0; userInputs = {}; selectedPlatforms = []; chatMessages.innerHTML = '';
-            addBotMsg("Hello! I'm StratBot, your AI assistant.");
-            setTimeout(ask, 600);
+            currentIdx = 0; userInputs = {}; chatMessages.innerHTML = '';
+            // No "Hello, I'm a bot" framing — straight into the first question,
+            // like a quick intake form rather than a chat with an AI persona.
+            setTimeout(ask, 300);
         };
 
         function ask() {
             if (currentIdx >= questions.length) return;
             const q = questions[currentIdx];
             if (q.type === 'custom_form') { showLeadForm(q.text); return; }
-            if (!skipNext) addBotMsg(q.text);
-            skipNext = false; buttonOptions.innerHTML = ''; 
-            
-            if (q.type === 'buttons' || q.type === 'multiselect') {
-                typingRow.classList.add('hidden');
-                q.options.forEach(opt => {
-                    const btn = document.createElement('button'); btn.textContent = opt;
-                    btn.className = "px-4 py-2 bg-gray-200 text-brand-dark hover:bg-brand-primary hover:text-white rounded-full transition-all text-sm";
-                    btn.onclick = () => q.type === 'multiselect' ? toggleMulti(btn, opt) : handle(opt);
-                    buttonOptions.appendChild(btn);
-                });
-                if (q.type === 'multiselect') {
-                    const nxt = document.createElement('button'); nxt.textContent = "Next →";
-                    nxt.className = "px-4 py-2 bg-brand-accent text-brand-dark font-bold rounded-full ml-2 text-sm";
-                    nxt.onclick = () => handle(selectedPlatforms.join(', ') || 'All Platforms');
-                    buttonOptions.appendChild(nxt);
+            buttonOptions.innerHTML = '';
+
+            const renderOptions = () => {
+                if (q.type === 'buttons') {
+                    typingRow.classList.add('hidden');
+                    q.options.forEach(opt => {
+                        const btn = document.createElement('button'); btn.textContent = opt;
+                        btn.className = "px-4 py-2 bg-gray-200 text-brand-dark hover:bg-brand-primary hover:text-white rounded-full transition-all text-sm";
+                        btn.onclick = () => handle(opt);
+                        buttonOptions.appendChild(btn);
+                    });
+                } else {
+                    typingRow.classList.remove('hidden');
+                    typingRow.classList.add('flex');
+                    chatInput.focus();
                 }
+            };
+
+            if (!skipNext) {
+                showTyping();
+                setTimeout(() => { hideTyping(); addBotMsg(q.text); renderOptions(); }, 500);
             } else {
-                typingRow.classList.remove('hidden');
-                chatInput.focus();
+                skipNext = false;
+                renderOptions();
             }
         }
 
         async function handle(val) {
-            addUserMsg(val); buttonOptions.innerHTML = ''; typingRow.classList.add('hidden');
+            addUserMsg(val); buttonOptions.innerHTML = ''; typingRow.classList.add('hidden'); typingRow.classList.remove('flex');
             const currentKey = questions[currentIdx].key;
 
             if (currentKey === 'videosPerWeek' && val.includes('Custom')) {
-                userInputs.isWaiting = true; addBotMsg("How many videos per week are you targeting?");
-                typingRow.classList.remove('hidden'); chatInput.focus(); return;
+                userInputs.isWaiting = true;
+                await sayBotDelayed("How many videos per week are you targeting?");
+                typingRow.classList.remove('hidden'); typingRow.classList.add('flex'); chatInput.focus(); return;
             }
             if (userInputs.isWaiting) {
                 userInputs.videosPerWeek = val; delete userInputs.isWaiting;
@@ -334,8 +381,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             if (currentIdx === 2) currentIdx = (val === 'Yes') ? 3 : 4;
             else if (currentIdx === 3) { await scan(val); return; }
             else if (currentIdx === 7) {
-                loadingSpinner.classList.remove('hidden'); loadingSpinnerText.innerText = "Analyzing requirements...";
-                setTimeout(() => { loadingSpinner.classList.add('hidden'); currentIdx = 8; ask(); }, 2500); return;
+                loadingSpinner.classList.remove('hidden'); loadingSpinner.classList.add('flex'); loadingSpinnerText.innerText = "Analyzing requirements...";
+                setTimeout(() => { loadingSpinner.classList.add('hidden'); loadingSpinner.classList.remove('flex'); currentIdx = 8; ask(); }, 2000); return;
             }
             else if (currentIdx === 9) { if (val.includes('Yes')) currentIdx = 10; else { await finalize(); return; } }
             else if (currentIdx === 10) { await finalize(); return; }
@@ -344,34 +391,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         async function scan(url) {
-            websiteLoadingSpinner.classList.remove('hidden');
+            websiteLoadingSpinner.classList.remove('hidden'); websiteLoadingSpinner.classList.add('flex');
             try {
                 const res = await fetch(ENDPOINTS.SCAN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) });
                 const d = await res.json(); userInputs.description = d.summary;
-                addBotMsg(`Analyzed: **${d.summary}**`); currentIdx = 5;
-            } catch (e) { addBotMsg("I couldn't scan that link. Please describe manually."); currentIdx = 4; skipNext = true; }
-            finally { websiteLoadingSpinner.classList.add('hidden'); setTimeout(ask, 500); }
+                await sayBotDelayed(`Analyzed: **${d.summary}**`); currentIdx = 5;
+            } catch (e) { await sayBotDelayed("I couldn't scan that link. Please describe manually."); currentIdx = 4; skipNext = true; }
+            finally { websiteLoadingSpinner.classList.add('hidden'); websiteLoadingSpinner.classList.remove('flex'); setTimeout(ask, 500); }
         }
 
         async function generate() {
-    await currencyReady;   // ← NEW LINE — added here, first thing inside the function
-    loadingSpinner.classList.remove('hidden'); buttonOptions.innerHTML = '';
-    loadingSpinnerText.innerText = `Finalizing strategy for ${userInputs.userName.split(' ')[0]}...`;
-    try {
-        const res = await fetch(ENDPOINTS.GENERATE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) });
-        const s = await res.json();
-        const actualMin = (s.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
-        s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
-        const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
-        const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
-        s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
-        s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
-        loadingSpinner.classList.add('hidden'); displayStrategy(s);
-        currentIdx = 9; setTimeout(ask, 1000);
-        fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
-        sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
-    } catch (e) { loadingSpinner.classList.add('hidden'); addBotMsg("Snag! A strategist will email you."); }
-}
+            await currencyReady;
+            loadingSpinner.classList.remove('hidden'); loadingSpinner.classList.add('flex'); buttonOptions.innerHTML = '';
+            loadingSpinnerText.innerText = `Finalizing strategy for ${userInputs.userName.split(' ')[0]}...`;
+            try {
+                const res = await fetch(ENDPOINTS.GENERATE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ industry: userInputs.industry, description: userInputs.description, videosPerWeek: userInputs.videosPerWeek }) });
+                const s = await res.json();
+                const actualMin = (s.videoIdeas || []).reduce((sum, i) => sum + (Number(i.lengthMinutes) || 0), 0);
+                s.totalUniqueMinutes = parseFloat(actualMin.toFixed(1));
+                const costUSD = s.totalUniqueMinutes * PRICE_PER_MINUTE_USD;
+                const finalCost = (userCurrency === 'KES') ? costUSD * KES_RATE : costUSD;
+                s.displayPrice = `${currencySymbol}${finalCost.toLocaleString()}`;
+                s.calculatedRawAmount = finalCost; userInputs.generatedStrategy = s;
+                loadingSpinner.classList.add('hidden'); loadingSpinner.classList.remove('flex'); displayStrategy(s);
+                currentIdx = 9; setTimeout(ask, 1000);
+                fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.userName, client_email: userInputs.userEmail, strategy_title: s.strategyTitle, video_ideas: s.videoIdeas, total_minutes: s.totalUniqueMinutes, total_amount: s.calculatedRawAmount, currency: userCurrency }) });
+                sendToBackend(ENDPOINTS.CAPTURE, "Strategy Generated");
+            } catch (e) { loadingSpinner.classList.add('hidden'); loadingSpinner.classList.remove('flex'); addBotMsg("Snag! A strategist will email you."); }
+        }
+
         function displayStrategy(s) {
             const ideaCount = s.videoIdeas.length;
             let ideasHtml = s.videoIdeas.slice(0, 5).map(i => `<div class="mb-3 pb-2 border-b text-[11px] leading-relaxed"><span class="font-bold text-brand-primary">${i.type} - ${i.lengthMinutes}m</span>: ${i.description}</div>`).join('');
@@ -394,70 +442,79 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             };
         }
 
+        function showTyping() {
+            const d = document.createElement('div');
+            d.id = 'typing-indicator';
+            d.className = "flex justify-start";
+            d.innerHTML = `<div class="bg-brand-light rounded-2xl px-4 py-3 shadow-sm flex gap-1">
+                <span class="w-1.5 h-1.5 bg-brand-primary/50 rounded-full pulse-dot" style="animation-delay:0s"></span>
+                <span class="w-1.5 h-1.5 bg-brand-primary/50 rounded-full pulse-dot" style="animation-delay:0.2s"></span>
+                <span class="w-1.5 h-1.5 bg-brand-primary/50 rounded-full pulse-dot" style="animation-delay:0.4s"></span>
+            </div>`;
+            chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
+
+        function sayBotDelayed(text, delay = 450) {
+            return new Promise(resolve => {
+                showTyping();
+                setTimeout(() => { hideTyping(); addBotMsg(text); resolve(); }, delay);
+            });
+        }
+
         function addBotMsg(c) { addMsg(c, 'bot'); }
         function addUserMsg(c) { addMsg(c, 'user'); }
         function addMsg(c, s) {
             const d = document.createElement('div'); d.className = "flex " + (s==='user'?'justify-end':'justify-start');
-            const b = document.createElement('div'); b.className="p-3 rounded-2xl max-w-[80%] shadow-md " + (s==='user'?'bg-brand-primary text-white':'bg-white text-brand-dark font-medium');
+            const b = document.createElement('div'); b.className="p-3 rounded-2xl max-w-[85%] shadow-sm " + (s==='user'?'bg-brand-primary text-white':'bg-brand-light text-brand-dark font-medium');
             b.innerHTML=c; d.appendChild(b); chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function toggleMulti(btn, val) {
-            if (selectedPlatforms.includes(val)) { selectedPlatforms = selectedPlatforms.filter(i => i !== val); btn.classList.replace('bg-brand-primary', 'bg-gray-200'); btn.classList.remove('text-white'); }
-            else { selectedPlatforms.push(val); btn.classList.replace('bg-gray-200', 'bg-brand-primary'); btn.classList.add('text-white'); }
         }
 
         const submit = () => { const m = chatInput.value.trim(); if(m){ chatInput.value=''; handle(m); } };
         chatSendButton.onclick = submit;
         chatInput.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } };
 
-        document.getElementById('start-chat-button').onclick = () => { chatModal.classList.remove('hidden'); startChat(); };
         document.getElementById('mobile-menu-button').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
 
-        // Auto-open logic
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('startChat') === 'true') { setTimeout(() => { chatModal.classList.remove('hidden'); startChat(); }, 800); }
-
         // Currency detection — stored as a promise so we can await it before pricing
-const currencyReady = (async () => {
-    try {
-        const r = await fetch('https://ipapi.co/json/');
-        const d = await r.json();
-        if (d.country_code === 'KE') {
-            userCurrency = 'KES';
-            currencySymbol = 'KES ';
+        const currencyReady = (async () => {
+            try {
+                const r = await fetch('https://ipapi.co/json/');
+                const d = await r.json();
+                if (d.country_code === 'KE') { userCurrency = 'KES'; currencySymbol = 'KES '; }
+            } catch (e) { /* defaults to USD on failure */ }
+        })();
+
+        async function sendToBackend(url, topic) {
+            try {
+                const s = userInputs.generatedStrategy;
+                let roadmapText = "";
+                if (s && s.videoIdeas) {
+                    roadmapText = `PRODUCTION SUMMARY:\n`;
+                    roadmapText += `- Total Videos: ${s.videoIdeas.length}\n`;
+                    roadmapText += `- Total Production Minutes: ${s.totalUniqueMinutes} Mins\n`;
+                    roadmapText += `- Monthly Retainer: ${s.displayPrice}\n\n`;
+                    roadmapText += `PROPOSED VIDEO CONCEPTS:\n`;
+                    s.videoIdeas.forEach((i, index) => {
+                        roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`;
+                    });
+                } else { roadmapText = "Lead exited early."; }
+
+                await fetch(url, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail,
+                        topic: topic, message: roadmapText, business_context: userInputs.description || "N/A",
+                        currency: userCurrency, duration: userInputs.duration,
+                        frequency: userInputs.videosPerWeek, platforms: userInputs.videoFormat || "N/A",
+                        website: userInputs.linkUrl || "N/A"
+                    })
+                });
+            } catch(e){}
         }
-    } catch (e) { /* defaults to USD on failure */ }
-})();
-        
-        async function sendToBackend(url, topic) { 
-    try { 
-        const s = userInputs.generatedStrategy;
-        let roadmapText = "";
-        if (s && s.videoIdeas) {
-            roadmapText = `PRODUCTION SUMMARY:\n`;
-            roadmapText += `- Total Videos: ${s.videoIdeas.length}\n`;
-            roadmapText += `- Total Production Minutes: ${s.totalUniqueMinutes} Mins\n`;
-            roadmapText += `- Monthly Retainer: ${s.displayPrice}\n\n`;
-            
-            roadmapText += `PROPOSED VIDEO CONCEPTS:\n`;
-            s.videoIdeas.forEach((i, index) => { 
-                roadmapText += `${index + 1}. ${i.type} (${i.lengthMinutes}m): ${i.description}\n`; 
-            });
-        } else { roadmapText = "Lead exited early."; }
-        
-        await fetch(url, { 
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, 
-            body: JSON.stringify({ 
-                source: "techtube_stratbot", name: userInputs.userName, email: userInputs.userEmail, 
-                topic: topic, message: roadmapText, business_context: userInputs.description || "N/A", 
-                currency: userCurrency, duration: userInputs.duration, 
-                frequency: userInputs.videosPerWeek, platforms: selectedPlatforms.join(', '),
-                website: userInputs.linkUrl || "N/A"
-            }) 
-        }); 
-    } catch(e){} 
-}
+
+        // Auto-start immediately — the widget IS the hero, no button gate
+        startChat();
     });
 </script>
 </body>
