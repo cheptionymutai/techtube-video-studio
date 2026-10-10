@@ -8,22 +8,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
 <!-- End Google Tag Manager -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1LBSFT6R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6H1LBSFT6R');
 </script>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Studies & Results | Techtube Video Studio</title>
+    <meta name="description" content="See how Techtube Video Studio helps SaaS companies, NGOs and growing brands turn video into measurable results: documentaries, tutorials and expert reviews.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #e8e9e2; }
         ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
+        html { scroll-behavior: smooth; }
+        .case-card { transition: transform .35s ease, box-shadow .35s ease; }
+        .case-card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px -12px rgba(3,31,20,.25); }
     </style>
     <script>
         tailwind.config = { theme: { extend: { colors: { 'brand-dark': '#031F14', 'brand-primary': '#18795B', 'brand-accent': '#8fcdb5', 'brand-light': '#e8e9e2' } } } }
@@ -34,133 +41,272 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <!-- Shared Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md h-20 border-b border-brand-primary/20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="/">
-                <img class="h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
+
+    <!-- ================================================================
+         REUSABLE HEADER — identical on every page. The current-page
+         highlight is automatic (script directly below the header).
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
+                <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
             </a>
-            <nav class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest">
-                <a href="/index.html" class="text-brand-light/70 hover:text-brand-accent transition-colors">Home</a>
-                <a href="/about.html" class="text-brand-light/70 hover:text-brand-accent transition-colors">About</a>
-                <a href="/blog/" class="text-brand-light/70 hover:text-brand-accent transition-colors">Blog</a>
-                <a href="/contact.html" class="text-brand-light/70 hover:text-brand-accent transition-colors">Contact</a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-brand-light">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-primary/50 absolute top-20 left-0 w-full flex flex-col p-6 space-y-4 text-center font-bold text-sm uppercase tracking-widest text-brand-light">
-            <a href="/index.html">Home</a>
-            <a href="/portfolio.html">Case Studies</a>
-            <a href="https://techtubestudio.com/blog/">Blog</a>
-            <a href="/about.html">About</a>
-            <a href="/contact.html" class="text-brand-accent">Contact</a>
-        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
         </div>
     </header>
+    <script>
+    const norm = p => p.replace(/\.html$/,'').replace(/\/$/,'') || '/';
+    document.querySelectorAll('.nav-link').forEach(a => {
+      if (norm(new URL(a.href).pathname) === norm(location.pathname)) {
+        a.classList.remove('text-brand-light/70');
+        a.classList.add('text-brand-accent','bg-white/5');
+      }
+    });
+    </script>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
-    <main class="pt-32 pb-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-4xl font-black mb-12 text-brand-primary uppercase">Case Studies: High-Impact Results</h1>
-            
-            <div class="grid md:grid-cols-3 gap-8 text-left mb-24">
-                <!-- Case Study 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all">
-                    <div onclick="openVideoModal('https://www.youtube.com/embed/b_O5RLzyj0A')" class="aspect-video bg-black rounded-xl mb-4 relative cursor-pointer group overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/b_O5RLzyj0A/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all">
-                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center shadow-xl"><svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-primary">AATF Africa: Post-Production</h3>
-                    <p class="text-sm text-gray-600 mt-2">Comprehensive post-production transforming raw footage into polished documentaries and case studies across the continent. Service was effective in showing the latest developments in science and technology and getting feedback from farmers.</p>
-                </div>
-                <!-- Case Study 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all">
-                    <div onclick="openVideoModal('https://www.youtube.com/embed/YkHZyeGUiE8')" class="aspect-video bg-black rounded-xl mb-4 relative cursor-pointer group overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/YkHZyeGUiE8/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all">
-                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center shadow-xl"><svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-primary">Hosting Rating: Expert Reviews</h3>
-                    <p class="text-sm text-gray-600 mt-2">End-to-end production of software review videos including scripting, filming, and post-production. The videos generated more traffic to the website from viewers.</p>
-                </div>
-                <!-- Case Study 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all">
-                    <div onclick="openVideoModal('https://www.youtube.com/embed/B64bWhl4kKM')" class="aspect-video bg-black rounded-xl mb-4 relative cursor-pointer group overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/B64bWhl4kKM/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all">
-                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center shadow-xl"><svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-primary">FYI Docs: Software Tutorials</h3>
-                    <p class="text-sm text-gray-600 mt-2">Built a comprehensive video tutorial library that transformed complex SaaS features into simple content reducing client support requests significantly.</p>
+    <main>
+        <!-- ============================================================ HERO -->
+        <section class="relative overflow-hidden bg-brand-dark pt-32 md:pt-40 pb-20 md:pb-28">
+            <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+                <span class="inline-block text-brand-accent text-[10px] font-black uppercase tracking-[0.4em] mb-5">Case Studies</span>
+                <h1 class="text-3xl md:text-5xl font-black text-white leading-[1.1] tracking-tight mb-5">
+                    Real work for real brands. <span class="text-brand-accent">Measurable results.</span>
+                </h1>
+                <p class="text-base md:text-lg text-brand-light/70 leading-relaxed max-w-2xl mx-auto mb-10">
+                    From NGO documentaries to SaaS tutorial libraries, here is how strategy-backed video has moved the needle for the teams we work with.
+                </p>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-brand-light/40 text-[10px] md:text-[11px] font-black uppercase tracking-[0.25em]">
+                    <span class="text-brand-light/30">Projects delivered for</span>
+                    <span>AATF Africa</span>
+                    <span>Hosting Rating</span>
+                    <span>FYI Docs</span>
+                    <span>Talentom Group</span>
                 </div>
             </div>
+        </section>
 
-            <h2 class="text-3xl font-black mb-12 text-brand-primary uppercase">What Our Partners Say</h2>
-            <div class="grid md:grid-cols-2 gap-8 mb-20 text-left">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-brand-primary">
-                    <p class="text-lg text-gray-700 italic mb-6">"Collaboration was easy, they took feedback on board and delivered a polished final product. Out of this, support requests reduced by half. Recommended for creative video projects."</p>
-                    <h4 class="text-xl font-bold text-brand-primary">Cassie Kaddatz</h4>
-                    <p class="text-gray-500 text-sm">Head of Client Success, FYI Docs</p>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-brand-primary">
-                    <p class="text-lg text-gray-700 italic mb-6">"Incredible experience. Impressed with their technological capabilities and professionalism. They created videos for us that got us great value. Highly recommend."</p>
-                    <h4 class="text-xl font-bold text-brand-primary">Karim Baro</h4>
-                    <p class="text-gray-500 text-sm">CEO, Talentom Group</p>
+        <!-- ============================================================ CASE STUDIES -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-8">
+
+                    <!-- Case Study 1 -->
+                    <article class="case-card bg-white rounded-3xl overflow-hidden shadow-lg flex flex-col">
+                        <div onclick="openVideoModal('https://www.youtube.com/embed/b_O5RLzyj0A')" class="aspect-video bg-black relative cursor-pointer group overflow-hidden">
+                            <img src="https://i.ytimg.com/vi/b_O5RLzyj0A/hqdefault.jpg" alt="AATF Africa case study video" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-7 flex flex-col flex-1">
+                            <span class="self-start text-[10px] font-black uppercase tracking-widest text-brand-primary bg-brand-accent/30 px-3 py-1 rounded-full mb-4">NGO &middot; Documentary</span>
+                            <h3 class="text-xl font-black text-brand-dark mb-3">AATF Africa: Post-Production</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">Comprehensive post-production transforming raw footage into polished documentaries and case studies across the continent. Service was effective in showing the latest developments in science and technology and getting feedback from farmers.</p>
+                            <div class="mt-auto pt-5 border-t border-brand-light flex items-center justify-between gap-3">
+                                <span class="text-[11px] font-black uppercase tracking-wider text-brand-dark">Documentaries across the continent</span>
+                                <button onclick="openVideoModal('https://www.youtube.com/embed/b_O5RLzyj0A')" class="text-brand-primary text-xs font-black uppercase tracking-widest hover:text-brand-dark transition-colors whitespace-nowrap">Watch &rarr;</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Case Study 2 -->
+                    <article class="case-card bg-white rounded-3xl overflow-hidden shadow-lg flex flex-col">
+                        <div onclick="openVideoModal('https://www.youtube.com/embed/YkHZyeGUiE8')" class="aspect-video bg-black relative cursor-pointer group overflow-hidden">
+                            <img src="https://i.ytimg.com/vi/YkHZyeGUiE8/hqdefault.jpg" alt="Hosting Rating case study video" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-7 flex flex-col flex-1">
+                            <span class="self-start text-[10px] font-black uppercase tracking-widest text-brand-primary bg-brand-accent/30 px-3 py-1 rounded-full mb-4">Software Reviews</span>
+                            <h3 class="text-xl font-black text-brand-dark mb-3">Hosting Rating: Expert Reviews</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">End-to-end production of software review videos including scripting, filming, and post-production. The videos generated more traffic to the website from viewers.</p>
+                            <div class="mt-auto pt-5 border-t border-brand-light flex items-center justify-between gap-3">
+                                <span class="text-[11px] font-black uppercase tracking-wider text-brand-dark">More traffic to the website</span>
+                                <button onclick="openVideoModal('https://www.youtube.com/embed/YkHZyeGUiE8')" class="text-brand-primary text-xs font-black uppercase tracking-widest hover:text-brand-dark transition-colors whitespace-nowrap">Watch &rarr;</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Case Study 3 -->
+                    <article class="case-card bg-white rounded-3xl overflow-hidden shadow-lg flex flex-col">
+                        <div onclick="openVideoModal('https://www.youtube.com/embed/B64bWhl4kKM')" class="aspect-video bg-black relative cursor-pointer group overflow-hidden">
+                            <img src="https://i.ytimg.com/vi/B64bWhl4kKM/hqdefault.jpg" alt="FYI Docs case study video" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-7 flex flex-col flex-1">
+                            <span class="self-start text-[10px] font-black uppercase tracking-widest text-brand-primary bg-brand-accent/30 px-3 py-1 rounded-full mb-4">SaaS &middot; Tutorials</span>
+                            <h3 class="text-xl font-black text-brand-dark mb-3">FYI Docs: Software Tutorials</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">Built a comprehensive video tutorial library that transformed complex SaaS features into simple content, reducing client support requests significantly.</p>
+                            <div class="mt-auto pt-5 border-t border-brand-light flex items-center justify-between gap-3">
+                                <span class="text-[11px] font-black uppercase tracking-wider text-brand-dark">50% fewer support requests</span>
+                                <button onclick="openVideoModal('https://www.youtube.com/embed/B64bWhl4kKM')" class="text-brand-primary text-xs font-black uppercase tracking-widest hover:text-brand-dark transition-colors whitespace-nowrap">Watch &rarr;</button>
+                            </div>
+                        </div>
+                    </article>
+
                 </div>
             </div>
+        </section>
 
-            <!-- Conversion CTA -->
-            <div class="bg-brand-dark p-16 rounded-3xl text-center shadow-2xl">
-                <h2 class="text-3xl font-black text-white mb-6 uppercase tracking-tighter">Ready for results like these?</h2>
-                <a href="/?startChat=true" class="inline-block px-12 py-5 bg-brand-accent text-brand-dark font-black uppercase tracking-widest rounded-full hover:bg-white transition-all transform hover:scale-105">Build My Strategy with StratBot</a>
+        <!-- ============================================================ TESTIMONIALS -->
+        <section class="py-16 md:py-24 bg-white relative overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-80 h-80 bg-brand-accent/15 rounded-full blur-3xl"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">Testimonials</span>
+                    <h2 class="text-2xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter">What Our Partners Say</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <figure class="bg-brand-light rounded-3xl p-8 md:p-10 flex flex-col">
+                        <svg class="w-9 h-9 text-brand-primary/25 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.899 14.899 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017ZM1.017 21L1.017 18C1.017 16.899 1.899 16 3.017 16H6.017C6.569 16 7.017 15.552 7.017 15V9C7.017 8.448 6.569 8 6.017 8H2.017C1.465 8 1.017 8.448 1.017 9V11C1.017 11.552 0.569 12 0.017 12H-0.983V5H9.017V15C9.017 18.314 6.331 21 3.017 21H1.017Z"/></svg>
+                        <blockquote class="text-lg md:text-xl font-semibold text-brand-dark leading-snug mb-8">
+                            "Collaboration was easy, they took feedback on board and delivered a polished final product. Out of this, <span class="bg-brand-dark text-brand-accent px-1.5 rounded">support requests reduced by half.</span> Recommended for creative video projects."
+                        </blockquote>
+                        <figcaption class="mt-auto flex items-center gap-4">
+                            <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
+                                <img src="/fyi-logo.png" alt="FYI Docs logo" class="w-10 h-10 object-contain">
+                            </div>
+                            <div>
+                                <p class="text-base font-black text-brand-dark">Cassie Kaddatz</p>
+                                <p class="text-[10px] font-black uppercase tracking-widest text-brand-primary mt-0.5">Head of Client Success, FYI Docs</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Testimonial 2 -->
+                    <figure class="bg-brand-dark rounded-3xl p-8 md:p-10 flex flex-col">
+                        <svg class="w-9 h-9 text-brand-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.899 14.899 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017ZM1.017 21L1.017 18C1.017 16.899 1.899 16 3.017 16H6.017C6.569 16 7.017 15.552 7.017 15V9C7.017 8.448 6.569 8 6.017 8H2.017C1.465 8 1.017 8.448 1.017 9V11C1.017 11.552 0.569 12 0.017 12H-0.983V5H9.017V15C9.017 18.314 6.331 21 3.017 21H1.017Z"/></svg>
+                        <blockquote class="text-lg md:text-xl font-semibold text-white leading-snug mb-8">
+                            "Incredible experience. Impressed with their technological capabilities and professionalism. They created videos for us that got us great value. Highly recommend."
+                        </blockquote>
+                        <figcaption class="mt-auto flex items-center gap-4">
+                            <div class="w-14 h-14 bg-brand-accent rounded-2xl flex items-center justify-center text-brand-dark text-lg font-black flex-shrink-0">KB</div>
+                            <div>
+                                <p class="text-base font-black text-white">Karim Baro</p>
+                                <p class="text-[10px] font-black uppercase tracking-widest text-brand-accent mt-0.5">CEO, Talentom Group</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ============================================================ CTA -->
+        <section class="py-16 md:py-24 bg-brand-light">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="relative overflow-hidden bg-brand-dark rounded-[2.5rem] px-8 py-14 md:px-16 md:py-20 text-center shadow-2xl">
+                    <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute -top-20 -right-20 w-72 h-72 bg-brand-primary/30 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight tracking-tight">Ready for results like these?</h2>
+                        <p class="text-brand-light/70 mb-9 max-w-xl mx-auto leading-relaxed">Get a full month of video topics, outlines and a custom quote in about 5 minutes. Free, with no account needed.</p>
+                        <a href="/" class="inline-block px-10 md:px-14 py-4 md:py-5 bg-brand-accent text-brand-dark font-black uppercase tracking-widest text-sm md:text-base rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-xl">Get My Free Strategy</a>
+                        <p class="mt-6 text-brand-accent/50 text-[10px] uppercase font-bold tracking-[0.3em]">Plans from $400/mo &middot; Pricing based on $100/min of finished video</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Shared Footer -->
-     <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center text-[10px] uppercase font-bold tracking-widest">
+    <!-- ================================================================
+         REUSABLE FOOTER — identical on every page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
-                <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
-                <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">&#9654;</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">&#9678;</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
-            <div class="mt-4 flex justify-center space-x-6">
-                <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
 
-    <!-- Modals -->
-    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4">
-        <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden"><button onclick="closeVideoModal()" class="absolute top-4 right-4 z-[210] text-white/50 hover:text-white text-4xl">&times;</button>
-        <div class="aspect-video"><iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4" onclick="if(event.target===this)closeVideoModal()">
+        <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-[210] text-white/60 hover:text-white text-4xl leading-none" aria-label="Close video">&times;</button>
+            <div class="aspect-video"><iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+        </div>
     </div>
-    <script>
-        function openVideoModal(url){const m=document.getElementById('video-modal');const i=document.getElementById('modal-iframe');i.src=url+"?autoplay=1";m.classList.remove('hidden');}
-        function closeVideoModal(){const m=document.getElementById('video-modal');const i=document.getElementById('modal-iframe');i.src="";m.classList.add('hidden');}
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
 
-        if (mobileBtn && mobileMenu) {
-            // This tells the browser: "When the button is clicked, remove or add the 'hidden' class"
-            mobileBtn.onclick = () => {
-                mobileMenu.classList.toggle('hidden');
-            };
-
-            // This ensures the menu closes if a user clicks a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.onclick = () => {
-                    mobileMenu.classList.add('hidden');
-                };
-            });
+    <script>
+        function openVideoModal(url){
+            const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
+            if (m && i) { i.src = url + "?autoplay=1&rel=0"; m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
         }
-    });
-</script>
+        function closeVideoModal(){
+            const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
+            if (m && i) { i.src = ""; m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.onclick = () => mobileMenu.classList.add('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
