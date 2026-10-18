@@ -15,6 +15,9 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
 
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Latest Insights | Techtube Video Studio</title>
@@ -42,8 +45,11 @@
         html { scroll-behavior: smooth; }
         .line-clamp-2 { display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
         .line-clamp-3 { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
-        .cat-active { background: #18795B; color: #e8e9e2; border-color: #18795B; }
-        .cat-inactive { background: #fff; color: #18795B; border-color: #8fcdb5; }
+        .cat-active { background: #8fcdb5; color: #031F14; border-color: #8fcdb5; }
+        .cat-inactive { background: transparent; color: rgba(232,233,226,.75); border-color: rgba(143,205,181,.35); }
+        .cat-inactive:hover { border-color: #8fcdb5; color: #fff; }
+        .post-card { transition: transform .35s ease, box-shadow .35s ease; }
+        .post-card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px -12px rgba(3,31,20,.25); }
     </style>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans antialiased">
@@ -51,153 +57,236 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- HEADER -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-primary/50 h-20">
-    <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-        <a href="https://techtubestudio.com" class="flex items-center">
-            <img class="h-14" src="/assets/img/techtube-logo.jpg" alt="Techtube Video Studio Logo" onerror="this.onerror=null;this.src='https://placehold.co/200x60/031F14/8fcdb5?text=Techtube';">
-        </a>
-        <nav class="hidden md:flex items-center space-x-8">
-            <a href="https://techtubestudio.com" class="text-brand-light/70 hover:text-brand-light transition-colors">Home</a>
-            <a href="/portfolio.html" class="text-brand-light/70 hover:text-brand-light transition-colors">Case Studies</a>
-            <a href="/blog/" class="text-brand-accent hover:text-brand-light transition-colors font-bold">Blog</a>
-            <a href="/about.html" class="text-brand-light/70 hover:text-brand-light transition-colors">About</a>
-            <a href="/contact.html" class="text-brand-light/70 hover:text-brand-light transition-colors">Contact</a>
-        </nav>
-        <button id="mobile-menu-button" class="md:hidden text-brand-light text-2xl">☰</button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/40 px-6 py-4 space-y-3">
-        <a href="https://techtubestudio.com" class="block text-brand-light/80 hover:text-brand-light">Home</a>
-        <a href="/portfolio.html" class="block text-brand-light/80 hover:text-brand-light">Case Studies</a>
-        <a href="/blog/" class="block text-brand-accent font-bold">Blog</a>
-        <a href="/about.html" class="block text-brand-light/80 hover:text-brand-light">About</a>
-        <a href="/contact.html" class="block text-brand-light/80 hover:text-brand-light">Contact</a>
-    </div>
-</header>
-
-<main class="pt-24 pb-16">
-    <div class="max-w-6xl mx-auto px-6">
-
-        <div class="mb-10">
-            <p class="text-brand-primary font-bold text-sm uppercase tracking-widest mb-2">Insights</p>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-brand-dark mb-4">The Latest on Hybrid Video Strategy</h1>
-            <p class="text-brand-dark/60 max-w-xl">Practical thinking on video production, AI strategy, and building a content engine that actually grows your business.</p>
+    <!-- ================================================================
+         REUSABLE HEADER — identical on every page. The current-page
+         highlight is automatic (script directly below the header).
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
+                <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
+            </a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
         </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
+        </div>
+    </header>
+    <script>
+    const norm = p => p.replace(/\.html$/,'').replace(/\/$/,'') || '/';
+    document.querySelectorAll('.nav-link').forEach(a => {
+      if (norm(new URL(a.href).pathname) === norm(location.pathname)) {
+        a.classList.remove('text-brand-light/70');
+        a.classList.add('text-brand-accent','bg-white/5');
+      }
+    });
+    </script>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
-        <!-- Search -->
-        <div class="relative max-w-lg mb-6">
-            <input type="text" id="blog-search" placeholder="Search strategy keywords..."
-                   class="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border-2 border-brand-primary/20 focus:border-brand-primary outline-none transition-all shadow-sm text-brand-dark">
-            <div class="absolute left-4 top-4 text-brand-primary opacity-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+<main>
+    <!-- ============================================================ HERO + SEARCH -->
+    <section class="relative overflow-hidden bg-brand-dark pt-32 md:pt-40 pb-14 md:pb-16">
+        <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <span class="inline-block text-brand-accent text-[10px] font-black uppercase tracking-[0.4em] mb-5">Insights</span>
+            <h1 class="text-3xl md:text-5xl font-black text-white leading-[1.1] tracking-tight mb-5">
+                The Latest on <span class="text-brand-accent">Hybrid Video Strategy</span>
+            </h1>
+            <p class="text-base md:text-lg text-brand-light/70 leading-relaxed max-w-2xl mx-auto mb-9">
+                Practical thinking on video production, AI strategy, and building a content engine that actually grows your business.
+            </p>
+
+            <!-- Search -->
+            <div class="relative max-w-xl mx-auto mb-6">
+                <input type="text" id="blog-search" placeholder="Search strategy keywords..." autocomplete="off"
+                       class="w-full pl-12 pr-12 py-4 rounded-full bg-white border-2 border-transparent focus:border-brand-accent outline-none transition-all shadow-xl text-brand-dark text-sm md:text-base">
+                <div class="absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary opacity-60 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <button id="search-clear" class="hidden absolute right-5 top-1/2 -translate-y-1/2 text-brand-dark/40 hover:text-brand-dark text-lg leading-none" aria-label="Clear search">&#10005;</button>
             </div>
-            <button id="search-clear" class="hidden absolute right-4 top-4 text-brand-dark/40 hover:text-brand-dark text-lg leading-none">✕</button>
+
+            <!-- Category filters -->
+            <div class="flex flex-wrap justify-center gap-2" id="category-filters">
+                <button data-cat="all" class="cat-btn cat-active px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest border-2 transition">All</button>
+                <button data-cat="strategy" class="cat-btn cat-inactive px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest border-2 transition">Strategy</button>
+                <button data-cat="production" class="cat-btn cat-inactive px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest border-2 transition">Production</button>
+                <button data-cat="growth" class="cat-btn cat-inactive px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest border-2 transition">Growth &amp; ROI</button>
+            </div>
         </div>
+    </section>
 
-        <!-- Category filters -->
-        <div class="flex flex-wrap gap-2 mb-4" id="category-filters">
-            <button data-cat="all" class="cat-btn cat-active px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition">All</button>
-            <button data-cat="strategy" class="cat-btn cat-inactive px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition">Strategy</button>
-            <button data-cat="production" class="cat-btn cat-inactive px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition">Production</button>
-            <button data-cat="growth" class="cat-btn cat-inactive px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition">Growth & ROI</button>
+    <!-- ============================================================ POSTS -->
+    <section class="py-12 md:py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <p id="search-label" class="hidden text-brand-dark/50 text-sm mb-6"></p>
+
+            <div id="posts-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            <div id="empty-state" class="hidden text-center py-20">
+                <p class="text-brand-dark/50">No articles found. Try a different search or category.</p>
+            </div>
+
+            <div id="loading" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white h-80 rounded-xl shadow-lg animate-pulse"></div>
+                <div class="bg-white h-80 rounded-xl shadow-lg animate-pulse"></div>
+                <div class="bg-white h-80 rounded-xl shadow-lg animate-pulse hidden lg:block"></div>
+            </div>
         </div>
+    </section>
 
-        <p id="search-label" class="hidden text-brand-dark/50 text-sm mb-6"></p>
-
-        <!-- Posts -->
-        <div id="posts-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"></div>
-
-        <div id="empty-state" class="hidden text-center py-20">
-            <p class="text-brand-dark/50">No articles found. Try a different search or category.</p>
+    <!-- ============================================================ CTA -->
+    <section class="pb-16 md:pb-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="relative overflow-hidden bg-brand-dark rounded-[2.5rem] px-8 py-14 md:px-16 md:py-20 text-center shadow-2xl">
+                <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+                <div class="absolute -top-20 -right-20 w-72 h-72 bg-brand-primary/30 rounded-full blur-3xl"></div>
+                <div class="relative z-10">
+                    <h2 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight tracking-tight">Want a strategy, not just articles?</h2>
+                    <p class="text-brand-light/70 mb-9 max-w-xl mx-auto leading-relaxed">Get a full month of video topics, outlines and a custom quote in about 5 minutes. Free, with no account needed.</p>
+                    <a href="/" class="inline-block px-10 md:px-14 py-4 md:py-5 bg-brand-accent text-brand-dark font-black uppercase tracking-widest text-sm md:text-base rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-xl">Get My Free Strategy</a>
+                    <p class="mt-6 text-brand-accent/50 text-[10px] uppercase font-bold tracking-[0.3em]">Plans from $400/mo &middot; Pricing based on $100/min of finished video</p>
+                </div>
+            </div>
         </div>
-
-        <div id="loading" class="space-y-8">
-            <div class="bg-white h-48 rounded-xl shadow-lg animate-pulse"></div>
-            <div class="bg-white h-48 rounded-xl shadow-lg animate-pulse"></div>
-            <div class="bg-white h-48 rounded-xl shadow-lg animate-pulse"></div>
-        </div>
-
-    </div>
+    </section>
 </main>
 
-<!-- CTA -->
-<section class="py-16 bg-white border-t border-brand-primary/10">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-brand-dark mb-4">Want a Strategy, Not Just Articles?</h2>
-        <p class="text-brand-dark/60 mb-8">Use StratBot to build your custom video roadmap and get a fixed monthly quote — free in 5 minutes.</p>
-        <a href="https://techtubestudio.com" class="inline-block px-8 py-4 text-lg font-bold text-white bg-brand-primary hover:bg-brand-dark rounded-full transition-all transform hover:scale-105 shadow-xl">
-            Build My Strategy Now →
-        </a>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <div class="flex justify-center space-x-6 mb-6">
-            <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
-            <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
-            <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
+    <!-- ================================================================
+         REUSABLE FOOTER — identical on every page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">&#9654;</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">&#9678;</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+            </div>
         </div>
-        <p>© 2026 Techtube Video Studio Ltd. All rights reserved.</p>
-        <p class="mt-2"><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors underline">Privacy Policy</a></p>
-    </div>
-</footer>
+    </footer>
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
 
 <script>
     document.getElementById('mobile-menu-button').addEventListener('click', () => {
         document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // Category keyword map
+    // ------------------------------------------------------------------
+    // Categories. A post can force its category by adding
+    //   "category": "strategy" | "production" | "growth"
+    // to its entry in all_posts.json. Otherwise it is scored from the text:
+    // a keyword in the TITLE counts 3, in the body counts 1, so the title
+    // decides (almost every post mentions "strategy" somewhere in its body).
+    // ------------------------------------------------------------------
     const CATS = {
-        strategy: ['stratbot', 'strategy', 'story', 'choice', 'planning'],
-        production: ['production', 'hybrid', 'videographer', 'in-house', 'backlog', 'handover'],
-        growth: ['growth', 'roi', 'scalable', 'ads', 'organic', 'view count', 'wellspring', 'consistent']
+        strategy:   ['stratbot','strategy','story','stories','roadmap','planning','blueprint'],
+        production: ['production','videographer','in-house','agency','freelancer','hybrid','backlog','handover','editing','filming'],
+        growth:     ['growth','roi','scalable','cost','view','result','measur','working','consistent','ads','organic','reach','trend','budget']
     };
-    function categorise(post) {
-        const t = (post.title + ' ' + post.content).toLowerCase();
-        for (const [cat, kws] of Object.entries(CATS)) {
-            if (kws.some(kw => t.includes(kw))) return cat;
+    const CAT_REGEX = {};
+    Object.entries(CATS).forEach(([cat, kws]) => {
+        CAT_REGEX[cat] = kws.map(k => new RegExp('\\b' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
+    });
+
+    function plain(html) {
+        return (html || '').replace(/<[^>]+>/g,' ').replace(/https?:\/\/[^\s]+/g,'').replace(/\s+/g,' ').trim();
+    }
+    function esc(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function categorise(p) {
+        const forced = p.category && String(p.category).toLowerCase();
+        if (forced && CATS[forced]) return forced;
+        const title = p.title || '', body = plain(p.content);
+        let best = 'strategy', bestScore = -1;
+        for (const cat of Object.keys(CATS)) {
+            let s = 0;
+            CAT_REGEX[cat].forEach(re => { if (re.test(title)) s += 3; if (re.test(body)) s += 1; });
+            if (s > bestScore) { best = cat; bestScore = s; }
         }
-        return 'strategy';
+        return best;
     }
 
-    function excerpt(html, max = 200) {
-        return html.replace(/<[^>]+>/g,'').replace(/https?:\/\/[^\s]+/g,'').replace(/\s+/g,' ').trim().slice(0,max) + '...';
+    function excerpt(html, max = 130) {
+        const t = plain(html);
+        return t.length > max ? t.slice(0, max).trimEnd() + '...' : t;
     }
-
-    function cardHTML(p) {
-        return `
-        <a href="/${p.slug}" class="post-card group block bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-brand-accent hover:shadow-2xl hover:border-brand-primary transition-all duration-300">
-            <div class="aspect-video overflow-hidden bg-brand-light">
-                <img src="${p.featured_image}" alt="${p.title}"
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                     onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center bg-brand-dark\\'><span class=\\'text-brand-accent text-4xl\\'>▶</span></div>'">
-            </div>
-            <div class="p-6">
-                <p class="text-sm text-gray-500 mb-2">${p.date}</p>
-                <h2 class="text-xl font-bold mb-3 text-brand-primary leading-snug line-clamp-2 group-hover:text-brand-dark transition">
-                    ${p.title}
-                </h2>
-                <p class="text-brand-dark/70 text-sm leading-relaxed line-clamp-3 mb-4">${excerpt(p.content, 130)}</p>
-                <span class="text-brand-primary font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read More →
-                </span>
-            </div>
-        </a>`;
+    function readTime(html) {
+        const words = plain(html).split(' ').filter(Boolean).length;
+        return Math.max(1, Math.round(words / 200)) + ' min read';
     }
 
     let allPosts = [];
     let activeCat = 'all';
     let searchQ = '';
 
+    function cardHTML(p) {
+        const isNewest = allPosts.length && p === allPosts[0];
+        return `
+        <a href="/${p.slug}" class="post-card group block bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="relative aspect-video overflow-hidden bg-brand-dark">
+                <span class="absolute inset-0 flex items-center justify-center text-brand-accent text-4xl">&#9654;</span>
+                <img src="${esc(p.featured_image)}" alt="${esc(p.title)}" loading="lazy"
+                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                     onerror="this.remove()">
+                ${isNewest ? '<span class="absolute top-3 left-3 bg-brand-accent text-brand-dark text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow">Latest</span>' : ''}
+            </div>
+            <div class="p-6">
+                <p class="text-xs text-gray-500 mb-2">${esc(p.date)} &middot; ${readTime(p.content)}</p>
+                <h2 class="text-xl font-bold mb-3 text-brand-primary leading-snug line-clamp-2 group-hover:text-brand-dark transition">${esc(p.title)}</h2>
+                <p class="text-brand-dark/70 text-sm leading-relaxed line-clamp-3 mb-4">${esc(excerpt(p.content))}</p>
+                <span class="text-brand-primary font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Read More &rarr;</span>
+            </div>
+        </a>`;
+    }
+
     function filtered() {
         return allPosts.filter(p => {
             const catOk = activeCat === 'all' || categorise(p) === activeCat;
-            const qOk = !searchQ || (p.title + ' ' + p.content).toLowerCase().includes(searchQ);
+            const qOk = !searchQ || ((p.title || '') + ' ' + plain(p.content)).toLowerCase().includes(searchQ);
             return catOk && qOk;
         });
     }
@@ -208,8 +297,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const empty = document.getElementById('empty-state');
         const label = document.getElementById('search-label');
 
-        if (searchQ) {
-            label.textContent = `${posts.length} result${posts.length !== 1 ? 's' : ''} for "${searchQ}"`;
+        if (searchQ || activeCat !== 'all') {
+            const n = posts.length;
+            label.textContent = n + ' article' + (n !== 1 ? 's' : '') + (searchQ ? ' for "' + searchQ + '"' : '');
             label.classList.remove('hidden');
         } else {
             label.classList.add('hidden');
@@ -229,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             activeCat = btn.dataset.cat;
             document.querySelectorAll('.cat-btn').forEach(b => {
                 const on = b.dataset.cat === activeCat;
-                b.className = 'cat-btn px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition ' + (on ? 'cat-active' : 'cat-inactive');
+                b.className = 'cat-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest border-2 transition ' + (on ? 'cat-active' : 'cat-inactive');
             });
             render();
         });
@@ -258,7 +348,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         })
         .catch(() => {
             document.getElementById('loading').innerHTML =
-                '<p class="text-center text-brand-dark/50 py-12">Could not load posts. Please refresh the page.</p>';
+                '<p class="text-center text-brand-dark/50 py-12 col-span-full">Could not load posts. Please refresh the page.</p>';
         });
 </script>
 </body>
