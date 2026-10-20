@@ -8,18 +8,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
 <!-- End Google Tag Manager -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1LBSFT6R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6H1LBSFT6R');
 </script>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Techtube Studio | The Hybrid Video Production Agency</title>
+    <meta name="description" content="Techtube Video Studio is a Nairobi-based hybrid video production agency combining AI-driven strategy with senior human production, founded by Cheptiony Mutai.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e8e9e2; }
+        ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
+        html { scroll-behavior: smooth; }
+        .showreel-glow { box-shadow: 0 0 60px rgba(24, 121, 91, 0.25); transition: box-shadow .5s ease; }
+        .showreel-glow:hover { box-shadow: 0 0 90px rgba(143, 205, 181, 0.35); }
+    </style>
     <script>
         tailwind.config = { theme: { extend: { colors: { 'brand-dark': '#031F14', 'brand-primary': '#18795B', 'brand-accent': '#8fcdb5', 'brand-light': '#e8e9e2' } } } }
     </script>
@@ -29,167 +41,267 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark h-20 border-b border-brand-primary/20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="/">
-                <img class="h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
+
+    <!-- ================================================================
+         REUSABLE HEADER — identical on every page. The current-page
+         highlight is automatic (script directly below the header).
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
+                <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
             </a>
-            <nav class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-brand-light/70">
-                <a href="/index.html" class="hover:text-brand-accent">Home</a>
-                <a href="/portfolio.html" class="hover:text-brand-accent">Case Studies</a>
-                <a href="/blog/" class="text-brand-light/70 hover:text-brand-accent transition-colors">Blog</a>
-                <a href="/contact.html" class="hover:text-brand-accent">Contact</a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-brand-light">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-primary/50 absolute top-20 left-0 w-full flex flex-col p-6 space-y-4 text-center font-bold text-sm uppercase tracking-widest text-brand-light">
-            <a href="/index.html">Home</a>
-            <a href="/portfolio.html">Case Studies</a>
-            <a href="https://techtubestudio.com/blog/">Blog</a>
-            <a href="/contact.html" class="text-brand-accent">Contact</a>
-        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
         </div>
     </header>
+    <script>
+    const norm = p => p.replace(/\.html$/,'').replace(/\/$/,'') || '/';
+    document.querySelectorAll('.nav-link').forEach(a => {
+      if (norm(new URL(a.href).pathname) === norm(location.pathname)) {
+        a.classList.remove('text-brand-light/70');
+        a.classList.add('text-brand-accent','bg-white/5');
+      }
+    });
+    </script>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
-    <main class="pt-32 pb-20">
-        <div class="max-w-4xl mx-auto px-6">
-            <h1 class="text-4xl font-black mb-12 text-brand-primary uppercase text-center">About Techtube Video Studio Ltd</h1>
-            <!-- Founder Profile Section -->
-<div class="max-w-4xl mx-auto px-6 text-center">
-    
-    <!-- Centered Rounded Profile Image -->
-    <div class="relative mb-10">
-        <div class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full overflow-hidden border-8 border-white shadow-2xl">
-            <!-- Ensure profile-photo.png is in your public folder -->
-            <img src="/profile-photo.png" alt="Cheptiony Mutai" class="w-full h-full object-cover">
-        </div>
-        <h2 class="text-3xl font-black mt-8 text-brand-dark uppercase tracking-tighter">Cheptiony Mutai</h2>
-        <p class="text-brand-primary font-bold uppercase text-xs tracking-[0.3em] mt-1">Founder, Techtube Video Studio</p>
-    </div>
+    <main>
+        <!-- ============================================================ HERO -->
+        <section class="relative overflow-hidden bg-brand-dark pt-32 md:pt-40 pb-20 md:pb-28">
+            <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+                <span class="inline-block text-brand-accent text-[10px] font-black uppercase tracking-[0.4em] mb-5">About Us</span>
+                <h1 class="text-3xl md:text-5xl font-black text-white leading-[1.1] tracking-tight mb-5">
+                    About <span class="text-brand-accent">Techtube Video Studio</span>
+                </h1>
+                <p class="text-base md:text-lg text-brand-light/70 leading-relaxed max-w-2xl mx-auto">
+                    A Nairobi-based hybrid video studio that pairs AI-driven strategy with senior human production, so brands worldwide get a full month of video content without the overhead of an in-house team.
+                </p>
+            </div>
+        </section>
 
-    <!-- Bio Card -->
-    <div class="bg-white p-8 md:p-16 rounded-3xl shadow-xl text-left text-lg leading-relaxed text-gray-700 mb-20 border border-gray-100">
-        <p class="mb-6">
-            Cheptiony has spent over 15 years doing one thing: helping brands communicate better through video. What started in 2009 producing music videos for vernacular musicians in Southern Rift Valley grew into a full career spanning broadcast journalism, global freelancing, NGO documentary work, SaaS tutorial production, and eventually building one of the first AI-hybrid video studios in Africa.
-        </p>
-        
-        <p class="mb-6">
-            He holds a Diploma in Broadcast Journalism from the <span class="text-brand-dark font-bold">Kenya Institute of Mass Communication</span> and spent years on platforms like Upwork delivering video production to clients across the US, UK, and Australia — long before "remote-first" was a trend.
-        </p>
+        <!-- ============================================================ FOUNDER -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-[320px_1fr] gap-10 md:gap-14 items-start">
 
-        <p class="mb-6 bg-brand-light/30 p-6 rounded-2xl border-l-4 border-brand-primary italic">
-            "In 2013 I registered Techtube Video Studio, and over the next decade refined a simple but hard-won belief: <span class="text-brand-dark font-bold not-italic">most businesses don't have a video quality problem. They have a video consistency problem.</span> Producing one great video changes nothing. Showing up every week does."
-        </p>
+                    <!-- Photo card -->
+                    <div class="md:sticky md:top-28">
+                        <div class="bg-white rounded-3xl p-6 shadow-xl text-center">
+                            <div class="w-48 h-48 md:w-full md:h-auto md:aspect-square mx-auto rounded-2xl overflow-hidden shadow-lg">
+                                <img src="/profile-photo.png" alt="Cheptiony Mutai, Founder of Techtube Video Studio" class="w-full h-full object-cover">
+                            </div>
+                            <h2 class="text-2xl font-black mt-6 text-brand-dark uppercase tracking-tighter">Cheptiony Mutai</h2>
+                            <p class="text-brand-primary font-bold uppercase text-[11px] tracking-[0.25em] mt-1">Founder, Techtube Video Studio</p>
 
-        <p class="mb-6">
-            That insight is what shaped Techtube's current model — combining AI-driven content strategy with senior human production, so clients get a full month of video content planned, scripted, and produced without the overhead of an in-house team.
-        </p>
+                            <div class="grid grid-cols-3 gap-2 mt-6 pt-6 border-t border-brand-light">
+                                <div>
+                                    <p class="text-xl font-black text-brand-dark">15+</p>
+                                    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mt-0.5">Years</p>
+                                </div>
+                                <div>
+                                    <p class="text-xl font-black text-brand-dark">2013</p>
+                                    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mt-0.5">Founded</p>
+                                </div>
+                                <div>
+                                    <p class="text-xl font-black text-brand-dark">Global</p>
+                                    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mt-0.5">Clients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <p>
-            Today, Techtube serves SaaS companies, NGOs, and growth-focused brands worldwide.
-        </p>
-    </div>
-</div>
-            <!-- NEW: SHOWREEL SECTION -->
-            <div class="mb-12">
-                <div onclick="openVideoModal('https://www.youtube.com/embed/ND4Vhz8ne48')" 
+                    <!-- Bio -->
+                    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl text-lg leading-relaxed text-gray-700">
+                        <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">The Founder</span>
+                        <p class="mb-6">
+                            Cheptiony has spent over 15 years doing one thing: helping brands communicate better through video. What started in 2009 producing music videos for vernacular musicians in Southern Rift Valley grew into a full career spanning broadcast journalism, global freelancing, NGO documentary work, SaaS tutorial production, and eventually building one of the first AI-hybrid video studios in Africa.
+                        </p>
+
+                        <p class="mb-6">
+                            He holds a Diploma in Broadcast Journalism from the <span class="text-brand-dark font-bold">Kenya Institute of Mass Communication</span> and spent years on platforms like Upwork delivering video production to clients across the US, UK, and Australia — long before "remote-first" was a trend.
+                        </p>
+
+                        <p class="mb-6 bg-brand-light/50 p-6 rounded-2xl border-l-4 border-brand-primary italic">
+                            "In 2013 I registered Techtube Video Studio, and over the next decade refined a simple but hard-won belief: <span class="text-brand-dark font-bold not-italic">most businesses don't have a video quality problem. They have a video consistency problem.</span> Producing one great video changes nothing. Showing up every week does."
+                        </p>
+
+                        <p class="mb-6">
+                            That insight is what shaped Techtube's current model — combining AI-driven content strategy with senior human production, so clients get a full month of video content planned, scripted, and produced without the overhead of an in-house team.
+                        </p>
+
+                        <p>
+                            Today, Techtube serves SaaS companies, NGOs, and growth-focused brands worldwide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ WHAT WE BELIEVE -->
+        <section class="py-16 md:py-24 bg-white relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-accent/10 rounded-full blur-3xl"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">How We Think</span>
+                    <h2 class="text-2xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter">What We Believe</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-dark text-brand-accent flex items-center justify-center text-xl mb-5">&#9678;</div>
+                        <h3 class="font-black text-brand-dark uppercase text-sm tracking-widest mb-3">Strategy before cameras</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">Every month starts with a plan: what to make, how long, and why. That is what StratBot is for, so you see the roadmap and the price before you commit.</p>
+                    </div>
+                    <div class="p-8 bg-brand-dark rounded-3xl shadow-2xl md:-mt-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-accent text-brand-dark flex items-center justify-center text-xl mb-5">&#9998;</div>
+                        <h3 class="font-black text-brand-accent uppercase text-sm tracking-widest mb-3">Human craft, AI speed</h3>
+                        <p class="text-sm text-brand-light/70 leading-relaxed">AI handles the heavy lifting in planning. Experienced people handle the storytelling and the details your audience can feel.</p>
+                    </div>
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-dark text-brand-accent flex items-center justify-center text-xl mb-5">&#8635;</div>
+                        <h3 class="font-black text-brand-dark uppercase text-sm tracking-widest mb-3">Consistency compounds</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">One video rarely changes a business. A steady monthly stream builds trust, and a predictable rate keeps it sustainable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ SHOWREEL -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-10">
+                    <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">Showreel</span>
+                    <h2 class="text-2xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter">See Our Work in Motion</h2>
+                </div>
+                <div onclick="openVideoModal('https://www.youtube.com/embed/ND4Vhz8ne48')"
                      class="showreel-glow relative aspect-video bg-black rounded-3xl overflow-hidden cursor-pointer border-4 border-brand-primary/30 group">
-                    
-                    <!-- YouTube Auto-thumbnail -->
                     <img src="https://img.youtube.com/vi/ND4Vhz8ne48/maxresdefault.jpg" alt="Techtube Showreel" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-all duration-700">
-                    
-                    <!-- Themed Play Button -->
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
                             <svg class="w-10 h-10 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                         </div>
                     </div>
-                    
-                    <!-- Label -->
                     <div class="absolute bottom-6 left-6 bg-brand-dark/80 backdrop-blur px-4 py-2 rounded-full border border-brand-primary/50">
                         <span class="text-xs font-bold text-brand-accent uppercase tracking-[0.2em]">Watch Our Video Showreel</span>
                     </div>
                 </div>
             </div>
-             <!-- NEW: Linking to Case Studies Section -->
-            <div class="bg-brand-primary/10 border-2 border-brand-primary/20 p-10 rounded-3xl text-center mb-20">
-                <h3 class="text-2xl font-black text-brand-dark mb-4 uppercase tracking-tight">See the results in action</h3>
-                <p class="text-gray-600 mb-8">We don't just talk about strategy; we execute with elite precision. Check out our latest video productions and partner success stories.</p>
-                <a href="/portfolio.html" class="inline-block px-10 py-4 bg-brand-primary text-white font-black uppercase tracking-widest rounded-full hover:bg-brand-dark transition-all transform hover:scale-105 shadow-lg">
-                    View Case Studies
-                </a>
-            </div>
+        </section>
 
-            <!-- Conversion CTA -->
-            <div class="bg-brand-dark p-16 rounded-3xl text-center shadow-2xl">
-                <h2 class="text-3xl font-black text-white mb-6 uppercase tracking-tighter">Ready to meet StratBot?</h2>
-                <a href="/?startChat=true" class="inline-block px-12 py-5 bg-brand-accent text-brand-dark font-black uppercase tracking-widest rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-xl">Get Started Now</a>
+        <!-- ============================================================ CASE STUDIES LINK -->
+        <section class="pb-16 md:pb-24">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="bg-white border-2 border-brand-primary/15 p-8 md:p-12 rounded-3xl text-center shadow-lg">
+                    <h3 class="text-2xl font-black text-brand-dark mb-4 uppercase tracking-tight">See the results in action</h3>
+                    <p class="text-gray-600 mb-8 max-w-xl mx-auto leading-relaxed">We don't just talk about strategy; we execute with elite precision. Check out our latest video productions and partner success stories.</p>
+                    <a href="/portfolio.html" class="inline-block px-10 py-4 bg-brand-primary text-white font-black uppercase tracking-widest text-sm rounded-full hover:bg-brand-dark transition-all transform hover:scale-105 shadow-lg">View Case Studies</a>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ============================================================ CTA -->
+        <section class="pb-16 md:pb-24">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="relative overflow-hidden bg-brand-dark rounded-[2.5rem] px-8 py-14 md:px-16 md:py-20 text-center shadow-2xl">
+                    <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute -top-20 -right-20 w-72 h-72 bg-brand-primary/30 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight tracking-tight">Ready to meet StratBot?</h2>
+                        <p class="text-brand-light/70 mb-9 max-w-xl mx-auto leading-relaxed">Get a full month of video topics, outlines and a custom quote in about 5 minutes. Free, with no account needed.</p>
+                        <a href="/" class="inline-block px-10 md:px-14 py-4 md:py-5 bg-brand-accent text-brand-dark font-black uppercase tracking-widest text-sm md:text-base rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-xl">Get My Free Strategy</a>
+                        <p class="mt-6 text-brand-accent/50 text-[10px] uppercase font-bold tracking-[0.3em]">Plans from $400/mo &middot; Pricing based on $100/min of finished video</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-     <!-- Shared Footer -->
-     <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center text-[10px] uppercase font-bold tracking-widest">
+    <!-- ================================================================
+         REUSABLE FOOTER — identical on every page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
-                <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
-                <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">&#9654;</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">&#9678;</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
-            <div class="mt-4 flex justify-center space-x-6">
-                <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
-<!-- Video Modal -->
-    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4" onclick="if(event.target===this)closeVideoModal()">
         <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-[210] text-white/50 hover:text-white text-4xl font-light">&times;</button>
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-[210] text-white/60 hover:text-white text-4xl leading-none" aria-label="Close video">&times;</button>
             <div class="aspect-video"><iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
         </div>
     </div>
 
     <script>
         function openVideoModal(url){
-            const m=document.getElementById('video-modal');
-            const i=document.getElementById('modal-iframe');
-            if(m&&i){
-                i.src=url+"?autoplay=1&rel=0";
-                m.classList.remove('hidden');
-            }
+            const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
+            if (m && i) { i.src = url + "?autoplay=1&rel=0"; m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
         }
         function closeVideoModal(){
-            const m=document.getElementById('video-modal');
-            const i=document.getElementById('modal-iframe');
-            if(m&&i){
-                i.src="";
-                m.classList.add('hidden');
-            }
-        }    
-</script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileBtn && mobileMenu) {
-            // This tells the browser: "When the button is clicked, remove or add the 'hidden' class"
-            mobileBtn.onclick = () => {
-                mobileMenu.classList.toggle('hidden');
-            };
-
-            // This ensures the menu closes if a user clicks a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.onclick = () => {
-                    mobileMenu.classList.add('hidden');
-                };
-            });
+            const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
+            if (m && i) { i.src = ""; m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
         }
-    });
-</script>
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.onclick = () => mobileMenu.classList.add('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
