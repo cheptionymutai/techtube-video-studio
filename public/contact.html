@@ -9,9 +9,13 @@
     })(window,document,'script','dataLayer','GTM-T64VLRJQ');</script>
     <!-- End Google Tag Manager -->
 
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Techtube Video Studio</title>
+    <meta name="description" content="Tell Techtube Video Studio about your brand and video goals. We typically respond to custom inquiries within 24 hours.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { colors: { 'brand-dark': '#031F14', 'brand-primary': '#18795B', 'brand-accent': '#8fcdb5', 'brand-light': '#e8e9e2' } } } }
@@ -25,37 +29,48 @@
 <body class="bg-brand-dark text-brand-light font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md h-20 border-b border-brand-primary/20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="/">
-                <img class="h-12" src="/techtube-logo.jpg" alt="Logo">
+
+    <!-- ================================================================
+         REUSABLE HEADER — identical on every page. The current-page
+         highlight is automatic (script directly below the header).
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
+                <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
             </a>
-            <nav class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-brand-light/70">
-                <a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a>
-                <a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a>
-                <a href="/about.html" class="hover:text-brand-accent transition-colors">About</a>
-                <a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
             </nav>
-             <button id="mobile-menu-button" class="md:hidden text-brand-light">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-primary/50 absolute top-20 left-0 w-full flex flex-col p-6 space-y-4 text-center font-bold text-sm uppercase tracking-widest text-brand-light">
-            <a href="/index.html">Home</a>
-            <a href="/portfolio.html">Case Studies</a>
-            <a href="https://techtubestudio.com/blog/">Blog</a>
-            <a href="/about.html">About</a>
-            <a href="/contact.html" class="text-brand-accent">Contact</a>
-        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
         </div>
     </header>
+    <script>
+    const norm = p => p.replace(/\.html$/,'').replace(/\/$/,'') || '/';
+    document.querySelectorAll('.nav-link').forEach(a => {
+      if (norm(new URL(a.href).pathname) === norm(location.pathname)) {
+        a.classList.remove('text-brand-light/70');
+        a.classList.add('text-brand-accent','bg-white/5');
+      }
+    });
+    </script>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
     <main class="pt-32 pb-20 min-h-screen flex items-center">
         <div class="max-w-6xl mx-auto px-6 w-full">
             <div class="grid md:grid-cols-2 gap-16 items-start">
-                
+
                 <!-- LEFT COLUMN: ANCHOR INFO -->
                 <div class="text-left">
                     <h1 class="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter text-white">
@@ -92,21 +107,25 @@
 
                 <!-- RIGHT COLUMN: THE FORM -->
                 <div class="bg-white/5 p-8 rounded-3xl border border-brand-primary/20 backdrop-blur-sm shadow-2xl">
-                    <form id="contact-form" class="flex flex-col gap-4 text-left">
-                        <!-- Honeypot -->
-                        <div class="hidden" aria-hidden="true"><input type="text" id="contact_url_trap" tabindex="-1" autocomplete="off"></div>
-                        
-                        <input type="text" id="contact-name" placeholder="Full Name" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
-                        
-                        <input type="email" id="contact-email" placeholder="Work Email" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
-                        
-                        <input type="text" id="contact-subject" placeholder="Subject (e.g. Production Inquiry, Pricing, Support)" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
-                        
-                        <textarea id="contact-message" placeholder="How can we help? Tell us about your brand and video goals..." rows="5" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required></textarea>
-                        
-                        <button type="submit" id="contact-submit-btn" class="bg-brand-accent text-brand-dark font-black py-4 rounded-full uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105 shadow-lg">
+                    <form id="contact-form" class="flex flex-col gap-4 text-left" novalidate>
+                        <!-- Honeypot: off-screen (not display:none) so simple bots still fill it -->
+                        <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                            <input type="text" id="contact_url_trap" name="company_site" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <input type="text" id="contact-name" placeholder="Full Name" aria-label="Full name" autocomplete="name" maxlength="120" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
+
+                        <input type="email" id="contact-email" placeholder="Work Email" aria-label="Work email" autocomplete="email" maxlength="160" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
+
+                        <input type="text" id="contact-subject" placeholder="Subject (e.g. Production Inquiry, Pricing, Support)" aria-label="Subject" maxlength="160" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required>
+
+                        <textarea id="contact-message" placeholder="How can we help? Tell us about your brand and video goals..." aria-label="Your message" rows="5" maxlength="4000" class="bg-white/10 text-white p-4 rounded-xl border border-brand-primary/50 outline-none focus:ring-2 focus:ring-brand-accent transition-all" required></textarea>
+
+                        <button type="submit" id="contact-submit-btn" class="bg-brand-accent text-brand-dark font-black py-4 rounded-full uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105 shadow-lg disabled:opacity-60 disabled:hover:scale-100">
                             Send Message
                         </button>
+
+                        <p id="contact-error" role="alert" class="hidden text-sm text-center text-red-300 leading-relaxed"></p>
                     </form>
 
                     <div id="contact-success" class="hidden py-10 text-center">
@@ -121,76 +140,133 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark border-t border-brand-primary/50 text-brand-light/70 py-12 text-center text-[10px] uppercase font-bold tracking-widest">
+    <!-- ================================================================
+         REUSABLE FOOTER — identical on every page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="hover:text-brand-accent transition-colors">LinkedIn</a>
-                <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="hover:text-brand-accent transition-colors">YouTube</a>
-                <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="hover:text-brand-accent transition-colors">Instagram</a>
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">&#9654;</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">&#9678;</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
-            <div class="mt-4 flex justify-center space-x-6">
-                <a href="/privacypolicy.html" class="hover:text-brand-accent">Privacy Policy</a>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
 
     <script>
-        document.getElementById('contact-form').onsubmit = async (e) => {
-            e.preventDefault(); 
-            if (document.getElementById('contact_url_trap').value) return;
-            
-            const btn = document.getElementById('contact-submit-btn'); 
-            const origText = btn.innerText;
-            btn.innerText = "Sending..."; 
+        const LEADS_URL = "https://techtube-backend-895534116569.us-central1.run.app/leads/capture";
+
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const form = e.currentTarget;
+            const btn = document.getElementById('contact-submit-btn');
+            const errEl = document.getElementById('contact-error');
+            const trap = document.getElementById('contact_url_trap').value;
+
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const subject = document.getElementById('contact-subject').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+
+            errEl.classList.add('hidden');
+            errEl.textContent = '';
+
+            // Basic validation with a visible message (the form is novalidate)
+            if (!name || !email || !subject || !message) {
+                errEl.textContent = 'Please fill in all fields.';
+                errEl.classList.remove('hidden');
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                errEl.textContent = 'Please enter a valid email address.';
+                errEl.classList.remove('hidden');
+                return;
+            }
+
+            const origText = btn.textContent;
+            btn.textContent = 'Sending...';
             btn.disabled = true;
-            
+
+            // Don't hang forever if the server is slow or down
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 20000);
+
             try {
-                // UPDATE THIS URL WITH YOUR CLOUD RUN BACKEND URL
-                const res = await fetch("https://techtube-backend-895534116569.us-central1.run.app/leads/capture", {
-                    method: 'POST', 
+                const res = await fetch(LEADS_URL, {
+                    method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
+                    signal: controller.signal,
+                    body: JSON.stringify({
                         source: "techtube_contact_page",
-                        name: document.getElementById('contact-name').value, 
-                        email: document.getElementById('contact-email').value, 
-                        topic: document.getElementById('contact-subject').value,
-                        message: document.getElementById('contact-message').value,
-                        business_context: "Manual Web Form Submission"
+                        name: name,
+                        email: email,
+                        topic: subject,
+                        message: message,
+                        business_context: "Manual Web Form Submission",
+                        hp: trap
                     })
                 });
-                
-                if (res.ok) { 
-                    document.getElementById('contact-form').classList.add('hidden'); 
-                    document.getElementById('contact-success').classList.remove('hidden'); 
+
+                let data = null;
+                try { data = await res.json(); } catch (_) {}
+
+                if (res.ok && data && data.status === 'success') {
+                    form.classList.add('hidden');
+                    document.getElementById('contact-success').classList.remove('hidden');
+                } else {
+                    throw new Error('Request was not accepted');
                 }
-            } catch (err) { 
-                alert("Error sending message."); 
-                btn.disabled = false; 
-                btn.innerText = origText; 
+            } catch (err) {
+                errEl.innerHTML = 'Sorry, that did not go through. Please try again, or email <a href="mailto:sales@techtubestudio.com" class="underline text-white">sales@techtubestudio.com</a> or message us on <a href="https://wa.me/254701938336" class="underline text-white">WhatsApp</a>.';
+                errEl.classList.remove('hidden');
+                btn.disabled = false;
+                btn.textContent = origText;
+            } finally {
+                clearTimeout(timer);
             }
-        };
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.onclick = () => mobileMenu.classList.add('hidden');
+                });
+            }
+        });
     </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileBtn && mobileMenu) {
-            // This tells the browser: "When the button is clicked, remove or add the 'hidden' class"
-            mobileBtn.onclick = () => {
-                mobileMenu.classList.toggle('hidden');
-            };
-
-            // This ensures the menu closes if a user clicks a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.onclick = () => {
-                    mobileMenu.classList.add('hidden');
-                };
-            });
-        }
-    });
-</script>
 </body>
 </html>
