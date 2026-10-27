@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '26415388318137127');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=26415388318137127&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -31,19 +14,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6H1LBSFT6R');
 </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Professional Livestreaming & Production Kenya | Techtube Studio</title>
+    <meta name="description" content="Professional on-location livestreaming, photography and videography for events across Kenya. Get an instant quote from Techtube Studio.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #e8e9e2; }
         ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
         html { scroll-behavior: smooth; }
-        .hero-gradient { background: linear-gradient(135deg, #031F14 0%, #18795B 100%); }
+        .strategy-card { box-shadow: 0 20px 60px -10px rgba(3, 31, 20, 0.35); }
+        .pulse-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+        input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: .7; }
     </style>
     <script>
         tailwind.config = {
@@ -56,220 +46,534 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T64VLRJQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-primary/50 h-20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="/" class="flex items-center"><img class="h-10" src="/techtube-logo.jpg" alt="Techtube Logo" onerror="this.src='https://placehold.co/200x50/031F14/8fcdb5?text=Techtube';"></a>
-            <nav class="flex items-center gap-4 text-xs">
-                <a href="tel:+254701938336" class="hidden lg:block text-brand-accent font-bold uppercase tracking-widest">Call Producer: +254 701 938 336</a>
-                <a href="/" class="text-white hover:text-brand-accent transition-colors underline text-xs">Main Site</a>
+
+    <!-- ================================================================
+         REUSABLE HEADER — identical on every page. The current-page
+         highlight is automatic (script directly below the header).
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
+                <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
+            </a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
             </nav>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
         </div>
     </header>
-<section class="pt-32 pb-12 bg-brand-dark text-center">
-    <div class="max-w-4xl mx-auto px-6">
-        <h1 class="text-3xl md:text-5xl font-black text-white mb-8 uppercase">Professional Event Livestreaming</h1>
-        
-        <!-- The Ad Video Card -->
-        <div onclick="openVideoModal('https://www.youtube.com/embed/bKQUZuwrL5Q')" 
-             class="relative aspect-video bg-black rounded-3xl overflow-hidden cursor-pointer border-4 border-brand-accent/30 group shadow-2xl mb-12">
-            <img src="https://img.youtube.com/vi/bKQUZuwrL5Q/maxresdefault.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all">
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl">
-                    <svg class="w-8 h-8 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-            </div>
-            <div class="absolute bottom-4 left-4 bg-brand-accent text-brand-dark px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                Watch Our Setup in Action
-            </div>
-        </div>
-    </div>
-</section>
+    <script>
+    const norm = p => p.replace(/\.html$/,'').replace(/\/$/,'') || '/';
+    document.querySelectorAll('.nav-link').forEach(a => {
+      if (norm(new URL(a.href).pathname) === norm(location.pathname)) {
+        a.classList.remove('text-brand-light/70');
+        a.classList.add('text-brand-accent','bg-white/5');
+      }
+    });
+    </script>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
-        <section class="hero-gradient text-white py-24 px-6 text-center border-b-4 border-brand-accent">
-            <div class="max-w-4xl mx-auto">
-                <span class="bg-brand-accent text-brand-dark px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">Premium Event Production</span>
-                <h1 class="text-4xl md:text-6xl font-black mt-6 mb-6 leading-tight uppercase tracking-tighter">On-Location Livestreaming <br><span class="text-brand-accent">& Production in Kenya</span></h1>
-                <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
-                    <button class="cta-trigger px-10 py-5 bg-brand-accent text-brand-dark font-black rounded-full shadow-2xl hover:bg-white transition-all transform hover:scale-105 uppercase tracking-widest text-sm">Get Instant Quote</button>
-                    <a href="https://wa.me/254701938336?text=Interested in Livestreaming package" target="_blank" class="px-10 py-5 border-2 border-brand-accent text-brand-accent font-black rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all uppercase tracking-widest text-sm">Chat With a Producer</a>
+    <main>
+        <!-- ============================================================ HERO + QUOTE WIDGET -->
+        <section class="relative overflow-hidden bg-brand-dark pt-32 md:pt-40 pb-16 md:pb-24">
+            <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+                <div class="inline-flex items-center gap-2 bg-brand-primary/15 border border-brand-accent/30 rounded-full px-4 py-1.5 mb-6">
+                    <span class="w-1.5 h-1.5 bg-brand-accent rounded-full pulse-dot"></span>
+                    <span class="text-brand-accent text-[10px] font-bold uppercase tracking-widest">Premium Event Production &middot; Kenya</span>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black text-white mb-5 leading-[1.1] tracking-tight">
+                    On-Location Livestreaming <span class="text-brand-accent">&amp; Production in Kenya</span>
+                </h1>
+                <p class="text-base md:text-lg text-brand-light/70 mb-10 leading-relaxed max-w-2xl mx-auto">
+                    Multi-camera HD livestreams, photography and cinematic highlights for corporate and private events. Answer a few quick questions below and get your official quote instantly.
+                </p>
+            </div>
+
+            <!-- Inline quote widget -->
+            <div class="relative z-10 max-w-2xl mx-auto px-4">
+                <div class="strategy-card bg-white rounded-3xl overflow-hidden">
+                    <div class="px-6 md:px-8 py-4 bg-brand-dark/5 border-b border-brand-light flex items-center justify-between">
+                        <span class="text-brand-dark text-[10px] font-black uppercase tracking-[0.2em]">Your Instant Livestream Quote</span>
+                        <span class="flex items-center gap-1.5 text-brand-primary text-[10px] font-bold uppercase tracking-wider">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full pulse-dot"></span> Live
+                        </span>
+                    </div>
+                    <div id="chat-messages" class="p-6 md:p-8 space-y-4 overflow-y-auto max-h-[55vh]"></div>
+                    <div id="chat-input-area" class="p-4 md:p-5 bg-brand-light/40 border-t border-brand-light">
+                        <div id="button-options" class="flex flex-wrap gap-2"></div>
+                        <div id="typing-row" class="hidden items-center space-x-3">
+                            <input type="text" id="chat-input" class="flex-1 border border-brand-primary/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary" placeholder="Type here...">
+                            <button id="chat-send-btn" class="bg-brand-primary text-white rounded-full w-11 h-11 flex-shrink-0 flex items-center justify-center hover:bg-brand-dark transition-colors" aria-label="Send">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                            </button>
+                        </div>
+                        <p id="input-hint" role="alert" class="hidden text-xs text-red-600 mt-2 px-2"></p>
+                    </div>
+                    <div id="loading-spinner" class="p-6 hidden items-center space-x-3 bg-brand-light/40 border-t border-brand-light">
+                        <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-brand-primary"></div>
+                        <span class="text-sm font-bold text-brand-dark">Generating your quote...</span>
+                    </div>
+                </div>
+                <p class="mt-5 text-brand-light/40 text-[10px] md:text-[11px] uppercase font-bold tracking-[0.3em] text-center">
+                    Instant quote &middot; No account needed
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ VIDEO -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-10">
+                    <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">Our Setup</span>
+                    <h2 class="text-2xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter">See Our Livestream Setup in Action</h2>
+                </div>
+                <div onclick="openVideoModal('https://www.youtube.com/embed/bKQUZuwrL5Q')"
+                     class="relative aspect-video bg-black rounded-3xl overflow-hidden cursor-pointer border-4 border-brand-primary/30 group shadow-2xl">
+                    <img src="https://img.youtube.com/vi/bKQUZuwrL5Q/maxresdefault.jpg" alt="Techtube livestream setup video" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-4 left-4 bg-brand-dark/80 backdrop-blur px-4 py-2 rounded-full border border-brand-primary/50">
+                        <span class="text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Watch Our Setup in Action</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 px-6 bg-white">
-            <div class="max-w-7xl mx-auto text-center">
-                <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="p-8 bg-brand-light/30 rounded-3xl border-l-8 border-brand-primary text-left">
-                        <h3 class="text-xl font-black mb-3 uppercase tracking-tighter text-brand-primary">HD Livestreaming</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Multi-camera HD setups for YouTube and Facebook. Serving Nairobi, Mombasa, and all major towns.</p>
+        <!-- ============================================================ SERVICES -->
+        <section class="py-16 md:py-24 bg-white relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-accent/10 rounded-full blur-3xl"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">What's Included</span>
+                    <h2 class="text-2xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter">Everything Your Event Needs</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="text-3xl mb-4">&#128225;</div>
+                        <h3 class="font-black text-brand-dark uppercase text-sm tracking-widest mb-3">HD Livestreaming</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">Multi-camera HD setups for YouTube and Facebook. Serving Nairobi, Mombasa, and all major towns.</p>
                     </div>
-                    <div class="p-8 bg-brand-light/30 rounded-3xl border-l-8 border-brand-primary text-left">
-                        <h3 class="text-xl font-black mb-3 uppercase tracking-tighter text-brand-primary">Photography</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Professional high-res digital shots captured by experts for corporate and private events.</p>
+                    <div class="p-8 bg-brand-dark rounded-3xl shadow-2xl md:-mt-4">
+                        <div class="text-3xl mb-4">&#128247;</div>
+                        <h3 class="font-black text-brand-accent uppercase text-sm tracking-widest mb-3">Photography</h3>
+                        <p class="text-sm text-brand-light/70 leading-relaxed">Professional high-res digital shots captured by experts for corporate and private events.</p>
                     </div>
-                    <div class="p-8 bg-brand-light/30 rounded-3xl border-l-8 border-brand-primary text-left">
-                        <h3 class="text-xl font-black mb-3 uppercase tracking-tighter text-brand-primary">Videography</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Cinematic b-roll and event highlight reels to preserve every important moment.</p>
+                    <div class="p-8 bg-brand-light rounded-3xl">
+                        <div class="text-3xl mb-4">&#127916;</div>
+                        <h3 class="font-black text-brand-dark uppercase text-sm tracking-widest mb-3">Videography</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">Cinematic b-roll and event highlight reels to preserve every important moment.</p>
                     </div>
                 </div>
-                <button class="cta-trigger px-12 py-4 bg-brand-primary text-white font-bold rounded-full shadow-xl hover:bg-brand-dark transition-all uppercase tracking-widest text-sm">Calculate Package Price Now →</button>
+            </div>
+        </section>
+
+        <!-- ============================================================ CALL STRIP -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="relative overflow-hidden bg-brand-dark rounded-[2.5rem] px-8 py-14 md:px-16 md:py-16 text-center shadow-2xl">
+                    <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute -top-20 -right-20 w-72 h-72 bg-brand-primary/30 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight tracking-tight">Prefer to talk it through?</h2>
+                        <p class="text-brand-light/70 mb-8 max-w-xl mx-auto leading-relaxed">Call a producer directly. We serve Nairobi, Mombasa, Kisumu and all major towns in Kenya.</p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="tel:+254701938336" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-accent text-brand-dark font-black rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-xl tracking-wide">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z"/></svg>
+                                +254 701 938 336
+                            </a>
+                            <a href="tel:+254712828453" class="inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-brand-accent text-brand-accent font-black rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all tracking-wide">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z"/></svg>
+                                +254 712 828 453
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <div id="chat-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden">
-        <div class="bg-white w-full max-w-2xl h-[85vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden">
-            <div class="bg-brand-dark text-white p-5 flex justify-between items-center border-b-2 border-brand-primary text-xs font-black uppercase tracking-widest">
-                <span>LiveQuote Bot</span>
-                <button id="close-chat-btn" class="text-3xl font-light">&times;</button>
-            </div>
-            <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto bg-brand-light/20"></div>
-            <div id="chat-input-area" class="p-4 bg-white border-t border-gray-100">
-                <div id="button-options" class="flex flex-wrap gap-2 mb-3"></div>
-                <div class="flex items-center gap-2">
-                    <input type="text" id="chat-input" class="flex-1 border border-gray-200 rounded-full px-5 py-3 outline-none" placeholder="Type answer...">
-                    <button id="chat-send-btn" class="bg-brand-primary text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9-7-9-7V19z"></path></svg></button>
+    <!-- ================================================================
+         REUSABLE FOOTER — identical on every page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">&#9654;</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">&#9678;</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
                 </div>
             </div>
-            <div id="loading-spinner" class="p-6 hidden">
-                <div class="flex items-center gap-3"><div class="w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full animate-spin"></div><p class="text-sm font-bold text-brand-dark uppercase tracking-widest">Generating Quote...</p></div>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
             </div>
         </div>
-    </div>
-
-    <footer class="bg-brand-dark text-brand-light/30 py-12 text-center text-xs border-t border-brand-primary/20">
-        <p class="mb-4 text-brand-accent/50 uppercase tracking-widest">Call us on +254-712-828-453 or +254-701-938-336. Serving Nairobi, Mombasa, Kisumu & All major towns in Kenya</p>
-        <p>&copy; 2026 Techtube Video Studio Ltd. Nairobi, Kenya.</p>
     </footer>
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('chat-modal'), messages = document.getElementById('chat-messages'), input = document.getElementById('chat-input'), sendBtn = document.getElementById('chat-send-btn'), options = document.getElementById('button-options'), area = document.getElementById('chat-input-area'), spinner = document.getElementById('loading-spinner');
-            const ENDPOINTS = { SCAN: "https://techtube-backend-895534116569.us-central1.run.app/stratbot/scan", CAPTURE: "https://techtube-backend-895534116569.us-central1.run.app/leads/capture", INVOICE: "https://techtube-backend-895534116569.us-central1.run.app/send-invoice" };
-            let currentIdx = 0, userInputs = {};
-
-            const flow = [
-                { key: 'eventType', text: "What type of event are we covering? (e.g., Corporate AGM, Wedding, Funeral, Product Launch)", type: 'text' },
-                { key: 'eventDate', text: "What is the scheduled date for this event?", type: 'date' },
-                { key: 'duration', text: "How long is the event? (Full day is typically 8 hours, half day is 4 hours.)", type: 'buttons', options: ['Full Day (8 Hours)', 'Half Day (4 Hours)', 'Custom Duration'] },
-                { key: 'hours', text: "How many total production hours are required on location?", type: 'text', condition: (v) => v === 'Custom Duration' },
-                { key: 'setup', text: "Which camera setup is required for the production package?", type: 'buttons', options: ['1 Video + 1 Photo', '2 Video + 1 Photo', '2 Video + 2 Photo', 'Custom Setup'] },
-                { key: 'extraVideo', text: "Number of additional video cameras? (Ksh 5,000/hr each)", type: 'text', condition: (v) => v === 'Custom Setup' },
-                { key: 'extraPhoto', text: "Number of additional photographers? (Ksh 3,000/hr each)", type: 'text', condition: (v) => v === 'Custom Setup' },
-                { key: 'drone', text: "Include 4K Drone aerial footage? (Fixed Ksh 20,000 flat rate)", type: 'buttons', options: ['Yes', 'No'] },
-                { key: 'leadForm', text: "Calculations complete! Please provide your name and email to view your official quote.", type: 'custom_form' },
-                { key: 'isHappy', text: "Would you like to secure this production date now with a 10% non-refundable deposit?", type: 'buttons', options: ['Yes, Book Now', 'No, I have questions'] }
-            ];
-
-            document.body.addEventListener('click', (e) => { if (e.target.closest('.cta-trigger')) { window.scrollTo({top:0, behavior:'smooth'}); modal.classList.remove('hidden'); startChat(); } });
-            document.getElementById('close-chat-btn').onclick = () => modal.classList.add('hidden');
-
-            function startChat() { currentIdx = 0; userInputs = {}; messages.innerHTML = ''; addBotMessage("Hello! I'm LiveQuote. Let's calculate your production package."); ask(); }
-
-            function ask() {
-                const q = flow[currentIdx];
-                if (q.condition && !q.condition(userInputs[flow[currentIdx-1].key])) { currentIdx++; ask(); return; }
-                if (q.type === 'custom_form') { showLeadForm(); return; }
-                addBotMessage(q.text); options.innerHTML = ''; 
-                if (q.type === 'buttons') { input.parentElement.classList.add('hidden'); q.options.forEach(opt => {
-                    const btn = document.createElement('button'); btn.textContent = opt;
-                    btn.className = "px-4 py-2 bg-gray-200 rounded-full text-sm hover:bg-brand-primary hover:text-white transition-all";
-                    btn.onclick = () => handle(opt); options.appendChild(btn);
-                });} else { 
-        input.parentElement.classList.remove('hidden'); 
-        
-        // --- ADD THIS DATE LOGIC HERE ---
-        if (q.type === 'date') {
-            input.type = 'date';
-            // Optional: Set the minimum date to today so they can't pick the past
-            const today = new Date().toISOString().split('T')[0];
-            input.setAttribute('min', today);
-        } else {
-            input.type = 'text'; // Reset to text for all other questions
-        }
-        // --------------------------------
-        
-        input.focus(); 
-    }
-}
-
-            async function handle(val) { addUserMessage(val); userInputs[flow[currentIdx].key] = val; if (flow[currentIdx].key === 'isHappy') { await finalize(); return; } currentIdx++; setTimeout(ask, 400); }
- const inputField = document.getElementById('chat-input');
-    inputField.type = 'text'; 
-            function showLeadForm() {
-                input.parentElement.classList.add('hidden');
-                options.innerHTML = `<div class="bg-white p-4 rounded-2xl border shadow-sm w-full space-y-3"><input type="text" id="u-name" placeholder="Full Name" class="w-full p-3 border rounded-lg text-sm text-brand-dark outline-none"><input type="email" id="u-email" placeholder="Work Email Address" class="w-full p-3 border rounded-lg text-sm text-brand-dark outline-none"><button id="u-submit" class="w-full bg-brand-primary text-white font-bold py-3 rounded-lg uppercase text-xs">Generate Official Quote</button></div>`;
-                document.getElementById('u-submit').onclick = () => {
-                    const n = document.getElementById('u-name').value.trim(), e = document.getElementById('u-email').value.trim();
-                    if (n && e.includes('@')) { userInputs.name = n; userInputs.email = e; addUserMessage(n); options.innerHTML = ''; currentIdx = 9; processQuote(); }
-                };
-            }
-
-            async function processQuote() {
-                area.classList.add('hidden'); spinner.classList.remove('hidden');
-                let h = userInputs.duration.includes('4') ? 4 : 8;
-                if (userInputs.hours) h = parseFloat(userInputs.hours);
-                let r = (userInputs.setup === '1 Video + 1 Photo') ? (h >= 8 ? 7000 : 8000) : (userInputs.setup === '2 Video + 1 Photo') ? (h >= 8 ? 12000 : 14000) : (userInputs.setup === '2 Video + 2 Photo') ? (h >= 8 ? 15000 : 16000) : (7000 + (parseInt(userInputs.extraVideo || 0)*5000) + (parseInt(userInputs.extraPhoto || 0)*3000));
-                const total = (r * h) + (userInputs.drone === 'Yes' ? 20000 : 0);
-                userInputs.total = total; userInputs.deposit = total * 0.1;
-                
-                const quoteHtml = `<div class="bg-white border-2 border-brand-primary rounded-2xl overflow-hidden shadow-lg w-full"><div class="bg-brand-dark text-white p-5 text-center font-black uppercase text-sm tracking-widest text-brand-accent uppercase italic">LIVESTREAMING OFFICIAL QUOTE</div><div class="p-6 space-y-4 text-sm text-brand-dark"><div class=\"flex justify-between border-b pb-2\"><span>Base Production Rate:</span><span class=\"font-bold uppercase\">KES ${r.toLocaleString()} /hr</span></div><div class=\"flex justify-between border-b pb-2\"><span>Booked Duration:</span><span class=\"font-bold\">${h} Hours</span></div>${userInputs.drone === 'Yes' ? '<div class=\"flex justify-between border-b pb-2 text-brand-primary font-bold\"><span>Drone Aerial Add-on:</span><span>KES 20,000</span></div>' : ''}<div class=\"pt-2 mt-4 flex justify-between text-2xl font-black text-brand-primary uppercase italic tracking-tighter\"><span>Total Amount:</span><span>KES ${total.toLocaleString()}</span></div></div><div class=\"p-4 bg-brand-light/40 text-[10px] italic text-gray-500 border-t text-center uppercase font-bold tracking-widest\">A 10% deposit of KES ${userInputs.deposit.toLocaleString()} is required.</div></div>`;
-
-                setTimeout(async () => {
-                    spinner.classList.add('hidden'); area.classList.remove('hidden'); addBotMessage(quoteHtml);
-                    // Automatic Invoice Capture
-                    await fetch(ENDPOINTS.CAPTURE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_livestream", name: userInputs.name, email: userInputs.email, topic: "Livestream Quote Generated", message: `Total: KES ${total}. Event: ${userInputs.eventType}. Date: ${userInputs.eventDate}` }) });
-                    ask(); 
-                }, 1500);
-            }
-
-            async function finalize() {
-                const isPay = userInputs.isHappy.includes('Yes'); area.classList.add('hidden');
-                if (isPay) {
-                    addBotMessage("Excellent. Generating your recovery invoice and redirecting to secure checkout...");
-                    // THE FIX: Send Invoice immediately BEFORE redirect
-                    await fetch(ENDPOINTS.INVOICE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: userInputs.name, client_email: userInputs.email, strategy_title: `Livestreaming Production: ${userInputs.eventType}`, video_ideas: [{type: userInputs.setup, description: `On-location production for ${userInputs.eventType}. Date: ${userInputs.eventDate}.`, lengthMinutes: userInputs.duration.includes('4') ? 4 : 8}], total_minutes: userInputs.duration.includes('4') ? 4 : 8, total_amount: userInputs.total, currency: "KES" }) });
-                    
-                    const params = new URLSearchParams({ amount: userInputs.deposit, currency: 'KES', email: userInputs.email, name: userInputs.name, desc: `10% Deposit: ${userInputs.eventType}` });
-                    window.location.href = `/checkout.html?${params.toString()}`;
-                } else {
-                    await fetch(ENDPOINTS.CAPTURE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: "techtube_livestream", name: userInputs.name, email: userInputs.email, topic: "Requested Call (Questions)", message: `Quote: KES ${userInputs.total}. Event: ${userInputs.eventType}. Date: ${userInputs.eventDate}.` }) });
-                    addBotMessage(`I've sent the quote summary and a link to book our session to your email. Check your inbox to book our strategy briefing call.<br><br>Alternatively, call us on <strong>+254 701 938 336</strong>.`);
-                }
-            }
-
-            function addBotMessage(c) { addMessage(c, 'bot'); }
-            function addUserMessage(c) { addMessage(c, 'user'); }
-            function addMessage(c, s) { const d = document.createElement('div'); d.className = `flex ${s === 'user' ? 'justify-end' : 'justify-start'}`; const b = document.createElement('div'); b.className = `p-4 rounded-2xl max-w-[90%] shadow-md ${s === 'user' ? 'bg-brand-primary text-white' : 'bg-white text-brand-dark font-medium'}`; b.innerHTML = c; d.appendChild(b); messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
-            sendBtn.onclick = () => { if(input.value.trim()){ handle(input.value); input.value=''; }};
-            input.onkeydown = (e) => { if(e.key==='Enter' && input.value.trim()){ handle(input.value); input.value=''; }};
-        });
-    </script>
-     <!-- Video Modal -->
-    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4" onclick="if(event.target===this)closeVideoModal()">
         <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl">
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-[210] text-white/50 hover:text-white text-4xl font-light">&times;</button>
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-[210] text-white/60 hover:text-white text-4xl leading-none" aria-label="Close video">&times;</button>
             <div class="aspect-video"><iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
         </div>
     </div>
 
-    <script>
-        function openVideoModal(url){
-            const m=document.getElementById('video-modal');
-            const i=document.getElementById('modal-iframe');
-            if(m&&i){
-                i.src=url+"?autoplay=1&rel=0";
-                m.classList.remove('hidden');
+<script>
+    // ---------- video modal ----------
+    function openVideoModal(url){
+        const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
+        if (m && i) { i.src = url + "?autoplay=1&rel=0"; m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeVideoModal(){
+        const m = document.getElementById('video-modal'), i = document.getElementById('modal-iframe');
+        if (m && i) { i.src = ""; m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // ---------- mobile menu ----------
+        const mobileBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+            mobileMenu.querySelectorAll('a').forEach(link => { link.onclick = () => mobileMenu.classList.add('hidden'); });
+        }
+
+        // ---------- quote widget ----------
+        const $ = id => document.getElementById(id);
+        const messages = $('chat-messages'), options = $('button-options'), typingRow = $('typing-row'),
+              input = $('chat-input'), sendBtn = $('chat-send-btn'), spinner = $('loading-spinner'),
+              area = $('chat-input-area'), hint = $('input-hint');
+
+        const BASE = "https://techtube-backend-895534116569.us-central1.run.app";
+        const ENDPOINTS = { CAPTURE: BASE + "/leads/capture", INVOICE: BASE + "/send-invoice" };
+        const PHONE_HTML = '<a href="tel:+254701938336" class="font-bold underline">+254 701 938 336</a>';
+
+        // ---- helpers ----
+        const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        const fmt = n => Number(n).toLocaleString('en-US');
+        const z = n => String(n).padStart(2, '0');
+        const localISO = d => d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate());
+        function niceDate(iso) {
+            const [y, m, d] = String(iso).split('-').map(Number);
+            return new Date(y, m - 1, d).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        }
+        // test hook only; in normal use this is a plain redirect
+        const go = url => (window.__redirect ? window.__redirect(url) : (window.location.href = url));
+
+        // ---- conversation steps ----
+        // "when" decides whether a step is asked, based on earlier answers.
+        const steps = [
+            { key: 'eventType', text: "What type of event are we covering?", kind: 'chips',
+              options: ['Corporate Event / AGM', 'Wedding', 'Funeral / Memorial', 'Product Launch', 'Conference / Seminar', 'Church / Worship Service', 'Other'] },
+            { key: 'eventDate', text: "What is the scheduled date for this event?", kind: 'date' },
+            { key: 'duration', text: "How long is the event? (A full day is typically 8 hours, a half day is 4 hours.)", kind: 'chips',
+              options: ['Full Day (8 Hours)', 'Half Day (4 Hours)', 'Custom Duration'] },
+            { key: 'hours', text: "How many total production hours are required on location?", kind: 'number',
+              min: 1, max: 24, step: 0.5, placeholder: 'e.g. 6', error: 'Please enter a number of hours between 1 and 24.',
+              when: d => d.duration === 'Custom Duration' },
+            { key: 'setup', text: "Which camera setup is required for the production package?", kind: 'chips',
+              options: ['1 Video + 1 Photo', '2 Video + 1 Photo', '2 Video + 2 Photo', 'Custom Setup'] },
+            { key: 'extraVideo', text: "How many additional video cameras? (KES 5,000/hr each. Enter 0 for none.)", kind: 'number',
+              min: 0, max: 10, step: 1, integer: true, placeholder: 'e.g. 1', error: 'Please enter a whole number from 0 to 10.',
+              when: d => d.setup === 'Custom Setup' },
+            { key: 'extraPhoto', text: "How many additional photographers? (KES 3,000/hr each. Enter 0 for none.)", kind: 'number',
+              min: 0, max: 10, step: 1, integer: true, placeholder: 'e.g. 1', error: 'Please enter a whole number from 0 to 10.',
+              when: d => d.setup === 'Custom Setup' },
+            { key: 'drone', text: "Include 4K drone aerial footage? (Fixed KES 20,000 flat rate)", kind: 'chips', options: ['Yes', 'No'] },
+            { key: 'lead', kind: 'lead', text: "Calculations complete! Please provide your name and email to view your official quote." },
+            { key: 'isHappy', text: "Would you like to secure this production date now with a 10% non-refundable deposit?", kind: 'chips',
+              options: ['Yes, Book Now', 'No, I have questions'] }
+        ];
+
+        let idx = 0, data = {}, pendingOther = false;
+
+        function nextIndex(from) {
+            for (let i = from + 1; i < steps.length; i++) {
+                if (!steps[i].when || steps[i].when(data)) return i;
+            }
+            return steps.length - 1;
+        }
+
+        // ---- messages ----
+        function addMsg(content, who, isHtml) {
+            const row = document.createElement('div');
+            row.className = 'flex ' + (who === 'user' ? 'justify-end' : 'justify-start');
+            const bubble = document.createElement('div');
+            bubble.className = 'p-3 rounded-2xl max-w-[88%] shadow-sm ' + (who === 'user' ? 'bg-brand-primary text-white' : 'bg-brand-light text-brand-dark font-medium');
+            if (who === 'bot' && isHtml) bubble.innerHTML = content; else bubble.textContent = content;
+            row.appendChild(bubble); messages.appendChild(row);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        function showTyping() {
+            const d = document.createElement('div');
+            d.id = 'typing-indicator'; d.className = 'flex justify-start';
+            d.innerHTML = '<div class="bg-brand-light rounded-2xl px-4 py-3 shadow-sm flex gap-1">' +
+                [0, .2, .4].map(t => '<span class="w-1.5 h-1.5 bg-brand-primary/50 rounded-full pulse-dot" style="animation-delay:' + t + 's"></span>').join('') + '</div>';
+            messages.appendChild(d); messages.scrollTop = messages.scrollHeight;
+        }
+        const hideTyping = () => { const t = $('typing-indicator'); if (t) t.remove(); };
+        function botSay(text, cb, isHtml, delay) {
+            showTyping();
+            setTimeout(() => { hideTyping(); addMsg(text, 'bot', isHtml); if (cb) cb(); }, delay == null ? 450 : delay);
+        }
+
+        // ---- controls ----
+        function setHint(msg) { if (msg) { hint.textContent = msg; hint.classList.remove('hidden'); } else { hint.textContent = ''; hint.classList.add('hidden'); } }
+        function hideInput() { typingRow.classList.add('hidden'); typingRow.classList.remove('flex'); setHint(''); }
+        function showInput(cfg) {
+            options.innerHTML = '';
+            typingRow.classList.remove('hidden'); typingRow.classList.add('flex');
+            input.value = '';
+            input.type = cfg.type || 'text';
+            input.placeholder = cfg.placeholder || 'Type here...';
+            input.removeAttribute('min'); input.removeAttribute('max'); input.removeAttribute('step');
+            if (cfg.min != null) input.min = cfg.min;
+            if (cfg.max != null) input.max = cfg.max;
+            if (cfg.step != null) input.step = cfg.step;
+            input.inputMode = cfg.inputMode || (cfg.type === 'number' ? 'decimal' : 'text');
+            input.focus();
+        }
+
+        function renderControls(s) {
+            options.innerHTML = ''; hideInput();
+            if (s.kind === 'chips') {
+                s.options.forEach(opt => {
+                    const b = document.createElement('button');
+                    b.type = 'button'; b.textContent = opt;
+                    b.className = 'px-4 py-2 bg-gray-200 text-brand-dark hover:bg-brand-primary hover:text-white rounded-full transition-all text-sm';
+                    b.onclick = () => answer(opt);
+                    options.appendChild(b);
+                });
+            } else if (s.kind === 'date') {
+                renderDatePicker();
+            } else if (s.kind === 'number') {
+                showInput({ type: 'number', min: s.min, max: s.max, step: s.step, placeholder: s.placeholder, inputMode: s.integer ? 'numeric' : 'decimal' });
+            } else if (s.kind === 'lead') {
+                renderLeadForm();
             }
         }
-        function closeVideoModal(){
-            const m=document.getElementById('video-modal');
-            const i=document.getElementById('modal-iframe');
-            if(m&&i){
-                i.src="";
-                m.classList.add('hidden');
+
+        function renderDatePicker() {
+            const today = new Date();
+            const max = new Date(today.getFullYear() + 2, today.getMonth(), today.getDate());
+            options.innerHTML =
+                '<div class="w-full bg-white p-4 rounded-2xl border border-brand-primary/15 shadow-sm space-y-3">' +
+                '<label for="date-pick" class="block text-[10px] font-black uppercase tracking-widest text-brand-primary">Tap to choose a date</label>' +
+                '<input type="date" id="date-pick" min="' + localISO(today) + '" max="' + localISO(max) + '" class="w-full p-3 border border-brand-primary/20 rounded-xl text-sm text-brand-dark outline-none focus:ring-2 focus:ring-brand-primary bg-white">' +
+                '<button type="button" id="date-confirm" class="w-full bg-brand-primary text-white font-bold py-3 rounded-xl uppercase text-xs tracking-widest hover:bg-brand-dark transition-colors">Confirm Date</button>' +
+                '</div>';
+            const dp = $('date-pick');
+            // Open the calendar as soon as the field is tapped or clicked
+            dp.addEventListener('click', () => { try { if (dp.showPicker) dp.showPicker(); } catch (_) {} });
+            $('date-confirm').onclick = () => {
+                const v = dp.value;
+                if (!v) { setHint('Please choose the event date.'); return; }
+                if (v < dp.min) { setHint('That date has already passed. Please choose an upcoming date.'); return; }
+                if (v > dp.max) { setHint('Please choose a date within the next two years.'); return; }
+                setHint('');
+                answer(v, niceDate(v));
+            };
+        }
+
+        function renderLeadForm() {
+            options.innerHTML =
+                '<div class="w-full bg-white p-4 rounded-2xl border border-brand-primary/15 shadow-sm space-y-3">' +
+                '<input type="text" id="u-name" placeholder="Full Name" autocomplete="name" maxlength="120" class="w-full p-3 border border-brand-primary/20 rounded-xl text-sm text-brand-dark outline-none focus:ring-2 focus:ring-brand-primary">' +
+                '<input type="email" id="u-email" placeholder="Work Email Address" autocomplete="email" maxlength="160" class="w-full p-3 border border-brand-primary/20 rounded-xl text-sm text-brand-dark outline-none focus:ring-2 focus:ring-brand-primary">' +
+                '<button type="button" id="u-submit" class="w-full bg-brand-primary text-white font-bold py-3 rounded-xl uppercase text-xs tracking-widest hover:bg-brand-dark transition-colors">Generate Official Quote</button>' +
+                '</div>';
+            $('u-submit').onclick = () => {
+                const n = $('u-name').value.trim(), e = $('u-email').value.trim();
+                if (!n) { setHint('Please enter your name.'); return; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { setHint('Please enter a valid email address.'); return; }
+                setHint('');
+                data.name = n; data.email = e;
+                addMsg(n, 'user'); options.innerHTML = '';
+                processQuote();
+            };
+        }
+
+        // ---- flow ----
+        function ask() {
+            const s = steps[idx];
+            botSay(s.text, () => renderControls(s), false);
+        }
+
+        function answer(val, display) {
+            const s = steps[idx];
+            addMsg(display || val, 'user');
+            options.innerHTML = ''; hideInput();
+
+            if (s.key === 'eventType' && val === 'Other' && !pendingOther) {
+                pendingOther = true;
+                botSay("Please tell us the type of event.", () => showInput({ type: 'text', placeholder: 'e.g. School graduation', inputMode: 'text' }), false);
+                return;
+            }
+            data[s.key] = val;
+            if (s.key === 'isHappy') { finalize(); return; }
+            idx = nextIndex(idx);
+            ask();
+        }
+
+        function submitInput() {
+            const raw = input.value.trim(), s = steps[idx];
+            if (pendingOther) {
+                if (raw.length < 2) { setHint('Please enter the type of event.'); return; }
+                pendingOther = false; setHint('');
+                input.value = '';
+                answer(raw.slice(0, 80));
+                return;
+            }
+            if (s.kind === 'number') {
+                const n = Number(raw);
+                const bad = raw === '' || !isFinite(n) || n < s.min || n > s.max || (s.integer && !Number.isInteger(n));
+                if (bad) { setHint(s.error); return; }
+                input.value = '';
+                answer(String(n));
             }
         }
-    </script>
+        sendBtn.onclick = submitInput;
+        input.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); submitInput(); } };
+
+        // ---- pricing (same rates as before) ----
+        function computeQuote(d) {
+            let h = d.duration && d.duration.indexOf('4') !== -1 ? 4 : 8;
+            if (d.hours) h = parseFloat(d.hours);
+            let rate;
+            if (d.setup === '1 Video + 1 Photo') rate = h >= 8 ? 7000 : 8000;
+            else if (d.setup === '2 Video + 1 Photo') rate = h >= 8 ? 12000 : 14000;
+            else if (d.setup === '2 Video + 2 Photo') rate = h >= 8 ? 15000 : 16000;
+            else rate = 7000 + (parseInt(d.extraVideo || 0, 10) * 5000) + (parseInt(d.extraPhoto || 0, 10) * 3000);
+            const droneFee = d.drone === 'Yes' ? 20000 : 0;
+            const total = (rate * h) + droneFee;
+            return { hours: h, rate: rate, droneFee: droneFee, total: total, deposit: Math.round(total * 0.1) };
+        }
+
+        function quoteHtml(q) {
+            const row = (a, b, extra) => '<div class="flex justify-between gap-4 border-b border-brand-light pb-2' + (extra || '') + '"><span>' + a + '</span><span class="font-bold text-right">' + b + '</span></div>';
+            let rows = row('Event', esc(data.eventType)) + row('Date', esc(niceDate(data.eventDate))) + row('Setup', esc(data.setup));
+            if (data.setup === 'Custom Setup') rows += row('Extras', '+' + esc(data.extraVideo || 0) + ' video, +' + esc(data.extraPhoto || 0) + ' photo');
+            rows += row('Base production rate', 'KES ' + fmt(q.rate) + ' /hr') + row('Booked duration', esc(q.hours) + ' hours');
+            if (q.droneFee) rows += row('Drone aerial add-on', 'KES ' + fmt(q.droneFee), ' text-brand-primary');
+            return '<div class="bg-white border-2 border-brand-primary rounded-2xl overflow-hidden shadow-lg w-full">' +
+                '<div class="bg-brand-dark text-brand-accent p-4 text-center font-black uppercase text-xs tracking-[0.2em]">Livestreaming Official Quote</div>' +
+                '<div class="p-5 space-y-3 text-sm text-brand-dark">' + rows +
+                '<div class="pt-2 flex justify-between items-baseline text-brand-primary"><span class="font-black uppercase text-xs tracking-widest">Total Amount</span><span class="text-2xl font-black">KES ' + fmt(q.total) + '</span></div></div>' +
+                '<div class="p-3 bg-brand-light/50 text-[10px] text-gray-500 border-t border-brand-light text-center uppercase font-bold tracking-widest">A 10% deposit of KES ' + fmt(q.deposit) + ' is required to secure the date</div></div>';
+        }
+
+        function summaryText(q) {
+            return [
+                'LIVESTREAM QUOTE',
+                'Event: ' + data.eventType,
+                'Date: ' + niceDate(data.eventDate),
+                'Setup: ' + data.setup + (data.setup === 'Custom Setup' ? ' (+' + (data.extraVideo || 0) + ' video, +' + (data.extraPhoto || 0) + ' photo)' : ''),
+                'Duration: ' + q.hours + ' hours at KES ' + fmt(q.rate) + '/hr',
+                'Drone aerial: ' + data.drone,
+                'Total: KES ' + fmt(q.total),
+                '10% deposit: KES ' + fmt(q.deposit)
+            ].join('\n');
+        }
+
+        function sendCapture(topic, q) {
+            const body = {
+                source: 'techtube_livestream', name: data.name, email: data.email, topic: topic,
+                message: summaryText(q),
+                business_context: 'Livestream | ' + data.eventType + ' | ' + niceDate(data.eventDate) + ' | ' + data.setup + ' | ' + q.hours + 'h | Drone: ' + data.drone,
+                currency: 'KES'
+            };
+            return fetch(ENDPOINTS.CAPTURE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => {});
+        }
+
+        function processQuote() {
+            area.classList.add('hidden');
+            spinner.classList.remove('hidden'); spinner.classList.add('flex');
+            const q = computeQuote(data);
+            data.quote = q;
+            setTimeout(() => {
+                spinner.classList.add('hidden'); spinner.classList.remove('flex');
+                area.classList.remove('hidden');
+                addMsg(quoteHtml(q), 'bot', true);
+                sendCapture('Livestream Quote Generated', q);
+                idx = nextIndex(idx);
+                ask();
+            }, 1200);
+        }
+
+        async function finalize() {
+            const q = data.quote;
+            area.classList.add('hidden');
+            if (data.isHappy.indexOf('Yes') === 0) {
+                addMsg('Excellent. Generating your invoice and redirecting to secure checkout...', 'bot');
+                const hrs = q.hours;
+                const ctl = new AbortController();
+                const timer = setTimeout(() => ctl.abort(), 12000);
+                try {
+                    await fetch(ENDPOINTS.INVOICE, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true, signal: ctl.signal,
+                        body: JSON.stringify({
+                            client_name: data.name, client_email: data.email,
+                            strategy_title: 'Livestreaming Production: ' + data.eventType,
+                            video_ideas: [{ type: data.setup, description: 'On-location production for ' + data.eventType + '. Date: ' + niceDate(data.eventDate) + '.', lengthMinutes: hrs }],
+                            total_minutes: hrs, total_amount: q.total, currency: 'KES'
+                        })
+                    });
+                } catch (_) { /* still send them to checkout */ }
+                clearTimeout(timer);
+                const params = new URLSearchParams({ amount: q.deposit, currency: 'KES', email: data.email, name: data.name, desc: '10% Deposit: ' + data.eventType });
+                go('/checkout.html?' + params.toString());
+            } else {
+                sendCapture('Requested Call (Questions)', q);
+                addMsg("Thanks. We've emailed your quote summary, and a producer will follow up with you shortly. Prefer to talk now? Call " + PHONE_HTML + ".", 'bot', true);
+            }
+        }
+
+        // Start straight away: the widget is the hero
+        idx = 0; data = {};
+        ask();
+    });
+</script>
 </body>
 </html>
