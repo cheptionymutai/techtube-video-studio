@@ -10,12 +10,10 @@
       "**/node_modules/**"
     ],
     "redirects": [
-      {
-        "source": "/verify",
-        "destination": "/",
-        "type": 301
-      }
-    ],
+  { "source": "/verify", "destination": "/", "type": 301 },
+  { "source": "/livestream", "destination": "/", "type": 301 },
+  { "source": "/livestream.html", "destination": "/", "type": 301 }
+],
     "rewrites": [
       {
         "source": "/sitemap.xml",
