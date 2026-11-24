@@ -10,29 +10,30 @@
 
   gtag('config', 'G-6H1LBSFT6R');
 </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | Techtube Video Studio</title>
+    <meta name="description" content="How Techtube Video Studio collects, uses and protects your information when you use StratBot or contact us.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom scrollbar matching main site */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #e8e9e2; }
         ::-webkit-scrollbar-thumb { background: #18795B; border-radius: 4px; }
-        
         html { scroll-behavior: smooth; }
-        .policy-content h2 { 
-            color: #18795B; 
-            font-size: 1.5rem; 
-            font-weight: 700; 
-            margin-top: 2rem; 
-            margin-bottom: 1rem; 
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .policy-content section { scroll-margin-top: 100px; }
+        .policy-content h2 {
+            color: #18795B; font-size: 1.25rem; font-weight: 800; margin-top: 2.5rem; margin-bottom: 1rem;
+            text-transform: uppercase; letter-spacing: 0.05em; padding-top: 1.5rem; border-top: 2px solid #e8e9e2;
         }
-        .policy-content p { margin-bottom: 1.25rem; line-height: 1.75; }
+        .policy-content section:first-of-type h2 { margin-top: 0; padding-top: 0; border-top: 0; }
+        .policy-content p { margin-bottom: 1.25rem; line-height: 1.8; }
         .policy-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
-        .policy-content li { margin-bottom: 0.5rem; }
+        .policy-content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .policy-content a { color: #18795B; text-decoration: underline; text-underline-offset: 3px; }
+        .policy-content a:hover { color: #031F14; }
     </style>
     <script>
         tailwind.config = {
@@ -51,80 +52,213 @@
 </head>
 <body class="bg-brand-light text-brand-dark font-sans antialiased">
 
-    <!-- Simple Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-brand-primary/50 h-20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <div class="flex-shrink-0">
-                <a href="/" class="flex items-center">
-                    <img class="h-12" src="/techtube-logo.jpg" alt="Techtube Logo" onerror="this.src='https://placehold.co/200x60/031F14/8fcdb5?text=Techtube';">
-                </a>
-            </div>
-            <nav class="flex items-center space-x-6">
-                <a href="/" class="text-brand-light/70 hover:text-brand-light transition-colors text-sm font-bold uppercase">Back to Home</a>
+    <!-- ================================================================
+         REUSABLE HEADER — identical on every page. The current-page
+         highlight is automatic (script directly below the header).
+    ================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-2 group">
+                <img class="h-10 md:h-12" src="/techtube-logo.jpg" alt="Techtube Logo">
+            </a>
+            <nav class="hidden md:flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest">
+                <a href="/portfolio.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Case Studies</a>
+                <a href="https://techtubestudio.com/blog/" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">Blog</a>
+                <a href="/about.html" data-active="false" class="nav-link px-4 py-2 rounded-full text-brand-light/70 hover:text-white hover:bg-white/5 transition-all">About</a>
+                <a href="/contact.html" class="ml-2 px-5 py-2.5 rounded-full bg-brand-accent text-brand-dark hover:bg-white transition-all">Contact</a>
             </nav>
+            <button id="mobile-menu-button" class="md:hidden text-brand-light p-2 -mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-primary/20 absolute top-20 left-0 w-full flex flex-col p-6 gap-1 text-center font-bold text-sm uppercase tracking-widest">
+            <a href="/portfolio.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Case Studies</a>
+            <a href="https://techtubestudio.com/blog/" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">Blog</a>
+            <a href="/about.html" class="py-3 rounded-xl text-brand-light hover:bg-white/5 transition-all">About</a>
+            <a href="/contact.html" class="mt-2 py-3 rounded-xl bg-brand-accent text-brand-dark">Contact</a>
         </div>
     </header>
+    <script>
+    const norm = p => p.replace(/\.html$/,'').replace(/\/$/,'') || '/';
+    document.querySelectorAll('.nav-link').forEach(a => {
+      if (norm(new URL(a.href).pathname) === norm(location.pathname)) {
+        a.classList.remove('text-brand-light/70');
+        a.classList.add('text-brand-accent','bg-white/5');
+      }
+    });
+    </script>
+    <!-- ============================================================= END REUSABLE HEADER ============================================================= -->
 
-    <main class="pt-32 pb-24">
-        <div class="max-w-3xl mx-auto px-6 bg-white p-10 md:p-16 rounded-3xl shadow-xl">
-            <h1 class="text-4xl md:text-5xl font-black text-brand-dark mb-4 uppercase tracking-tighter">Privacy Policy</h1>
-            <p class="text-brand-primary font-bold mb-10">Last Updated: February 2026</p>
-
-            <div class="policy-content text-gray-700">
-                <p>At <strong>Techtube Video Studio Ltd</strong>, your privacy is a core part of our commitment to transparency. This policy explains how we collect, use, and protect your information when you use our StratBot strategy builder or contact us through our website.</p>
-
-                <h2>1. Information We Collect</h2>
-                <p>We collect information that helps us build a bespoke video marketing strategy for you, including:</p>
-                <ul>
-                    <li><strong>Identity Data:</strong> Your name and email address.</li>
-                    <li><strong>Business Data:</strong> Industry type, website URL, and business/product descriptions.</li>
-                    <li><strong>Strategic Data:</strong> Content preferences, platform targets, and production frequency.</li>
-                    <li><strong>Technical Data:</strong> IP address and location (used solely for currency detection).</li>
-                </ul>
-
-                <h2>2. How We Use Your Information</h2>
-                <p>Your data is used to fuel our Hybrid Production Model. Specifically:</p>
-                <ul>
-                    <li>To generate the custom video strategy via our AI engine.</li>
-                    <li>To deliver official quotations and invoices to your inbox.</li>
-                    <li>To address you by name in our communications.</li>
-                    <li>To trigger automated follow-ups ensuring you received your strategy details.</li>
-                    <li>To analyze industry trends to improve StratBot's accuracy.</li>
-                </ul>
-
-                <h2>3. AI Processing</h2>
-                <p>When you provide a URL or business description, this data is processed by Google Gemini AI to create your roadmap. This data is used only for the generation of your specific strategy and is not used by Techtube to "train" public models.</p>
-
-                <h2>4. Data Storage and Security</h2>
-                <p>We host our infrastructure on <strong>Google Cloud (Firebase & Cloud Run)</strong>, which employs enterprise-grade security. We do not sell, rent, or trade your personal information with third-party marketers.</p>
-
-                <h2>5. Third-Party Services</h2>
-                <p>To deliver our service, we use trusted sub-processors:</p>
-                <ul>
-                    <li><strong>Google Cloud:</strong> For hosting and AI processing.</li>
-                    <li><strong>FastMail:</strong> For secure email delivery of your strategies and invoices.</li>
-                    <li><strong>Chatway:</strong> For live support communications.</li>
-                </ul>
-
-                <h2>6. Your Rights</h2>
-                <p>Under Kenyan Data Protection laws, you have the right to access, correct, or request the deletion of your data at any time. To do so, please contact us at the email address below.</p>
-
-                <h2>7. Contact Us</h2>
-                <p>If you have any questions regarding this policy or your data, please reach out to us:</p>
-                <p class="font-bold text-brand-primary">
-                    Email: hello@techtubestudio.com<br>
-                    Location: Kasarani Mwiki Road, Nairobi, Kenya.
-                </p>
+    <main>
+        <!-- ============================================================ HERO -->
+        <section class="relative overflow-hidden bg-brand-dark pt-32 md:pt-40 pb-16 md:pb-20">
+            <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 20% 20%, #8fcdb5 1px, transparent 1px); background-size: 28px 28px;"></div>
+            <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+                <span class="inline-block text-brand-accent text-[10px] font-black uppercase tracking-[0.4em] mb-5">Legal</span>
+                <h1 class="text-3xl md:text-5xl font-black text-white leading-[1.1] tracking-tight mb-4">Privacy <span class="text-brand-accent">Policy</span></h1>
+                <p class="text-brand-light/60 text-sm font-semibold">Last Updated: November 2026</p>
             </div>
-        </div>
+        </section>
+
+        <!-- ============================================================ POLICY -->
+        <section class="py-12 md:py-20">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="bg-white p-8 md:p-14 rounded-3xl shadow-xl">
+
+                    <p class="text-gray-700 leading-relaxed mb-8">At <strong>Techtube Video Studio Ltd</strong>, your privacy is a core part of our commitment to transparency. This policy explains how we collect, use, and protect your information when you use our StratBot strategy builder or contact us through our website.</p>
+
+                    <!-- Short version -->
+                    <div class="bg-brand-light/60 border-l-4 border-brand-primary rounded-2xl p-6 mb-8">
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-brand-primary mb-3">The short version</p>
+                        <ul class="space-y-2 text-sm text-gray-700 leading-relaxed list-disc pl-5">
+                            <li>We collect what we need to build your strategy and send your quote: your name, email and business details.</li>
+                            <li>We do not sell, rent, or trade your personal information.</li>
+                            <li>You can ask to see, correct or delete your data at any time by emailing us.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Contents -->
+                    <nav class="mb-10 p-6 border border-brand-primary/15 rounded-2xl" aria-label="Contents">
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-brand-primary mb-3">Contents</p>
+                        <ol class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-brand-primary list-decimal pl-5">
+                            <li><a href="#collect" class="hover:underline">Information We Collect</a></li>
+                            <li><a href="#use" class="hover:underline">How We Use Your Information</a></li>
+                            <li><a href="#ai" class="hover:underline">AI Processing</a></li>
+                            <li><a href="#storage" class="hover:underline">Data Storage and Security</a></li>
+                            <li><a href="#third-party" class="hover:underline">Third-Party Services</a></li>
+                            <li><a href="#analytics" class="hover:underline">Analytics, Cookies and Advertising</a></li>
+                            <li><a href="#rights" class="hover:underline">Your Rights</a></li>
+                            <li><a href="#contact" class="hover:underline">Contact Us</a></li>
+                        </ol>
+                    </nav>
+
+                    <div class="policy-content text-gray-700">
+                        <section id="collect">
+                            <h2>1. Information We Collect</h2>
+                            <p>We collect information that helps us build a bespoke video marketing strategy for you, including:</p>
+                            <ul>
+                                <li><strong>Identity Data:</strong> Your name and email address.</li>
+                                <li><strong>Business Data:</strong> Industry type, website URL, and business/product descriptions.</li>
+                                <li><strong>Strategic Data:</strong> Content preferences, video format, and production frequency.</li>
+                                <li><strong>Technical Data:</strong> IP address, approximate location, and device and browser information. We use your location to show quotes in the right currency, and our analytics and advertising tools (see section 6) also receive this data.</li>
+                            </ul>
+                        </section>
+
+                        <section id="use">
+                            <h2>2. How We Use Your Information</h2>
+                            <p>Your data is used to fuel our Hybrid Production Model. Specifically:</p>
+                            <ul>
+                                <li>To generate the custom video strategy via our AI engine.</li>
+                                <li>To deliver official quotations and invoices to your inbox.</li>
+                                <li>To address you by name in our communications.</li>
+                                <li>To trigger automated follow-ups ensuring you received your strategy details.</li>
+                                <li>To analyze industry trends to improve StratBot's accuracy.</li>
+                            </ul>
+                        </section>
+
+                        <section id="ai">
+                            <h2>3. AI Processing</h2>
+                            <p>When you provide a URL or business description, this data is processed by Google Gemini AI to create your roadmap. This data is used only for the generation of your specific strategy and is not used by Techtube to "train" public models.</p>
+                        </section>
+
+                        <section id="storage">
+                            <h2>4. Data Storage and Security</h2>
+                            <p>We host our infrastructure on <strong>Google Cloud (Firebase &amp; Cloud Run)</strong>, which employs enterprise-grade security. We do not sell, rent, or trade your personal information with third-party marketers.</p>
+                        </section>
+
+                        <section id="third-party">
+                            <h2>5. Third-Party Services</h2>
+                            <p>To deliver our service, we use trusted sub-processors and tools:</p>
+                            <ul>
+                                <li><strong>Google Cloud:</strong> For hosting and AI processing.</li>
+                                <li><strong>Google Workspace (Gmail):</strong> For email delivery of your strategies, quotes and invoices.</li>
+                                <li><strong>ipapi.co:</strong> To detect your country from your IP address so we can show prices in the right currency.</li>
+                                <li><strong>Google Analytics and Google Tag Manager:</strong> For website analytics.</li>
+                                <li><strong>Meta (Facebook) Pixel:</strong> For measuring and improving our advertising.</li>
+                                <li><strong>YouTube:</strong> For videos embedded on our pages.</li>
+                                <li><strong>Chatway:</strong> For live support communications.</li>
+                            </ul>
+                        </section>
+
+                        <section id="analytics">
+                            <h2>6. Analytics, Cookies and Advertising</h2>
+                            <p>We use Google Analytics and Google Tag Manager to understand how visitors use our website, and the Meta (Facebook) Pixel to measure our advertising and to show relevant ads to people who have visited our site. These tools use cookies and similar technologies, and may collect your IP address, device and browser details, and the pages you view. Videos embedded on our pages are served by YouTube, which may also set cookies when you play a video.</p>
+                            <p>You can limit or block cookies in your browser settings, and you can manage ad personalization in your Google and Meta account settings.</p>
+                        </section>
+
+                        <section id="rights">
+                            <h2>7. Your Rights</h2>
+                            <p>Under Kenyan Data Protection laws, you have the right to access, correct, or request the deletion of your data at any time. To do so, please contact us at the email address below.</p>
+                        </section>
+
+                        <section id="contact">
+                            <h2>8. Contact Us</h2>
+                            <p>If you have any questions regarding this policy or your data, please reach out to us:</p>
+                            <p class="font-bold text-brand-primary">
+                                Email: <a href="mailto:hello@techtubestudio.com">hello@techtubestudio.com</a><br>
+                                Location: Kasarani Mwiki Road, Nairobi, Kenya.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-brand-light/70 py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p>&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+    <!-- ================================================================
+         REUSABLE FOOTER — identical on every page.
+    ================================================================= -->
+    <footer class="bg-brand-dark border-t border-brand-primary/20 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <img class="h-10 mb-4" src="/techtube-logo.jpg" alt="Techtube Logo">
+                    <p class="text-brand-light/50 text-sm leading-relaxed max-w-sm normal-case font-normal">
+                        AI-hybrid video production studio based in Nairobi, serving brands worldwide. A month of strategy-backed video content, planned and produced for one predictable monthly rate.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://www.linkedin.com/company/techtubestudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/@techtubevideostudio" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="YouTube">&#9654;</a>
+                        <a href="https://www.instagram.com/techtubestudio/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-dark flex items-center justify-center text-brand-light/70 transition-all" aria-label="Instagram">&#9678;</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Site</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="/portfolio.html" class="hover:text-brand-accent transition-colors">Case Studies</a></li>
+                        <li><a href="https://techtubestudio.com/blog/" class="hover:text-brand-accent transition-colors">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-brand-accent transition-colors">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-brand-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-light text-[10px] font-black uppercase tracking-widest mb-4">Get Started</h4>
+                    <ul class="space-y-2.5 text-sm text-brand-light/50 normal-case font-normal">
+                        <li><a href="/index.html#how-it-works" class="hover:text-brand-accent transition-colors">How It Works</a></li>
+                        <li><a href="/index.html" class="hover:text-brand-accent transition-colors">Free Strategy Session</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-brand-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-brand-light/40 text-[10px] normal-case font-normal">&copy; 2026 Techtube Video Studio Ltd. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+    <!-- ============================================================= END REUSABLE FOOTER ============================================================= -->
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.onclick = () => mobileMenu.classList.add('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
