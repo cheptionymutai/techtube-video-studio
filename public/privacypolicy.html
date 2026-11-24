@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="/consent.js"></script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1LBSFT6R"></script>
 <script>
@@ -125,6 +126,7 @@
                             <li><a href="#use" class="hover:underline">How We Use Your Information</a></li>
                             <li><a href="#ai" class="hover:underline">AI Processing</a></li>
                             <li><a href="#storage" class="hover:underline">Data Storage and Security</a></li>
+                            <li><a href="#retention" class="hover:underline">Data Retention</a></li>
                             <li><a href="#third-party" class="hover:underline">Third-Party Services</a></li>
                             <li><a href="#analytics" class="hover:underline">Analytics, Cookies and Advertising</a></li>
                             <li><a href="#rights" class="hover:underline">Your Rights</a></li>
@@ -140,7 +142,8 @@
                                 <li><strong>Identity Data:</strong> Your name and email address.</li>
                                 <li><strong>Business Data:</strong> Industry type, website URL, and business/product descriptions.</li>
                                 <li><strong>Strategic Data:</strong> Content preferences, video format, and production frequency.</li>
-                                <li><strong>Technical Data:</strong> IP address, approximate location, and device and browser information. We use your location to show quotes in the right currency, and our analytics and advertising tools (see section 6) also receive this data.</li>
+                                <li><strong>Technical Data:</strong> IP address, approximate location, and device and browser information. We use your location to show quotes in the right currency, and our analytics and advertising tools (see section 7) also receive this data.</li>
+                                <li><strong>Payment Data:</strong> When you pay a deposit, your payment details are handled directly by Paystack. We receive confirmation of the payment but do not store your card or M-Pesa details.</li>
                             </ul>
                         </section>
 
@@ -153,6 +156,7 @@
                                 <li>To address you by name in our communications.</li>
                                 <li>To trigger automated follow-ups ensuring you received your strategy details.</li>
                                 <li>To analyze industry trends to improve StratBot's accuracy.</li>
+                                <li>To email you updates about our products and services. You can opt out at any time by emailing <a href="mailto:hello@techtubestudio.com">hello@techtubestudio.com</a>.</li>
                             </ul>
                         </section>
 
@@ -166,12 +170,19 @@
                             <p>We host our infrastructure on <strong>Google Cloud (Firebase &amp; Cloud Run)</strong>, which employs enterprise-grade security. We do not sell, rent, or trade your personal information with third-party marketers.</p>
                         </section>
 
+                        <section id="retention">
+                            <h2>5. Data Retention</h2>
+                            <p>We keep your information for as long as we are doing business with you, and until you ask us to delete it. To request deletion, email <a href="mailto:hello@techtubestudio.com">hello@techtubestudio.com</a>.</p>
+                            <p>Where the law requires us to keep certain records, such as invoices and payment records, we will keep only what is required.</p>
+                        </section>
+
                         <section id="third-party">
-                            <h2>5. Third-Party Services</h2>
+                            <h2>6. Third-Party Services</h2>
                             <p>To deliver our service, we use trusted sub-processors and tools:</p>
                             <ul>
                                 <li><strong>Google Cloud:</strong> For hosting and AI processing.</li>
                                 <li><strong>Google Workspace (Gmail):</strong> For email delivery of your strategies, quotes and invoices.</li>
+                                <li><strong>Paystack:</strong> For processing deposit and invoice payments by card or M-Pesa.</li>
                                 <li><strong>ipapi.co:</strong> To detect your country from your IP address so we can show prices in the right currency.</li>
                                 <li><strong>Google Analytics and Google Tag Manager:</strong> For website analytics.</li>
                                 <li><strong>Meta (Facebook) Pixel:</strong> For measuring and improving our advertising.</li>
@@ -180,22 +191,23 @@
                         </section>
 
                         <section id="analytics">
-                            <h2>6. Analytics, Cookies and Advertising</h2>
+                            <h2>7. Analytics, Cookies and Advertising</h2>
                             <p>We use Google Analytics and Google Tag Manager to understand how visitors use our website, and the Meta (Facebook) Pixel to measure our advertising and to show relevant ads to people who have visited our site. These tools use cookies and similar technologies, and may collect your IP address, device and browser details, and the pages you view. Videos embedded on our pages are served by YouTube, which may also set cookies when you play a video.</p>
-                            <p>You can limit or block cookies in your browser settings, and you can manage ad personalization in your Google and Meta account settings.</p>
+                            <p>When you first visit, a banner lets you accept or decline these cookies, and you can change your choice at any time using the button below. You can also limit or block cookies in your browser settings, and manage ad personalization in your Google and Meta account settings.</p>
+                            <p><button type="button" onclick="window.ttOpenConsent &amp;&amp; window.ttOpenConsent()" class="inline-block px-6 py-3 bg-brand-primary text-white font-bold rounded-full text-sm hover:bg-brand-dark transition-all">Manage cookie preferences</button></p>
                         </section>
 
                         <section id="rights">
-                            <h2>7. Your Rights</h2>
+                            <h2>8. Your Rights</h2>
                             <p>Under Kenyan Data Protection laws, you have the right to access, correct, or request the deletion of your data at any time. To do so, please contact us at the email address below.</p>
                         </section>
 
                         <section id="contact">
-                            <h2>8. Contact Us</h2>
+                            <h2>9. Contact Us</h2>
                             <p>If you have any questions regarding this policy or your data, please reach out to us:</p>
                             <p class="font-bold text-brand-primary">
                                 Email: <a href="mailto:hello@techtubestudio.com">hello@techtubestudio.com</a><br>
-                                Location: TRM Drive,Thika Road, Nairobi, Kenya-00618.
+                                Location: Kasarani Mwiki Road, Nairobi, Kenya.
                             </p>
                         </section>
                     </div>
